@@ -23,4 +23,13 @@
     WHERE CATEGORY = #{value}
   </select>
 
+    <select id="searchProductList" parameterType="string" resultType="Product">
+    select
+      PRODUCTID,
+      NAME,
+      DESCN as description,
+      CATEGORY as categoryId
+    from PRODUCT
+    WHERE lower(name) like #{value}
+  </select>
 </mapper>

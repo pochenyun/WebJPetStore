@@ -22,6 +22,11 @@ public class CatalogService {
         return categoryMapper.getCategory(categoryId);
     }
 
+    public List<Category> getCategoryList() {
+
+        return categoryMapper.getCategoryList();
+    }
+
     public Product getProduct(String productId) {
 
         return productMapper.getProduct(productId);
@@ -29,6 +34,10 @@ public class CatalogService {
 
     public List<Product> getProductListByCategory(String categoryId) {
         return productMapper.getProductListByCategory(categoryId);
+    }
+
+    public List<Product> searchProductList(String keyword) {
+        return productMapper.searchProductList("%" + keyword.toLowerCase() + "%");
     }
 
 }
