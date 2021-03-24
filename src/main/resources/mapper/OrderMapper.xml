@@ -2,5 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.mypetstore.persistence.OrderMapper">
-    <select id="getOrdersByUsername" parameterType="string" resultType="List<Order>"
+    <select id="getOrdersByUsername" parameterType="string" resultType="order">
+        select
+            billaddr1 as billaddress1,
+            billaddr2 as billaddress2,
+            billcity,
+            billcountry,
+            billstate,
+            billtofirstname,
+            billtolastname,
+            billzip,
+            shipaddr1 as shipaddress1,
+            shipaddr2 as shipaddress2,
+            shipcity,
+            shipcountry,
+            shipstate,
+            shiptofirstname,
+            shiptolastname,
+            shipzip,
+            cardtype,
+            courier,
+            creditcard,
+            exprdate as expirydate,
+            locale,
+            orderdate,
+            orders.orderid,
+            totalprice,
+            userid as username,
+            status
+        from orders, orderstatus
+        where orders.userid = #{value}
+          and orders.orderid = orderstatus.orderid
+        order by orderdate
+    </select>
 </mapper>
