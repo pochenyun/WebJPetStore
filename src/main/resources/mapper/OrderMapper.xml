@@ -35,4 +35,48 @@
           and orders.orderid = orderstatus.orderid
         order by orderdate
     </select>
+
+    <select id="getOrder" parameterType="int" resultType="order" >
+        select
+            billaddr1 as billaddress1,
+            billaddr2 as billaddress2,
+            billcity,
+            billcountry,
+            billstate,
+            billtofirstname,
+            billtolastname,
+            billzip,
+            shipaddr1 as shipaddress1,
+            shipaddr2 as shipaddress2,
+            shipcity,
+            shipcountry,
+            shipstate,
+            shiptofirstname,
+            shiptolastname,
+            shipzip,
+            cardtype,
+            courier,
+            creditcard,
+            exprdate as expirydate,
+            locale,
+            orderdate,
+            orders.orderid,
+            totalprice,
+            userid as username,
+            status
+        from orders, orderstatus
+        where orders.orderid = #{value}
+          and orders.orderid = orderstatus.orderid
+    </select>
+
+    <insert id="insertOrder" parameterType="order">
+        insert into orders (orderid, userid, orderdate, shipaddr1, shipaddr2, shipcity, shipstate,
+                            shipzip, shipcountry, billaddr1, billaddr2, billcity, billstate, billzip, billcountry,
+                            courier, totalprice, billtofirstname, billtolastname, shiptofirstname, shiptolastname,
+                            creditcard, exprdate, cardtype, locale)
+        values(#{orderid}, #{username}, #{orderdate}, #{shipaddress1}, #{shipaddress2,jdbctype=varchar}, #{shipcity},
+               #{shipstate}, #{shipzip}, #{shipcountry}, #{billaddress1}, #{billaddress2,jdbctype=varchar}, #{billcity},
+               #{billstate}, #{billzip}, #{billcountry}, #{courier}, #{totalprice}, #{billtofirstname}, #{billtolastname},
+               #{shiptofirstname}, #{shiptolastname}, #{creditcard}, #{expirydate}, #{cardtype}, #{locale})
+    </insert>
 </mapper>

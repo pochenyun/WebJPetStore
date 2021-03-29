@@ -18,12 +18,9 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-        List<Order> orderList = orderMapper.getOrdersByUsername("j2ee");
-        for(int i = 0; i < orderList.size(); i++)
-        {
-            System.out.println(orderList.get(i).getBillAddress1());
-            System.out.println(i);
-        }
+        Order order = orderMapper.getOrder(1001);
+
+        System.out.println(order.getBillAddress1() + " " + order.getUsername() + " " + order.getOrderId());
     }
 
 }
