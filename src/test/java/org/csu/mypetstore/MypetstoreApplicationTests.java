@@ -28,6 +28,9 @@ class MypetstoreApplicationTests
         Order order = orderMapper.getOrder(1001);
         System.out.println(order.getBillAddress1() + " " + order.getUsername() + " " + order.getOrderId());
 
+        //不能插入重复id……不然会报错
+        order.setOrderId(1101);
+        orderMapper.insertOrder(order);
     }
 
 }
