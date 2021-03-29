@@ -3,8 +3,10 @@ package org.csu.mypetstore;
 import org.csu.mypetstore.domain.CartItem;
 import org.csu.mypetstore.domain.LineItem;
 import org.csu.mypetstore.domain.Order;
+import org.csu.mypetstore.domain.Sequence;
 import org.csu.mypetstore.persistence.LineItemMapper;
 import org.csu.mypetstore.persistence.OrderMapper;
+import org.csu.mypetstore.persistence.SequenceMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,10 +20,7 @@ import java.util.List;
 class MypetstoreApplicationTests
 {
     @Autowired
-    private OrderMapper orderMapper;
-
-    @Autowired
-    private LineItemMapper lineItemMapper;
+    private SequenceMapper sequenceMapper;
 
     @Test
     void contextLoads()
@@ -50,13 +49,22 @@ class MypetstoreApplicationTests
 //        }
 //        System.out.println("48545454");
 
-        LineItem lineItem = new LineItem();
-        lineItem.setOrderId(5);
-        lineItem.setLineNumber(47);
-        lineItem.setItemId("sdf");
-        lineItem.setQuantity(45);
-        lineItem.setUnitPrice((BigDecimal.valueOf(53.65)));
-        lineItemMapper.insertLineItem(lineItem);
+//        LineItem lineItem = new LineItem();
+//        lineItem.setOrderId(5);
+//        lineItem.setLineNumber(47);
+//        lineItem.setItemId("sdf");
+//        lineItem.setQuantity(45);
+//        lineItem.setUnitPrice((BigDecimal.valueOf(53.65)));
+//        lineItemMapper.insertLineItem(lineItem);
+
+        Sequence sequence1 = new Sequence("linenum", 144);
+        Sequence sequence2 = sequenceMapper.getSequence(sequence1);
+
+        System.out.println(sequence1.getName() + " " + sequence1.getNextId());
+        System.out.println(sequence2.getName() + " " + sequence2.getNextId());
+
+        System.out.println(sequenceMapper.updateSequence(sequence1));
+
     }
 
 }
