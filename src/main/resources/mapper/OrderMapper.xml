@@ -69,14 +69,4 @@
           and orders.orderid = orderstatus.orderid
     </select>
 
-    <insert id="insertOrder" parameterType="order">
-        insert into orders (orderid, userid, orderdate, shipaddr1, shipaddr2, shipcity, shipstate,
-                            shipzip, shipcountry, billaddr1, billaddr2, billcity, billstate, billzip, billcountry,
-                            courier, totalprice, billtofirstname, billtolastname, shiptofirstname, shiptolastname,
-                            creditcard, exprdate, cardtype, locale)
-        values(#{orderid}, #{username}, #{orderdate}, #{shipaddress1}, #{shipaddress2,jdbctype=varchar}, #{shipcity},
-               #{shipstate}, #{shipzip}, #{shipcountry}, #{billaddress1}, #{billaddress2,jdbctype=varchar}, #{billcity},
-               #{billstate}, #{billzip}, #{billcountry}, #{courier}, #{totalprice}, #{billtofirstname}, #{billtolastname},
-               #{shiptofirstname}, #{shiptolastname}, #{creditcard}, #{expirydate}, #{cardtype}, #{locale})
-    </insert>
 </mapper>
