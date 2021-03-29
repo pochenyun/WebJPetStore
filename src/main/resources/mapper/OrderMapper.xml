@@ -81,4 +81,9 @@
         #{shipToFirstName}, #{shipToLastName}, #{creditCard}, #{expiryDate}, #{cardType}, #{locale})
     </insert>
 
+    <insert id="insertOrderStatus" parameterType="order">
+        insert into orderstatus (ORDERID, LINENUM, TIMESTAMP, STATUS)
+        values (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+    </insert>
+
 </mapper>
