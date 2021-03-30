@@ -1,13 +1,13 @@
 package org.csu.mypetstore.domain;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Log {
+public class Log implements Serializable
+{
+    private static final long serialVersionUID = 6804536240033522156L;
+
     public final static int OUT_CONSOLE=1;
     public final static int OUT_FILE=2;
     public final static int OUT_BOTH=3;
