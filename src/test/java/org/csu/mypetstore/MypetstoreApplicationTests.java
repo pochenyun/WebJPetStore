@@ -23,12 +23,15 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-        List<Item> list = itemMapper.getItemListByProduct("FI-SW-01");
+//        List<Item> itemsList = itemMapper.getItemListByProduct("FI-SW-01");
 //        for(int i = 0; i < itemsList.size(); ++i)
 //        {
-//            System.out.println(itemsList.get(i).getProductId());
+//            System.out.println(itemsList.get(i).getItemId());
 //            System.out.println(i);
 //        }
+
+        Item item = itemMapper.getItem("EST-1");
+        System.out.println(item.getItemId() + " " + item.getListPrice() + " " +item.getAttribute1());
     }
 
 }

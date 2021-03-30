@@ -27,28 +27,28 @@
           and i.productid = #{value}
     </select>
 
-<!--    <select id="getItem" parameterType="string" resultType="item">-->
-<!--        select-->
-<!--            i.itemid,-->
-<!--            listprice,-->
-<!--            unitcost,-->
-<!--            supplier as supplierid,-->
-<!--            i.productid as "product.productid",-->
-<!--            name as "product.name",-->
-<!--            descn as "product.description",-->
-<!--            category as "product.categoryid",-->
-<!--            status,-->
-<!--            attr1 as attribute1,-->
-<!--            attr2 as attribute2,-->
-<!--            attr3 as attribute3,-->
-<!--            attr4 as attribute4,-->
-<!--            attr5 as attribute5,-->
-<!--            qty as quantity-->
-<!--        from item i, inventory v, product p-->
-<!--        where p.productid = i.productid-->
-<!--          and i.itemid = v.itemid-->
-<!--          and i.itemid = #{value}-->
-<!--    </select>-->
+    <select id="getItem" parameterType="string" resultType="item">
+        select
+            i.itemid,
+            listprice,
+            unitcost,
+            supplier as supplierid,
+            i.productid as "product.productid",
+            name as "product.name",
+            descn as "product.description",
+            category as "product.categoryid",
+            status,
+            attr1 as attribute1,
+            attr2 as attribute2,
+            attr3 as attribute3,
+            attr4 as attribute4,
+            attr5 as attribute5,
+            qty as quantity
+        from item i, inventory v, product p
+        where p.productid = i.productid
+          and i.itemid = v.itemid
+          and i.itemid = #{value}
+    </select>
 
 <!--    <select id="getInventoryQuantity" parameterType="string" resultType="int">-->
 <!--        select qty as value-->
