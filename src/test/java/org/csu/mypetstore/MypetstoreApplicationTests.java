@@ -12,7 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.csu.mypetstore.service.OrderService;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 class MypetstoreApplicationTests
@@ -30,8 +32,20 @@ class MypetstoreApplicationTests
 //            System.out.println(i);
 //        }
 
-        Item item = itemMapper.getItem("EST-1");
-        System.out.println(item.getItemId() + " " + item.getListPrice() + " " +item.getAttribute1());
+//        Item item = itemMapper.getItem("EST-1");
+//        System.out.println(item.getItemId() + " " + item.getListPrice() + " " +item.getAttribute1());
+//
+//        System.out.println(itemMapper.getInventoryQuantity("EST-11"));
+
+//        Map<String, Object> param = new HashMap<>();
+//        param.put("itemid", "EST-22");
+//        param.put("increment", 255);
+//        itemMapper.updateInventoryQuantity(param);
+//        System.out.println("cwc");
+
+//        System.out.println(itemMapper.getInventoryQuantity("EST-15"));
+
+
     }
 
 }

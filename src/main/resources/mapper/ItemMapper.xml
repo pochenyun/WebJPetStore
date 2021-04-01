@@ -50,16 +50,16 @@
           and i.itemid = #{value}
     </select>
 
-<!--    <select id="getInventoryQuantity" parameterType="string" resultType="int">-->
-<!--        select qty as value-->
-<!--        from inventory-->
-<!--        where itemid = #{itemid}-->
-<!--    </select>-->
+    <select id="getInventoryQuantity" parameterType="string" resultType="int">
+        select qty as value
+        from inventory
+        where itemid = #{itemid}
+    </select>
 
-<!--    <update id="updateInventoryQuantity" parameterType="java.util.Map">-->
-<!--        update inventory set-->
-<!--            qty = qty - #{increment}-->
-<!--        where itemid = #{itemid}-->
-<!--    </update>-->
+    <update id="updateInventoryQuantity" parameterType="map">
+        update inventory set
+            qty = qty - #{increment}
+        where itemid = #{itemid}
+    </update>
 
 </mapper>

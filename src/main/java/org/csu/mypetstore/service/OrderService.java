@@ -1,20 +1,21 @@
 package org.csu.mypetstore.service;
 
 import org.csu.mypetstore.domain.Order;
-import org.csu.mypetstore.persistence.OrderMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class OrderService
+public interface OrderService
 {
-    @Autowired
-    private OrderMapper orderMapper;
 
-    public List<Order> getOrdersByUsername(String username)
-    {
-        return orderMapper.getOrdersByUsername(username);
-    }
+    // 插入订单，生成新订单
+    public void insertOrder(Order order);
+
+    // 取得订单
+    public Order getOrder(int orderId);
+
+    // 通过用户名查看订单
+    public List<Order> getOrdersByUsername(String username);
+
+    // 生成订单序列
+    public int getNextId(String name);
 }
