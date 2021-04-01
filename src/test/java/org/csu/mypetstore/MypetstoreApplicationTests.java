@@ -20,31 +20,25 @@ import java.util.Map;
 class MypetstoreApplicationTests
 {
     @Autowired
-    private ItemMapper itemMapper;
+    private OrderService orderService;
 
     @Test
     void contextLoads()
     {
-//        List<Item> itemsList = itemMapper.getItemListByProduct("FI-SW-01");
-//        for(int i = 0; i < itemsList.size(); ++i)
+//        Order order = orderService.getOrder(1001);
+//        System.out.println(order.getBillAddress1());
+//        order.setOrderId(1011);
+//
+//        orderService.insertOrder(order);
+
+//        List<Order> orderList = orderService.getOrdersByUsername("j2ee");
+//        for (int i = 0; i < orderList.size(); ++i)
 //        {
-//            System.out.println(itemsList.get(i).getItemId());
-//            System.out.println(i);
+//            System.out.println(orderList.get(i).getOrderId());
+//            System.out.println("j2ee");
 //        }
 
-//        Item item = itemMapper.getItem("EST-1");
-//        System.out.println(item.getItemId() + " " + item.getListPrice() + " " +item.getAttribute1());
-//
-//        System.out.println(itemMapper.getInventoryQuantity("EST-11"));
-
-//        Map<String, Object> param = new HashMap<>();
-//        param.put("itemid", "EST-22");
-//        param.put("increment", 255);
-//        itemMapper.updateInventoryQuantity(param);
-//        System.out.println("cwc");
-
-//        System.out.println(itemMapper.getInventoryQuantity("EST-15"));
-
+        System.out.println(orderService.getNextId("linenum"));
 
     }
 
