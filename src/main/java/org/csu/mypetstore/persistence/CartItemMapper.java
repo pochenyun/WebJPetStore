@@ -14,4 +14,10 @@ public interface CartItemMapper {
     List<CartItem> get();
 
     void update(String itemId,int quantity,float total1);
+
+    void update(CartItem cartItem);
+
+    List<CartItem> getItemByUsername(String username);
+
+    void removeAllItemByUsername(String username);
 }

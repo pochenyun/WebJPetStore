@@ -46,6 +46,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>cn.bestwu</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2-unwrap</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

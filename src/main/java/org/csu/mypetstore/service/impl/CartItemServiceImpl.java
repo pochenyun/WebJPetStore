@@ -1,5 +1,6 @@
 package org.csu.mypetstore.service.impl;
 
+import org.csu.mypetstore.domain.Cart;
 import org.csu.mypetstore.domain.CartItem;
 import org.csu.mypetstore.persistence.CartItemMapper;
 import org.csu.mypetstore.service.CartItemService;
@@ -24,13 +25,32 @@ public class CartItemServiceImpl implements CartItemService
         cartItemMapper.insertCart(cartItem);
     }
 
-    public void update(String itemId, int quantity, float total1)
+    public void update(CartItem cartItem)
     {
-        cartItemMapper.update(itemId, quantity, total1);
+        cartItemMapper.update(cartItem);
     }
 
     public void removeItemById(String itemId)
     {
         cartItemMapper.removeItemById(itemId);
+    }
+
+    public List<CartItem> getItemByUsername(String username)
+    {
+        return cartItemMapper.getItemByUsername(username);
+    }
+
+    public void removeAllItemByUsername(String username)
+    {
+        cartItemMapper.removeAllItemByUsername(username);
+    }
+
+    public void merge(Cart cart)
+    {
+        removeAllItemByUsername(cart.getUsername());
+        for (int i = 0; i < cart.getCartItemList().size(); i++)
+        {
+            insertCart(cart.getCartItemList().get(i));
+        }
     }
 }

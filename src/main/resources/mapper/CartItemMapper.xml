@@ -33,4 +33,22 @@
         where itemid = #{itemId}
     </update>
 
+    <select id="getItemByUsername" resultType="CartItem">
+        select
+            itemid,
+            productid,
+            description,
+            instock,
+            quantity,
+            price,
+            total as total1,
+            username
+        from cart
+        where username = #{username}
+    </select>
+
+    <delete id="removeAllItemByUsername" parameterType="String">
+        delete from cart where username=#{username}
+    </delete>
+
 </mapper>
