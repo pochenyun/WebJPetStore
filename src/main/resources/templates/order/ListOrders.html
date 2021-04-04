@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/jpetstore.css" type="text/css" media="screen"/> <!--不确定css文件路径-->
+</head>
+<body>
+
+<div th:replace="common/top"></div>
+
+<h2>My Orders</h2>
+
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Total Price</th>
+    </tr>
+
+    <tr th:each="order:${sessionScope.orderList}">
+        <td>
+            <a href="viewOrder?orderId=${order.orderId}" th:text="${order.orderId">orderId</a>
+        </td>
+        <td>
+            <span th:text="${#dates.format(order.orderDate,‘yyyy-MM-dd HH:mm:ss‘)}">orderDate</span>
+        </td>
+        <td>
+        <span th:text="${#numbers.formatDecimal(order.totalPrice,1,'COMMA',2,'POINT')}">totalPrice</span>
+        </td>
+    </tr>
+</table>
+
+
+<div th:replace="common/bottom"></div>
+</body>
+</html>

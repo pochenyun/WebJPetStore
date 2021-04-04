@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/jpetstore.css" type="text/css" media="screen"/> <!--不确定css文件路径-->
+</head>
+<body>
+
+<div th:replace="common/top::header"></div>
+
+
+
+<div id="BackLink">
+    <a href="main">Return to Main Menu</a>
+</div>
+
+<div id="Catalog">Please confirm the information below and then press continue...
+
+    <table>
+        <tr>
+            <th align="center" colspan="2"><font size="4"><b>Order</b></font>
+                <br />
+                <font size="3"><b>
+                    <span th:text="${#dates.format(order.orderDate,'yyyy-MM-dd HH:mm:ss')}">time</span>
+                </b></font>
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="2">Billing Address</th>
+        </tr>
+        <tr>
+            <td>First name:</td>
+            <td th:text="${order.billToFirstName}">billToFirstName</td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td th:text="${order.billToLastName}"></td>
+        </tr>
+        <tr>
+            <td>Address 1:</td>
+            <td th:text="${order.billAddress1}">billAddress1</td>
+        </tr>
+        <tr>
+            <td>Address 2:</td>
+            <td th:text="${order.billAddress2}">billAddress2</td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td th:text="${order.billCity}">billCity</td>
+        </tr>
+        <tr>
+            <td>State:</td>
+            <td th:text="${order.billState}">billState</td>
+        </tr>
+        <tr>
+            <td>Zip:</td>
+            <td th:text="${order.billZip}">billZip</td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td th:text="${order.billCountry}">billCountry</td>
+        </tr>
+        <tr>
+            <th colspan="2">Shipping Address</th>
+        </tr>
+        <tr>
+            <td>First name:</td>
+            <td th:text="${order.shipToFirstName}">shipToFirstName</td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td th:text="${order.shipToLastName}">shipToLastName</td>
+        </tr>
+        <tr>
+            <td>Address 1:</td>
+            <td th:text="${order.shipAddress1}">shipAddress1</td>
+        </tr>
+        <tr>
+            <td>Address 2:</td>
+            <td th:text="${order.shipAddress2}">shipAddress2</td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td th:text="${order.shipCity}">shipCity</td>
+        </tr>
+<!--        <tr>-->
+<!--            <td>State:</td>-->
+<!--            <td th:text="${order.shipState}">shipState</td>-->
+<!--        </tr>-->
+        <tr>
+            <td>Zip:</td>
+            <td th:text="${order.shipZip}">shipZip</td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td th:text="${order.shipCountry}">shipCountry</td>
+        </tr>
+
+    </table>
+    <a class="Button" href="/Order/viewOrder">Confirm</a>
+
+
+</div>
+
+
+<div th:replace="common/bottom::footer"></div>
+
+</body>
+</html>

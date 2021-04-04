@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
-</head>
-<body>
-<div th:replace="common/top">
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>-->
+<!--</head>-->
+<!--<body>-->
+<div th:replace="common/top::header">
 
 </div>
 <div id="Content">
     <div id="BackLink">
-        <a href="main">Return to Main Menu</a>
+        <a href="/catalog/view">Return to Main Menu</a>
     </div>
 
     <div id="Catalog">
 
         <h2 th:text="${category.name}">name属性</h2>
-
         <table>
             <tr>
                 <th>Product ID</th>
                 <th>Name</th>
             </tr>
-
             <tr th:each="product:${productList}">
-                <td th:text="${product.productId}">
+                <td>
+               <a th:text="${product.productId}" th:href="${'/catalog/viewProduct?productId='}+${product.productId}">
                     它的id
-                </td>
+               </a>
+               </td>
                 <td th:text="${product.name}">
                     它的name
                 </td>
@@ -46,7 +46,7 @@
 
     </div>
     </div>
-    <div th:replace="common/bottom">
+    <div th:replace="common/bottom::footer">
 
     </div>
 </body>

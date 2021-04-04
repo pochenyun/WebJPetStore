@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
 </head>
 <body>
-<footer th:fragment="fotter">
+<footer th:fragment="footer">
     <div id="Footer">
         <div id="PoweredBy">&nbsp<a href="https://www.baidu.com/">Baidu</a>
         </div>
 
         <!--列出用户喜欢的标题-->
-        <div id="Banner">
-            <c:if test="${sessionScope.account.bannerOption} != null">
-                ${sessionScope.account.bannername}
-            </c:if>
+        <div id="Banner" >
+
+            <!--/*@thymesVar id="bannername" type="java"*/-->
+            <!--            <label th:text=" ${session.account.bannername}">  用户喜欢的标题</label>-->
+            <th:block th:if="account!=null" th:utext="${account!=null?account.bannerName:''}">${account.bannerName}</th:block>
+
         </div>
+
 
     </div>
 </footer>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>-->
+<!--</head>-->
+<!--<body>-->
+<div th:replace="common/top::header">
+
+</div>
+
+
+<div id="BackLink">
+    <a th:href="${'/catalog/viewProduct?productId='}+${item.product.productId}" th:text="${'Return to'}+ ${item.product.productId}"></a>
+</div>
+
+<div id="Catalog">
+
+    <table>
+        <tr>
+            <td th:utext="${item.product.description}">${session.product.description}</td>
+        </tr>
+        <tr>
+            <td><b th:text="${item.itemId}"> ${session.item.itemId} </b></td>
+        </tr>
+        <tr>
+            <td><b><font size="4" th:text="${item.attribute1}+${item.attribute2!=null?item.attribute2:''}+${item.attribute3!=null?item.attribute3:''}+${item.attribute4!=null?item.attribute4:''}+${item.attribute5!=null?item.attribute5:''}+${item.product.name}">
+                ${session.item.attribute1}
+                ${session.item.attribute2}
+                ${session.item.attribute3}
+                ${session.item.attribute4}
+                ${session.item.attribute5}
+                ${session.product.name}
+            </font></b></td>
+        </tr>
+        <tr>
+            <td th:text="${item.product.name}">${session.product.name}</td>
+        </tr>
+        <tr>
+            <td th:if="${item.quantity <= 0}">
+                Back ordered.
+            </td>
+         <td th:if="${item.quantity > 0}" th:text="${item.quantity}+${' in stock.'}">
+                ${session.item.quantity} in stock.
+           </td>
+        </tr>
+        <tr>
+            <td th:text="${#numbers.formatDecimal(item.listPrice,1,'COMMA',2,'POINT')}">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a class="Button" href="addItemToCart?workingItemId=${item.itemId}">Add to Cart</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<div th:replace="common/bottom::footer">
+
+</div>
+</body>
+</html>

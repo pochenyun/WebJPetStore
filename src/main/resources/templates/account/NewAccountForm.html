@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script>
+    $(function () {
+        $('#username').on('blur',function () {
+            $.ajax({
+                type      :"GET",
+                url       :"usernameExist?username="+this.value,
+                success   :function (data) {
+
+                    // console.log(data);
+                    // console.log(data.code);
+
+                    if(data.msg==='Exist'){
+                        $('#usernameTips').attr("class","errormsg").text('Invalid');
+                    }else if(data.msg==='Not Exist'){
+                        $('#usernameTips').attr("class","okmsg").text('Available');
+                    }
+                }
+            });
+        });
+    });
+
+</script>
+<script>
+    function validate() {
+        var password = document.getElementById("password").value;
+        var repeatedPassword = document.getElementById("repeatedPassword").value;
+
+        var tips = document.getElementById("passwordTips");
+        if(password==repeatedPassword){
+            tips.className='okmsg';
+            tips.innerText="Correct Password"
+        }
+        else if(password!=repeatedPassword){
+            tips.className='errormsg';
+            tips.innerText="Different Password!"
+        }
+
+    }
+</script>
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>-->
+
+<!--   -->
+<!--</head>-->
+<!--<body>-->
+<div th:replace="common/top::header">
+
+</div>
+
+
+<div id="Catalog">
+    <form action="/account/newAccount" method="post" th:object="${account}">
+        <h3>User Information</h3>
+
+        <table>
+            <tr>
+                <td>User ID:</td>
+                <td>
+                    <input type="text" name="username" id="username" >
+                    <span id="usernameTips"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>New password:</td>
+                <td><input type="text" name="password" id="password" onkeyup="validate()"/></td>
+            </tr>
+            <tr>
+                <td>Repeat password:</td>
+                <td><input type="text" name="repeatedPassword" id="repeatedPassword" onkeyup="validate()"/>
+                    <span id="passwordTips"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>VerificationCode:</td>
+                <td>
+                    <input type="text" name="vCode" size="5" maxlength="4"/>
+                    <img border="0" src="verificationCode" name="checkcode">
+                </td>
+            </tr>
+        </table>
+
+<!--        <%@ include file="IncludeAccountFields.jsp"%>-->
+        <div th:replace="account/IncludeAccountFields::accountField"></div>
+        <input type="submit" name="newAccount" value="Save Account Information" />
+
+    </form>
+
+</div>
+
+
+
+<div th:replace="common/bottom::footer">
+
+</div>
+</body>
+</html>

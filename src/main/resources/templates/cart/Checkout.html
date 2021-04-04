@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/jpetstore.css" type="text/css" media="screen"/> <!--不确定css文件路径-->
+</head>
+<body>
+
+<div th:replace="common/top::header"></div>
+
+<div id="BackLink">
+    <a href="viewCart">Return to Shopping Cart</a>
+</div>
+
+<div id="Catalog">
+
+    <table>
+        <tr>
+            <td>
+                <h2>Checkout Summary</h2>
+
+                <table>
+                    <tr>
+                        <td><b>Item ID</b></td>
+                        <td><b>Product ID</b></td>
+                        <td><b>Description</b></td>
+                        <td><b>In Stock?</b></td>
+                        <td><b>Quantity</b></td>
+                        <td><b>List Price</b></td>
+                        <td><b>Total Cost</b></td>
+                    </tr>
+
+                    <tr th:each="cartItem:${cart.cartItemList}">
+                        <td th:text="${cartItem.item.itemId}">
+                            <a href="viewItem?itemId=${cartItem.item.itemId}">itemId</a>
+                        </td>
+                        <td th:text="${cartItem.item.productId}">
+                            productId
+                        </td>
+                        <td th:text="${cartItem.item.attribute1} + ${cartItem.item.product.name}">
+                            Description
+                        </td>
+                        <td th:text="${cartItem.inStock}">
+                            inStock
+                        </td>
+                        <td th:text="${cartItem.quantity}">
+                            quantity
+                        </td>
+                        <td th:text="${#numbers.formatDecimal(cartItem.item.listPrice,1,'COMMA',2,'POINT')}">
+                            list price
+                        </td>
+                        <td th:text="${#numbers.formatDecimal(cartItem.total,1,'COMMA',2,'POINT')}">
+                            total price
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="7">
+                            Sub Total: <div th:text="${cart.subTotal}">subTotal</div>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+        </tr>
+    </table>
+
+</div>
+
+<div th:replace="common/bottom::footer"></div>
+
+</body>
+</html>

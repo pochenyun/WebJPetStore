@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>-->
+<!--</head>-->
+<!--<body>-->
+<div th:replace="common/top::header">
+
+</div>
+
+<div id="BackLink">
+    <a href="main">Return to Main Menu</a>
+</div>
+
+<div id="Catalog">
+
+    <table>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Product ID</th>
+            <th>Name</th>
+        </tr>
+<!--        <c:forEach var="product" items="${session.productList}">-->
+            <tr th:each="product:${productList}">
+                <td>
+                    <a th:href="${'/catalog/viewProduct?productId=' }+${product.productId}" th:utext="${product.description}">product.description</a>
+                </td>
+                <td><b>
+                    <a th:href="${'/catalog/viewProduct?productId='}+${product.productId}" th:text="${product.productId}">product.productId</a>
+                </b></td>
+                <td th:text="${product.name}">product.name</td>
+            </tr>
+<!--        </c:forEach>-->
+        <tr>
+            <td></td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+
+</div>
+<div th:replace="common/bottom::footer">
+
+</div>
+</body>
+</html>

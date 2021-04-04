@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<form th:fragment="accountField">
+<h3>Account Information</h3>
+
+<table>
+    <tr>
+        <td>First name:</td>
+        <td><input type="text" name="firstName" th:value="${account!=null?account.firstName:null}"/></td>
+    </tr>
+    <tr>
+        <td>Last name:</td>
+        <td><input type="text" name="lastName" th:value="${account!=null?account.lastName:null}"/></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td><input type="text" size="40" name="email" th:value="${account!=null?account.email:null}" /></td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td><input type="text" name="phone" th:value="${account!=null?account.phone:null}" /></td>
+    </tr>
+    <tr>
+        <td>Address 1:</td>
+        <td><input type="text" size="40" name="address1" th:value="${account!=null?account.address1:null}" /></td>
+    </tr>
+    <tr>
+        <td>Address 2:</td>
+        <td><input type="text" size="40" name="address2" th:value="${account!=null?account.address2:null}" /></td>
+    </tr>
+    <tr>
+        <td>City:</td>
+        <td><input type="text" name="city" th:value="${account!=null?account.city:null}" /></td>
+    </tr>
+    <tr>
+        <td>State:</td>
+        <td><input type="text" size="4" name="state" th:value="${account!=null?account.state:null}" /></td>
+    </tr>
+    <tr>
+        <td>Zip:</td>
+        <td><input type="text" size="10" name="zip" th:value="${account!=null?account.zip:null}" /></td>
+    </tr>
+    <tr>
+        <td>Country:</td>
+        <td><input type="text" size="15" name="country" th:value="${account!=null?account.country : null}" /></td>
+    </tr>
+</table>
+
+
+<h3>Profile Information</h3>
+
+<table>
+    <tr>
+        <td>Language Preference:</td>
+        <td>
+            <select name="languagePreference">
+                <option value="english" selected="selected">english</option>
+                <option value="japanese">japanese</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Favourite Category:</td>
+        <td>
+            <select name="favouriteCategoryId">
+                <option value="FISH">FISH</option>
+                <option selected="selected" value="DOGS">DOGS</option>
+                <option value="REPTILES">REPTILES</option>
+                <option value="CATS">CATS</option>
+                <option value="BIRDS">BIRDS</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Enable MyList</td>
+<!--        th:value="account!=null?account.listOption:false"-->
+        <td><input type="checkbox" name="listOption"  value="false"/></td>
+    </tr>
+    <tr>
+        <td>Enable MyBanner</td>
+<!--        th:value="account!=null?account.bannerOption:false"-->
+        <td><input type="checkbox" name="bannerOption"  value="false"/> </td>
+    </tr>
+
+</table>
+
+</div>
+<html/>
