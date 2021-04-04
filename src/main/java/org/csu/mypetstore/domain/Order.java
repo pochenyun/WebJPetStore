@@ -15,29 +15,41 @@ public class Order implements Serializable
     private int orderId;
     private String username;
     private Date orderDate;
+    private String shipToFirstName;
+    private String shipToLastName;
     private String shipAddress1;
     private String shipAddress2;
     private String shipCity;
     private String shipState;
     private String shipZip;
     private String shipCountry;
+    private String billToFirstName;
+    private String billToLastName;
     private String billAddress1;
     private String billAddress2;
     private String billCity;
     private String billState;
     private String billZip;
     private String billCountry;
-    private String courier;
-    private BigDecimal totalPrice;
-    private String billToFirstName;
-    private String billToLastName;
-    private String shipToFirstName;
-    private String shipToLastName;
     private String creditCard;
     private String expiryDate;
     private String cardType;
+    private BigDecimal totalPrice;
+    private String courier;
     private String locale;
     private String status;
+
+    private boolean shippingAddressRequired;
+
+    public boolean isShippingAddressRequired()
+    {
+        return shippingAddressRequired;
+    }
+
+    public void setShippingAddressRequired(boolean shippingAddressRequired)
+    {
+        this.shippingAddressRequired = shippingAddressRequired;
+    }
 
     private List<LineItem> lineItems = new ArrayList<LineItem>();
 
@@ -317,15 +329,6 @@ public class Order implements Serializable
         username = account.getUsername();
         orderDate = new Date(System.currentTimeMillis());
 
-        shipToFirstName = account.getFirstName();
-        shipToLastName = account.getLastName();
-        shipAddress1 = account.getAddress1();
-        shipAddress2 = account.getAddress2();
-        shipCity = account.getCity();
-        shipState = account.getState();
-        shipZip = account.getZip();
-        shipCountry = account.getCountry();
-
         billToFirstName = account.getFirstName();
         billToLastName = account.getLastName();
         billAddress1 = account.getAddress1();
@@ -334,6 +337,8 @@ public class Order implements Serializable
         billState = account.getState();
         billZip = account.getZip();
         billCountry = account.getCountry();
+
+        this.copyBillToShip(this);
 
         totalPrice = cart.getSubTotal();
 
@@ -356,6 +361,7 @@ public class Order implements Serializable
     public void addLineItem(CartItem cartItem)
     {
         LineItem lineItem = new LineItem(lineItems.size() + 1, cartItem);
+        lineItem.setOrderId(orderId);
         addLineItem(lineItem);
     }
 
@@ -364,4 +370,36 @@ public class Order implements Serializable
         lineItems.add(lineItem);
     }
 
+    public void copyBillToShip(Order order){
+        this.shipToFirstName = order.getBillToFirstName();
+        this.shipToLastName = order.getBillToLastName();
+        this.shipAddress1 = order.getBillAddress1();
+        this.shipAddress2 = order.getBillAddress2();
+        this.shipCity = order.getBillCity();
+        this.shipState = order.getBillState();
+        this.shipZip = order.getBillZip();
+        this.shipCountry = order.getBillCountry();
+    }
+
+    public void updateShip(Order order){
+        shipToFirstName = order.getShipToFirstName();
+        shipToLastName = order.getShipToLastName();
+        shipAddress1 = order.getShipAddress1();
+        shipAddress2 = order.getShipAddress2();
+        shipCity = order.getShipCity();
+        shipState = order.getShipState();
+        shipZip = order.getShipZip();
+        shipCountry = order.getShipCountry();
+    }
+
+    public void updateBill(Order order){
+        billToFirstName = order.getBillToFirstName();
+        billToLastName = order.getBillToLastName();
+        billAddress1 = order.getBillAddress1();
+        billAddress2 = order.getBillAddress2();
+        billCity = order.getBillCity();
+        billState = order.getBillState();
+        billZip = order.getBillZip();
+        billCountry = order.getBillCountry();
+    }
 }

@@ -56,6 +56,9 @@ public class CartController {
             return "/account/SignonForm";
         }
 
+        //try
+        System.out.println(account.getUsername());
+
         Item newItem = catalogService.getItem(workingItemId);
         //数据库部分
         CartItem cartItem=new CartItem(newItem.getItemId(),newItem.getProductId(),newItem.getAttribute1(),1,1,newItem.getListPrice().floatValue(),newItem.getListPrice().floatValue());

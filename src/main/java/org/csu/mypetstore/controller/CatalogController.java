@@ -71,13 +71,13 @@ public class CatalogController {
     {
 //        itemId = request.getParameter("itemId");
 //        CatalogService service = new CatalogService();
-        Item item = catalogService.getItem(itemId);
+         Item item = catalogService.getItem(itemId);
 
 //        HttpSession session = request.getSession();
 //        session.setAttribute("item", item);
         model.addAttribute("item",item);
 
-        return "catalog/Item";
+      return "catalog/Item";
     }
 
     @GetMapping("viewProduct")
@@ -89,7 +89,7 @@ public class CatalogController {
         model.addAttribute("product", product);
         model.addAttribute("itemList", itemList);
 
-        return "catalog/Product";
+       return "catalog/Product";
 
     }
 
