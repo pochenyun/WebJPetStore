@@ -67,7 +67,6 @@
                 <a href="/Cart/viewCart"><img align="middle" name="img_cart" src="/static/../images/cart.gif" /></a>
                 <img align="middle" src="/static/../images/separator.gif" />
                 <a th:if="${account == null}"href="/account/signOnForm">Sign In</a>
-
                 <!--            <c:if test="${sessionScope.account != null}">-->
                 <a th:if="${account != null}" href="/account/signOff">Sign Out</a>
                 <!---signOff-->

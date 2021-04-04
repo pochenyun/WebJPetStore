@@ -39,7 +39,7 @@ public class CartController {
                     cart.getCartItemList().get(i).setQuantity(cart.getCartItemList().get(i).getQuantity()+cart.getCartItemList().get(j).getQuantity());
                     cart.getCartItemList().get(i).setTotal(cart.getCartItemList().get(i).getQuantity() * cart.getCartItemList().get(i).getItem().getListPrice().floatValue());
                     cart.getCartItemList().remove(j);
-                    j --;
+                    j--;
                 }
             }
         }
