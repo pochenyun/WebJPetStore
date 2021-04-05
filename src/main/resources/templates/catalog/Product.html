@@ -40,8 +40,9 @@
                   123
                 </td>
                 <td th:text="${#numbers.formatDecimal(item.listPrice,1,'COMMA',2,'POINT')}">
-                <td>
-                    <a class="Button" th:href="${'/Cart/addItemToCart?workingItemId='}+${item.itemId}">Add to Cart</a>
+                <td th:switch="${account != null }">
+                    <a class="Button" th:case="true"  th:href="${'/Cart/addItemToCart?workingItemId='}+${item.itemId}">Add to Cart</a>
+                    <a class="Button" th:case="false" href="/account/signOnForm">Add to Cart</a>
                 </td>
             </tr>
         </c:forEach>

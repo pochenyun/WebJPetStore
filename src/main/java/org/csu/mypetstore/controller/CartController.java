@@ -51,31 +51,35 @@ public class CartController {
     public String addItemToCart(String workingItemId, Model model){
 
         Account account = (Account)model.getAttribute("account");
-        if(account == null){
+
+        if(account == null)
+        {
             System.out.println("dshauodhasuodjaso");
             return "/account/SignonForm";
         }
+        else
+        {
+            Item newItem = catalogService.getItem(workingItemId);
+            //数据库部分
+            CartItem cartItem=new CartItem(newItem.getItemId(),newItem.getProductId(),newItem.getAttribute1(),1,1,newItem.getListPrice().floatValue(),newItem.getListPrice().floatValue());
+            cartItem.setUsername(account.getUsername());
+            cartItemService.insertCart(cartItem);
 
-        Item newItem = catalogService.getItem(workingItemId);
-        //数据库部分
-        CartItem cartItem=new CartItem(newItem.getItemId(),newItem.getProductId(),newItem.getAttribute1(),1,1,newItem.getListPrice().floatValue(),newItem.getListPrice().floatValue());
-        cartItem.setUsername(account.getUsername());
-        cartItemService.insertCart(cartItem);
+            cart = new Cart();
+            List<CartItem> cartItemList = cartItemService.getItemByUsername(account.getUsername());
+            for(int i = 0;i <cartItemList.size();i++) {
+                Item item = catalogService.getItem(cartItemList.get(i).getItemId());
+                cartItemList.get(i).setItem(item);
+                cart.addCartItem(cartItemList.get(i));
+            }
+            cart.setUsername(account.getUsername());
 
-        cart = new Cart();
-        List<CartItem> cartItemList = cartItemService.getItemByUsername(account.getUsername());
-        for(int i = 0;i <cartItemList.size();i++) {
-            Item item = catalogService.getItem(cartItemList.get(i).getItemId());
-            cartItemList.get(i).setItem(item);
-            cart.addCartItem(cartItemList.get(i));
+            mergeCart(cart);
+            System.out.println("01~");
+            model.addAttribute("cart",cart);
+            System.out.println("02~");
+            return "cart/Cart";
         }
-        cart.setUsername(account.getUsername());
-
-        mergeCart(cart);
-        System.out.println("01~");
-        model.addAttribute("cart",cart);
-        System.out.println("02~");
-        return "cart/Cart";
     }
 
     @GetMapping("/removeItemFromCart")
