@@ -183,11 +183,13 @@ public class AccountController
 //   }
 
     @GetMapping("signOff")
-    public String signOff(HttpSession session, SessionStatus sessionStatus)
+    public String signOff(Model model, HttpSession session, SessionStatus sessionStatus)
     {
+        Account account = (Account)session.getAttribute("account");
+        account = null;
+        session.setAttribute("account",account);
+        model.addAttribute("account",account);
 
-        session.invalidate();
-        sessionStatus.setComplete();
         return "catalog/Main";
 
     }
