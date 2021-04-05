@@ -5,8 +5,8 @@
 
     <insert id="insertCart" parameterType="CartItem">
         insert into cart
-            (itemid, productid, description, instock, quantity, price, total)
-        values (#{itemId}, #{productId}, #{description}, #{instock}, #{quantity}, #{price}, #{total1})
+            (itemid, productid, description, instock, quantity, price, total, username)
+        values (#{itemId}, #{productId}, #{description}, #{instock}, #{quantity}, #{price}, #{total1},#{username})
     </insert>
 
     <select id="get" resultType="CartItem">

@@ -38,7 +38,7 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-        List<CartItem> cartItemList = cartItemService.getItemByUsername("999999");
+        List<CartItem> cartItemList = cartItemMapper.getItemByUsername("我不知道");//cartItemService.getItemByUsername("999999");
         System.out.println(cartItemList.size());
         for (int i = 0; i < cartItemList.size(); i++)
         {
