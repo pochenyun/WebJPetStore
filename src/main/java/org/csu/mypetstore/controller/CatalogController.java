@@ -1,7 +1,5 @@
 package org.csu.mypetstore.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import org.csu.mypetstore.domain.Account;
 import org.csu.mypetstore.domain.Category;
 import org.csu.mypetstore.domain.Item;
@@ -14,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.PrintWriter;
 import java.util.List;
-
-import static ch.qos.logback.core.joran.action.ActionConst.NULL;
 
 
 @Controller
@@ -29,8 +24,19 @@ public class CatalogController {
     @Autowired
     private CatalogService catalogService;
 
+
+    @GetMapping("/view")
+    public String view(Model model){
+        Account account = (Account)model.getAttribute("account");
+        System.out.println(account);
+        model.addAttribute("account",account);
+        return "catalog/Main";
+    }
+
     @RequestMapping("/viewCategory")
     public String viewCategory(String categoryId, Model model){
+        Account account = (Account)model.getAttribute("account");
+        System.out.println(account);
         if(categoryId!=null){
             Category category=catalogService.getCategory(categoryId);
             List<Product> productList=catalogService.getProductListByCategory(categoryId);
@@ -38,13 +44,7 @@ public class CatalogController {
             model.addAttribute("productList",productList);
             return "catalog/category";
         }
-        return "catalog/main";
-    }
-
-    @GetMapping("/view")
-    public String view(Account account, Model model){
-        model.addAttribute(account);
-        return "catalog/main";
+        return "catalog/Main";
     }
 
     @RequestMapping("searchProduct")
@@ -57,7 +57,6 @@ public class CatalogController {
         //request.setAttribute("keyword", keyword);
         System.out.println(keyword);
         List<Product> productList =  catalogService.searchProductList(keyword);
-
         System.out.println(productList);
         //保存数据
         model.addAttribute("productList", productList);
@@ -71,13 +70,13 @@ public class CatalogController {
     {
 //        itemId = request.getParameter("itemId");
 //        CatalogService service = new CatalogService();
-         Item item = catalogService.getItem(itemId);
+        Item item = catalogService.getItem(itemId);
 
 //        HttpSession session = request.getSession();
 //        session.setAttribute("item", item);
         model.addAttribute("item",item);
 
-      return "catalog/Item";
+        return "catalog/Item";
     }
 
     @GetMapping("viewProduct")
@@ -89,7 +88,7 @@ public class CatalogController {
         model.addAttribute("product", product);
         model.addAttribute("itemList", itemList);
 
-       return "catalog/Product";
+        return "catalog/Product";
 
     }
 
@@ -99,22 +98,6 @@ public class CatalogController {
     {
 
         List<Product>productList = catalogService.searchProductList(keyword);//获取产品列表
-
-//        resp.setContentType("application/json;charset=uft-8");
-//        JSONArray searchArray = new JSONArray();
-//        for(int i=0;i<productList.size();i++){
-//            JSONObject searchObject = new JSONObject();
-//            searchObject.put("name",productList.get(i).getName());//产品名字
-//            searchArray.add(searchObject);
-//        }
-//
-//        String searchString = searchArray.toJSONString();//转换为JSON字符串
-//
-//        PrintWriter out = resp.getWriter();
-//        out.print(searchString);
-//
-//        out.flush();
-//        out.close();
         return  productList;
     }
 
