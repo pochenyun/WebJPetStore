@@ -38,7 +38,7 @@ public class OrderService
     public void insertOrder(Order order)
     {
         orderMapper.insertOrder(order);
-        order.setOrderId(orderMapper.getOrderId());
+        order.setOrderId(orderMapper.getOrderNum());
 
         for (int i = 0; i < order.getLineItems().size(); i++)
         {

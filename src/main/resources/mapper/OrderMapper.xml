@@ -85,7 +85,7 @@
         values (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
     </insert>
 
-    <select id="getOrderId" resultType="int">
+    <select id="getOrderNum" resultType="int">
         select count(*)
         from orders
     </select>
