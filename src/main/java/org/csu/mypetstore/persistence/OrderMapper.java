@@ -21,6 +21,7 @@ public interface OrderMapper
     // 插入新订单状态
     void insertOrderStatus(Order order);
 
+    // 根据
     int getOrderId();
 
     void insertLineItem(LineItem lineItem);

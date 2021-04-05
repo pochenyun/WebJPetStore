@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.mypetstore.persistence.ProductManageMapper">
+    <insert id="insertProduct" parameterType="Product">
+    insert into product
+      (productid, categotr, name, descn)
+    values
+      (#{productId}, #{categoryId}, #{name}, #{description})
+  </insert>
+
+    <update id="updateProduct" parameterType="Product">
+    update product set
+      name = #{name},
+      descn = #{description}
+    where productid = #{productId}
+  </update>
+
+    <select id="getProductListByCategory" parameterType="string" resultType="Product">
+        select
+        productid,
+        name,
+        descn as description,
+        category as categoryid
+        from product
+        where category = #{categoryId}
+    </select>
+
+    <select id="getProduct" parameterType="string" resultType="Product">
+        select
+        productid,
+        name,
+        descn as description,
+        category as categoryId
+        from product
+        where productid = #{productId}
+    </select>
+
+    <delete id="removeProductById">
+    delete from product where productid = #{productId}
+    </delete>
+</mapper>

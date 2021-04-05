@@ -1,18 +1,44 @@
 package org.csu.mypetstore.service;
 
 import org.csu.mypetstore.domain.Account;
+import org.csu.mypetstore.persistence.AccountMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface AccountService
+@Service
+public class AccountService
 {
-    // 根据用户名取得用户，注册的时候用到
-    public Account getAccount(String username);
+    @Autowired
+    private AccountMapper accountMapper;
 
-    // 根据用户名和密码取得用户，登录的时候用到
-    public Account getAccount(String username, String password);
+    public Account getAccount(String username)
+    {
+        return accountMapper.getAccountByUsername(username);
+    }
+    
+    public Account getAccount(String username, String password)
+    {
+        Account account = new Account();
+        account.setUsername(username);
+        account.setPassword(password);
+        return accountMapper.getAccountByUsernameAndPassword(account);
+    }
+    
+    public void insertAccount(Account account)
+    {
+        accountMapper.insertAccount(account);
+        accountMapper.insertProfile(account);
+        accountMapper.insertSignon(account);
+    }
 
-    // 插入一个新用户，注册的时候用到
-    public void insertAccount(Account account);
+    public void updateAccount(Account account)
+    {
+        accountMapper.updateAccount(account);
+        accountMapper.updateProfile(account);
 
-    // 更新一个用户，修改用户用到
-    public void updateAccount(Account account);
+        if (account.getPassword() != null && account.getPassword().length() > 0)
+        {
+            accountMapper.updateSignon(account);
+        }
+    }
 }
