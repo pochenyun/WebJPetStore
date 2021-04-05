@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.mypetstore.persistence.OrderManagerMapper">
+    <select id="getOrdersByUsername" parameterType="string" resultType="order">
+        select
+            billaddr1 as billaddress1,
+            billaddr2 as billaddress2,
+            billcity,
+            billcountry,
+            billstate,
+            billtofirstname,
+            billtolastname,
+            billzip,
+            shipaddr1 as shipaddress1,
+            shipaddr2 as shipaddress2,
+            shipcity,
+            shipcountry,
+
+            shiptofirstname,
+            shiptolastname,
+            shipzip,
+            cardtype,
+            courier,
+            creditcard,
+            exprdate as expirydate,
+            locale,
+            orderdate,
+            orders.orderid,
+            totalprice,
+            userid as username,
+            status
+        from orders, orderstatus
+        where orders.userid = #{value}
+          and orders.orderid = orderstatus.orderid
+        order by orderdate
+    </select>
+
+    <select id="getOrder" parameterType="int" resultType="order" >
+        select
+            billaddr1 as billaddress1,
+            billaddr2 as billaddress2,
+            billcity,
+            billcountry,
+            billstate,
+            billtofirstname,
+            billtolastname,
+            billzip,
+            shipaddr1 as shipaddress1,
+            shipaddr2 as shipaddress2,
+            shipcity,
+            shipcountry,
+            shipstate,
+            shiptofirstname,
+            shiptolastname,
+            shipzip,
+            cardtype,
+            courier,
+            creditcard,
+            exprdate as expirydate,
+            locale,
+            orderdate,
+            orders.orderid,
+            totalprice,
+            userid as username,
+            status
+        from orders, orderstatus
+        where orders.orderid = #{value}
+          and orders.orderid = orderstatus.orderid
+    </select>
+
+    <insert id="insertOrder" parameterType="order">
+        insert into orders
+        (userid, orderdate, shipaddr1, shipaddr2, shipcity, shipzip, shipcountry, billaddr1, billaddr2, billcity,
+         billzip, billcountry, courier, totalprice, billtofirstname, billtolastname, shiptofirstname, shiptolastname,
+         creditcard, exprdate, cardtype, locale)
+        values (#{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2}, #{shipCity}, #{shipZip}, #{shipCountry},
+                #{billAddress1}, #{billAddress2}, #{billCity}, #{billZip}, #{billCountry}, "UPS", #{totalPrice},
+                #{billToFirstName}, #{billToLastName}, #{shipToFirstName}, #{shipToLastName}, #{creditCard},
+                #{expiryDate}, #{cardType}, #{locale})
+    </insert>
+
+    <insert id="insertOrderStatus" parameterType="order">
+        insert into orderstatus (orderid, linenum, timestamp, status)
+        values (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="getOrderNum" resultType="int">
+        select count(*)
+        from orders
+    </select>
+
+    <insert id="insertLineItem" parameterType="LineItem">
+        insert into lineitem
+            (orderid, linenum, itemid, quantity, unitprice)
+        values
+            (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
+    </insert>
+
+    <delete id="removeCartByUsername" parameterType="String">
+        delete from cart where username = #{username}
+    </delete>
+
+    <update id="updateOrderByUsername" parameterType="order">
+        update orders
+        set orderdate       = #{order.orderDate}
+            shipaddr1       = #{order.shipAddress1}
+            shipaddr2       = #{order.shipAddress2}
+            shipcity        = #{order.shipCity}
+            shipzip         = #{order.shipZip}
+            shipcountry     = #{order.shipCountry}
+            billaddr1       = #{order.billAddress1}
+            billaddr2       = #{order.billAddress2}
+            billcity        = #{order.billCity}
+            billstate       = #{order.billState}
+            billzip         = #{order.billZip}
+            billcountry     = #{order.billCountry}
+            courier         = #{order.courier}
+            totalprice      = #{order.totalPrice}
+            billtofirstname = #{order.billToFirstName}
+            billtolastname  = #{order.billToLastName}
+            shiptofirstname = #{order.shipToFirstName}
+            shiptolastname  = #{order.shipToLastName}
+            creditcard      = #{order.creditCard}
+            exprdate        = #{order.expiryDate}
+            cardtype        = #{order.cardType}
+            locale          = #{order.locale}
+        where userid = #{username} and orders.orderid = orderstatus.orderid
+        order by orderdate
+    </update>
+</mapper>

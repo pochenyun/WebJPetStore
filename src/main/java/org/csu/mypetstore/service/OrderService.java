@@ -29,17 +29,46 @@ public class OrderService
 
     @Autowired
     private LineItemMapper lineItemMapper;
-    
+
     public void insertOrder(Order order)
     {
-        orderMapper.insertOrder(order);
-        order.setOrderId(orderMapper.getOrderNum());
+//        orderMapper.insertOrder(order);
+//        order.setOrderId(orderMapper.getOrderNum());
+//
+//        for (int i = 0; i < order.getLineItems().size(); i++)
+//        {
+//            order.getLineItems().get(i).setOrderId(order.getOrderId());
+//            orderMapper.insertLineItem(order.getLineItems().get(i));
+//        }
+//        orderMapper.removeCartByUsername(order.getUsername());
 
+        order.setOrderId(getNextId("ordernum"));
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
-            order.getLineItems().get(i).setOrderId(order.getOrderId());
-            orderMapper.insertLineItem(order.getLineItems().get(i));
+            LineItem lineItem = (LineItem) order.getLineItems().get(i);
+            String itemId = lineItem.getItemId();
+            Integer increment = new Integer(lineItem.getQuantity());
+
+            Item item = itemMapper.getItem(itemId);
+            item.setQuantity(itemMapper.getInventoryQuantity(itemId));
+            lineItem.setItem(item);
+
+            Map<String, Object> param = new HashMap<String, Object>(2);
+            param.put("itemId", itemId);
+            param.put("increment", increment);
+
+            itemMapper.updateInventoryQuantity(param);
         }
+
+        orderMapper.insertOrder(order);
+        orderMapper.insertOrderStatus(order);
+        for (int i = 0; i < order.getLineItems().size(); i++)
+        {
+            LineItem lineItem = (LineItem) order.getLineItems().get(i);
+            lineItem.setOrderId(order.getOrderId());
+            lineItemMapper.insertLineItem(lineItem);
+        }
+
         orderMapper.removeCartByUsername(order.getUsername());
     }
 
