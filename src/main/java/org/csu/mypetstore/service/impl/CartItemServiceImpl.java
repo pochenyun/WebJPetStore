@@ -48,7 +48,7 @@ public class CartItemServiceImpl implements CartItemService
     public void merge(Cart cart)
     {
         removeAllItemByUsername(cart.getUsername());
-        System.out.println("111111111111111111111111111 :" + cart.getCartItemList().size());
+        System.out.println("cart.getCartItemList().size():" + cart.getCartItemList().size());
         for (int i = 0; i < cart.getCartItemList().size(); i++)
         {
             insertCart(cart.getCartItemList().get(i));

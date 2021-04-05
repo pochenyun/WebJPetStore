@@ -31,36 +31,31 @@ public class OrderServiceImpl implements OrderService
     @Autowired
     private LineItemMapper lineItemMapper;
 
+    @Override
+    public List<Order> getOrdersByUsername(String username)
+    {
+        return orderMapper.getOrdersByUsername(username);
+    }
 
     @Override
     public void insertOrder(Order order)
     {
-        order.setOrderId(getNextId("ordernum"));
-        for (int i = 0; i < order.getLineItems().size(); i++)
-        {
-            LineItem lineItem = (LineItem) order.getLineItems().get(i);
-            String itemId = lineItem.getItemId();
-            Integer increment = Integer.valueOf(lineItem.getQuantity());
-
-            Item item = itemMapper.getItem(itemId);
-            item.setQuantity(itemMapper.getInventoryQuantity(itemId));
-            lineItem.setItem(item);
-
-            Map<String, Object> param = new HashMap<String, Object>(2);
-            param.put("itemId", itemId);
-            param.put("increment", increment);
-
-            itemMapper.updateInventoryQuantity(param);
-        }
-
         orderMapper.insertOrder(order);
-        orderMapper.insertOrderStatus(order);
+        order.setOrderId(orderMapper.getOrderId());
+
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
-            LineItem lineItem = (LineItem) order.getLineItems().get(i);
-            lineItem.setOrderId(order.getOrderId());
-            lineItemMapper.insertLineItem(lineItem);
+            order.getLineItems().get(i).setOrderId(order.getOrderId());
+            orderMapper.insertLineItem(order.getLineItems().get(i));
         }
+
+        orderMapper.removeCartByUsername(order.getUsername());
+
+    }
+
+    public void insertOrderStatus(Order order)
+    {
+        orderMapper.insertOrderStatus(order);
     }
 
     @Override
@@ -78,12 +73,6 @@ public class OrderServiceImpl implements OrderService
         }
 
         return order;
-    }
-
-    @Override
-    public List<Order> getOrdersByUsername(String username)
-    {
-        return orderMapper.getOrdersByUsername(username);
     }
 
     @Override

@@ -60,7 +60,6 @@ public class CartController {
         //数据库部分
         CartItem cartItem=new CartItem(newItem.getItemId(),newItem.getProductId(),newItem.getAttribute1(),1,1,newItem.getListPrice().floatValue(),newItem.getListPrice().floatValue());
         cartItem.setUsername(account.getUsername());
-        System.out.println("cartItem.getUsername()" +  cartItem.getUsername());
         cartItemService.insertCart(cartItem);
 
         cart = new Cart();
@@ -72,7 +71,6 @@ public class CartController {
         }
         cart.setUsername(account.getUsername());
 
-        System.out.println("151556654849/89");
         mergeCart(cart);
         System.out.println("01~");
         model.addAttribute("cart",cart);
@@ -97,10 +95,7 @@ public class CartController {
         cart.setUsername(account.getUsername());
 
         mergeCart(cart);
-        System.out.println("000000000000000001");
         model.addAttribute("cart",cart);
-
-        System.out.println("000000000000000002");
         return "cart/Cart";
     }
 

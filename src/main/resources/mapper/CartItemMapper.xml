@@ -30,7 +30,8 @@
         update cart
         set quantity = #{quantity},
             total    = #{total1}
-        where itemid = #{itemId} and username = #{username}
+        where itemid = #{itemId}
+          and username = #{username}
     </update>
 
     <select id="getItemByUsername" parameterType="string" resultType="CartItem">

@@ -1,5 +1,6 @@
 package org.csu.mypetstore.persistence;
 
+import org.csu.mypetstore.domain.LineItem;
 import org.csu.mypetstore.domain.Order;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,10 @@ public interface OrderMapper
 
     // 插入新订单状态
     void insertOrderStatus(Order order);
+
+    int getOrderId();
+
+    void insertLineItem(LineItem lineItem);
+
+    void removeCartByUsername(String username);
 }

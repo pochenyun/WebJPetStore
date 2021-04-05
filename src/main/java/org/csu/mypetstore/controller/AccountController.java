@@ -80,7 +80,7 @@ public class AccountController
             account.setPassword(null);
             model.addAttribute("account", account);
             System.out.println("成功" + ":   " + account.getBannerName());
-            return  "catalog/Main";
+            return "catalog/Main";
         }
 
 

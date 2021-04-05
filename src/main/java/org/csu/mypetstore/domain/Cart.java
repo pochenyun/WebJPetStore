@@ -18,7 +18,7 @@ public class Cart implements Serializable
     private static final long serialVersionUID = 8329559983943337176L;
 
     private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<String, CartItem>());
-    private final List<CartItem> itemList = new ArrayList<CartItem>();
+    private final List<CartItem> cartItemList = new ArrayList<CartItem>();
     private String username;
 
     public String getUsername()
@@ -28,36 +28,31 @@ public class Cart implements Serializable
 
     public Iterator<CartItem> getCartItems()
     {
-        return itemList.iterator();
+        return cartItemList.iterator();
     }
 
     public void setUsername(String username)
     {
         this.username = username;
-        for (int i = 0; i < itemList.size(); i++)
+        for (int i = 0; i < cartItemList.size(); i++)
         {
-            itemList.get(i).setUsername(username);
+            cartItemList.get(i).setUsername(username);
         }
     }
-// public String getProductIDbyItemID(String itemId){
-//    CartItem cartItem=new CartItem();
-//    cartItem.setItem(itemId);
-//    return item.getProductId();
-// }
 
     public List<CartItem> getCartItemList()
     {
-        return itemList;
+        return cartItemList;
     }
 
     public int getNumberOfItems()
     {
-        return itemList.size();
+        return cartItemList.size();
     }
 
     public Iterator<CartItem> getAllCartItems()
     {
-        return itemList.iterator();
+        return cartItemList.iterator();
     }
 
     public boolean containsItemId(String itemId)
@@ -75,7 +70,7 @@ public class Cart implements Serializable
             cartItem.setQuantity(0);
             cartItem.setInStock(isInStock);
             itemMap.put(item.getItemId(), cartItem);
-            itemList.add(cartItem);
+            cartItemList.add(cartItem);
         }
         cartItem.incrementQuantity();
     }
@@ -84,7 +79,7 @@ public class Cart implements Serializable
     {
         cartItem.setInStock(true);
         itemMap.put(cartItem.getItemId(), cartItem);
-        itemList.add(cartItem);
+        cartItemList.add(cartItem);
     }
 
     public Item removeItemById(String itemId)
@@ -96,7 +91,7 @@ public class Cart implements Serializable
         }
         else
         {
-            itemList.remove(cartItem);
+            cartItemList.remove(cartItem);
             return cartItem.getItem();
         }
     }

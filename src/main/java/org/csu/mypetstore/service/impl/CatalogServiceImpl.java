@@ -25,15 +25,15 @@ public class CatalogServiceImpl implements CatalogService
     private ItemMapper itemMapper;
 
     @Override
-    public List<Category> getCategoryList()
-    {
-        return categoryMapper.getCategoryList();
-    }
-
-    @Override
     public Category getCategory(String categoryId)
     {
         return categoryMapper.getCategory(categoryId);
+    }
+
+    @Override
+    public List<Category> getCategoryList()
+    {
+        return categoryMapper.getCategoryList();
     }
 
     @Override
