@@ -38,6 +38,7 @@ public class Order implements Serializable
     private String courier;
     private String locale;
     private String status;
+    private List<LineItem> lineItems = new ArrayList<LineItem>();
 
     private boolean shippingAddressRequired;
 
@@ -50,8 +51,6 @@ public class Order implements Serializable
     {
         this.shippingAddressRequired = shippingAddressRequired;
     }
-
-    private List<LineItem> lineItems = new ArrayList<LineItem>();
 
     public int getOrderId()
     {

@@ -30,11 +30,6 @@ public class OrderService
     @Autowired
     private LineItemMapper lineItemMapper;
     
-    public List<Order> getOrdersByUsername(String username)
-    {
-        return orderMapper.getOrdersByUsername(username);
-    }
-    
     public void insertOrder(Order order)
     {
         orderMapper.insertOrder(order);
@@ -45,9 +40,7 @@ public class OrderService
             order.getLineItems().get(i).setOrderId(order.getOrderId());
             orderMapper.insertLineItem(order.getLineItems().get(i));
         }
-
         orderMapper.removeCartByUsername(order.getUsername());
-
     }
 
     public void insertOrderStatus(Order order)
@@ -55,7 +48,7 @@ public class OrderService
         orderMapper.insertOrderStatus(order);
     }
 
-    
+
     public Order getOrder(int orderId)
     {
         Order order = orderMapper.getOrder(orderId);
@@ -70,6 +63,11 @@ public class OrderService
         }
 
         return order;
+    }
+
+    public List<Order> getOrdersByUsername(String username)
+    {
+        return orderMapper.getOrdersByUsername(username);
     }
 
     public int getNextId(String name)

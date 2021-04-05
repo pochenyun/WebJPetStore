@@ -24,7 +24,9 @@ public interface OrderMapper
     // 得到Order数目
     int getOrderNum();
 
+    // 插入订单项
     void insertLineItem(LineItem lineItem);
 
+    // 通过名字删除cart
     void removeCartByUsername(String username);
 }
