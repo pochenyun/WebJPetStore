@@ -32,7 +32,8 @@ public class CartController {
     Cart cart=new Cart();
 
     public void mergeCart(Cart cart){
-        for(int i = 0; i < cart.getCartItemList().size(); i ++){
+        System.out.println("22222222222222222 " + cart.getCartItemList().size());
+        for(int i = 0; i < cart.getCartItemList().size(); i++){
             String id = cart.getCartItemList().get(i).getItemId();
             for (int j = i+1; j <cart.getCartItemList().size(); j ++){
                 if(id.equals(cart.getCartItemList().get(j).getItemId())){
@@ -43,6 +44,7 @@ public class CartController {
                 }
             }
         }
+        System.out.println("333333333333333333 " + cart.getCartItemList().size());
         cartItemService.merge(cart);
     }
 
@@ -56,9 +58,6 @@ public class CartController {
             return "/account/SignonForm";
         }
 
-        //try
-        System.out.println(account.getUsername());
-
         Item newItem = catalogService.getItem(workingItemId);
         //数据库部分
         CartItem cartItem=new CartItem(newItem.getItemId(),newItem.getProductId(),newItem.getAttribute1(),1,1,newItem.getListPrice().floatValue(),newItem.getListPrice().floatValue());
@@ -67,13 +66,15 @@ public class CartController {
 
         cart = new Cart();
         List<CartItem> cartItemList = cartItemService.getItemByUsername(account.getUsername());
-        for(int i = 0;i <cartItemList.size();i ++) {
+
+        for(int i = 0;i <cartItemList.size();i++) {
             Item item = catalogService.getItem(cartItemList.get(i).getItemId());
             cartItemList.get(i).setItem(item);
             cart.addCartItem(cartItemList.get(i));
         }
         cart.setUsername(account.getUsername());
 
+        //System.out.println("151556654849/89");
         mergeCart(cart);
         model.addAttribute("cart",cart);
         return "cart/Cart";
@@ -88,7 +89,7 @@ public class CartController {
 
         Account account =(Account)model.getAttribute("account");
         List<CartItem> cartItemList = cartItemService.getItemByUsername(account.getUsername());
-        for(int i = 0;i <cartItemList.size();i ++) {
+        for(int i = 0;i <cartItemList.size();i++) {
             Item item = catalogService.getItem(cartItemList.get(i).getItemId());
             cartItemList.get(i).setItem(item);
             cart.addCartItem(cartItemList.get(i));
@@ -124,7 +125,7 @@ public class CartController {
         }
 
         List<CartItem> cartItemList = cartItemService.getItemByUsername(account.getUsername());
-        for(int i = 0;i <cartItemList.size();i ++) {
+        for(int i = 0;i <cartItemList.size();i++) {
             Item item = catalogService.getItem(cartItemList.get(i).getItemId());
             cartItemList.get(i).setItem(item);
             cart.addCartItem(cartItemList.get(i));

@@ -4,8 +4,6 @@
 
 <mapper namespace="org.csu.mypetstore.persistence.ItemMapper">
 
-    <cache />
-
     <select id="getItemListByProduct" parameterType="string" resultType="item">
         select
             i.itemid,
@@ -32,11 +30,11 @@
             i.itemid,
             listprice,
             unitcost,
-            supplier as supplierid,
-            i.productid as "product.productid",
-            name as "product.name",
-            descn as "product.description",
-            category as "product.categoryid",
+            supplier as supplierId,
+            i.productid as "productId",
+            name as "name",
+            descn as "description",
+            category as "categoryid",
             status,
             attr1 as attribute1,
             attr2 as attribute2,

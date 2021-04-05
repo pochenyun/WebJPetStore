@@ -31,11 +31,19 @@ class MypetstoreApplicationTests
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private CartItemMapper cartItemMapper;
+
 
     @Test
     void contextLoads()
     {
-//        Cart cart = new Cart();
-//        cart.setUsername();
+        List<CartItem> cartItemList = cartItemService.getItemByUsername("999999");
+        System.out.println(cartItemList.size());
+        for (int i = 0; i < cartItemList.size(); i++)
+        {
+            cartItemList.get(i).getItemId();
+            cartItemList.get(i).getProductId();
+        }
     }
 }

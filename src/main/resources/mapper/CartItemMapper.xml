@@ -30,10 +30,10 @@
         update cart
         set quantity = #{quantity},
             total    = #{total1}
-        where itemid = #{itemId}
+        where itemid = #{itemId} and username = #{username}
     </update>
 
-    <select id="getItemByUsername" resultType="CartItem">
+    <select id="getItemByUsername" parameterType="string" resultType="CartItem">
         select
             itemid,
             productid,
