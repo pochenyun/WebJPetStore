@@ -8,7 +8,7 @@
       productid,
       name,
       descn as description,
-      category as categoryid
+      category as categoryId
     from product
     where productid = #{productid}
   </select>

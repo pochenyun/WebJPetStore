@@ -34,7 +34,7 @@
             i.productid as "productId",
             name as "name",
             descn as "description",
-            category as "categoryid",
+            category as "categoryId",
             status,
             attr1 as attribute1,
             attr2 as attribute2,

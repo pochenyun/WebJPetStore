@@ -4,16 +4,16 @@
 <mapper namespace="org.csu.mypetstore.persistence.CategoryMapper">
     <select id="getCategory" parameterType="string" resultType="Category">
 select
-      catid as categoryid,
+      catid as categoryId,
       name,
       descn as description
     from category
-    where catid = #{categoryid}
+    where catid = #{categoryId}
     </select>
 
     <select id="getCategoryList" resultType="Category">
     select
-      catid as categoryid,
+      catid as categoryId,
       name,
       descn as description
     from category

@@ -32,7 +32,6 @@ public class CartController {
     Cart cart=new Cart();
 
     public void mergeCart(Cart cart){
-        System.out.println("22222222222222222 " + cart.getCartItemList().size());
         for(int i = 0; i < cart.getCartItemList().size(); i++){
             String id = cart.getCartItemList().get(i).getItemId();
             for (int j = i+1; j <cart.getCartItemList().size(); j ++){
@@ -44,7 +43,6 @@ public class CartController {
                 }
             }
         }
-        System.out.println("333333333333333333 " + cart.getCartItemList().size());
         cartItemService.merge(cart);
     }
 
@@ -67,7 +65,6 @@ public class CartController {
 
         cart = new Cart();
         List<CartItem> cartItemList = cartItemService.getItemByUsername(account.getUsername());
-
         for(int i = 0;i <cartItemList.size();i++) {
             Item item = catalogService.getItem(cartItemList.get(i).getItemId());
             cartItemList.get(i).setItem(item);
@@ -75,9 +72,11 @@ public class CartController {
         }
         cart.setUsername(account.getUsername());
 
-        //System.out.println("151556654849/89");
+        System.out.println("151556654849/89");
         mergeCart(cart);
+        System.out.println("01~");
         model.addAttribute("cart",cart);
+        System.out.println("02~");
         return "cart/Cart";
     }
 
@@ -98,7 +97,10 @@ public class CartController {
         cart.setUsername(account.getUsername());
 
         mergeCart(cart);
+        System.out.println("000000000000000001");
         model.addAttribute("cart",cart);
+
+        System.out.println("000000000000000002");
         return "cart/Cart";
     }
 

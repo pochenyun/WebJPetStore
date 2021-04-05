@@ -16,7 +16,7 @@
             shipaddr2 as shipaddress2,
             shipcity,
             shipcountry,
-            shipstate,
+
             shiptofirstname,
             shiptolastname,
             shipzip,
@@ -70,20 +70,30 @@
     </select>
 
     <insert id="insertOrder" parameterType="order">
-        <!-- 奇怪，这里必须大写…… -->
-        insert into orders (ORDERID, USERID, ORDERDATE, SHIPADDR1, SHIPADDR2, SHIPCITY, SHIPSTATE,
-        SHIPZIP, SHIPCOUNTRY, BILLADDR1, BILLADDR2, BILLCITY, BILLSTATE, BILLZIP, BILLCOUNTRY,
-        COURIER, TOTALPRICE, BILLTOFIRSTNAME, BILLTOLASTNAME, SHIPTOFIRSTNAME, SHIPTOLASTNAME,
-        CREDITCARD, EXPRDATE, CARDTYPE, LOCALE)
-        values(#{orderId}, #{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2,jdbcType=VARCHAR}, #{shipCity},
-        #{shipState}, #{shipZip}, #{shipCountry}, #{billAddress1}, #{billAddress2,jdbcType=VARCHAR}, #{billCity},
-        #{billState}, #{billZip}, #{billCountry}, #{courier}, #{totalPrice}, #{billToFirstName}, #{billToLastName},
-        #{shipToFirstName}, #{shipToLastName}, #{creditCard}, #{expiryDate}, #{cardType}, #{locale})
+        insert into orders
+        (userid, orderdate, shipaddr1, shipaddr2, shipcity, shipzip, shipcountry, billaddr1, billaddr2, billcity, billzip, billcountry, courier, totalprice, billtofirstname, billtolastname,shiptofirstname, shiptolastname, creditcard, exprdate, cardtype, locale)
+        values
+        (#{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2},  #{shipCity}, #{shipZip}, #{shipCountry}, #{billAddress1}, #{billAddress2}, #{billCity}, #{billZip},#{billCountry},"UPS",#{totalPrice},#{billToFirstName},#{billToLastName},#{shipToFirstName},#{shipToLastName},#{creditCard},#{expiryDate},#{cardType},#{locale})
     </insert>
 
     <insert id="insertOrderStatus" parameterType="order">
-        insert into orderstatus (ORDERID, LINENUM, TIMESTAMP, STATUS)
+        insert into orderstatus (orderid, linenum, timestamp, status)
         values (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
     </insert>
 
+    <select id="getOrderId" resultType="int">
+        select count(*)
+        from orders
+    </select>
+
+    <insert id="insertLineItem" parameterType="LineItem">
+        insert into lineitem
+            (orderid, linenum, itemid, quantity, unitprice)
+        values
+            (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
+    </insert>
+
+    <delete id="removeCartByUsername" parameterType="String">
+        delete from cart where username = #{username}
+    </delete>
 </mapper>
