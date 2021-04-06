@@ -50,7 +50,7 @@
             shipaddr2 as shipaddress2,
             shipcity,
             shipcountry,
-            shipstate,
+
             shiptofirstname,
             shiptolastname,
             shipzip,
@@ -81,9 +81,12 @@
                 #{expiryDate}, #{cardType}, #{locale})
     </insert>
 
-    <insert id="insertOrderStatus" parameterType="order">
+    <insert id="insertOrderStatus">
         insert into orderstatus (orderid, linenum, timestamp, status)
-        values (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+        values (#{order.orderId,jdbcType=NUMERIC},
+                #{lineId,jdbcType=NUMERIC},
+                #{order.orderDate,jdbcType=TIMESTAMP},
+                #{order.status,jdbcType=VARCHAR})
     </insert>
 
     <select id="getOrderNum" resultType="int">

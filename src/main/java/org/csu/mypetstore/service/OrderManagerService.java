@@ -4,10 +4,7 @@ import org.csu.mypetstore.domain.Item;
 import org.csu.mypetstore.domain.LineItem;
 import org.csu.mypetstore.domain.Order;
 import org.csu.mypetstore.domain.Sequence;
-import org.csu.mypetstore.persistence.ItemMapper;
-import org.csu.mypetstore.persistence.LineItemMapper;
-import org.csu.mypetstore.persistence.OrderMapper;
-import org.csu.mypetstore.persistence.SequenceMapper;
+import org.csu.mypetstore.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
@@ -17,7 +14,7 @@ import java.util.Map;
 public class OrderManagerService
 {
     @Autowired
-    private OrderMapper orderMapper;
+    private OrderManagerMapper orderManagerMapper;
 
     @Autowired
     private SequenceMapper sequenceMapper;
@@ -26,7 +23,7 @@ public class OrderManagerService
     private ItemMapper itemMapper;
 
     @Autowired
-    private LineItemMapper lineItemMapper;
+    private LineItemManagerMapper lineItemManagerMapper;
 
     //插入订单
     public void insertOrder(Order order)
@@ -49,29 +46,29 @@ public class OrderManagerService
             itemMapper.updateInventoryQuantity(param);
         }
 
-        orderMapper.insertOrder(order);
-        orderMapper.insertOrderStatus(order);
+        orderManagerMapper.insertOrder(order);
+        orderManagerMapper.insertOrderStatus(order);
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
             LineItem lineItem = (LineItem) order.getLineItems().get(i);
             lineItem.setOrderId(order.getOrderId());
-            lineItemMapper.insertLineItem(lineItem);
+            lineItemManagerMapper.insertLineItem(lineItem);
         }
 
-        orderMapper.removeCartByUsername(order.getUsername());
+        orderManagerMapper.removeCartByUsername(order.getUsername());
     }
 
     //插入
     public void insertOrderStatus(Order order)
     {
-        orderMapper.insertOrderStatus(order);
+        orderManagerMapper.insertOrderStatus(order);
     }
 
 
     public Order getOrder(int orderId)
     {
-        Order order = orderMapper.getOrder(orderId);
-        order.setLineItems(lineItemMapper.getLineItemsByOrderId(orderId));
+        Order order = orderManagerMapper.getOrder(orderId);
+        order.setLineItems(lineItemManagerMapper.getLineItemsByOrderId(orderId));
 
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
@@ -86,7 +83,7 @@ public class OrderManagerService
 
     public List<Order> getOrdersByUsername(String username)
     {
-        return orderMapper.getOrdersByUsername(username);
+        return orderManagerMapper.getOrdersByUsername(username);
     }
 
     public int getNextId(String name)

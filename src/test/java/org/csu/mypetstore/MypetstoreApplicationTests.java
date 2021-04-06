@@ -47,11 +47,7 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-//        List<LineItem> lineItemList = lineItemManagerMapper.getLineItemsByOrderId(1008);
-//        LineItem lineItem = lineItemList.get(0);
-//        System.out.println(lineItem.getLineNumber());
-//        lineItem.setItemId("NTZ-48");
-//        lineItemManagerMapper.deleteLineItemByOrderId(1009);
-        lineItemManagerMapper.deleteLineItemByOrderIdAndLineId(1009, 2);
+        Order order = orderMapper.getOrder(1009);
+        orderMapper.insertOrderStatus(order, 2);
     }
 }

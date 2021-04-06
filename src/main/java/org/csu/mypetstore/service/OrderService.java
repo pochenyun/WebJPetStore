@@ -61,20 +61,22 @@ public class OrderService
         }
 
         orderMapper.insertOrder(order);
-        orderMapper.insertOrderStatus(order);
+        //orderMapper.insertOrderStatus(order);
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
             LineItem lineItem = (LineItem) order.getLineItems().get(i);
             lineItem.setOrderId(order.getOrderId());
             lineItemMapper.insertLineItem(lineItem);
+
+            orderMapper.insertOrderStatus(order, i + 1);
         }
 
         orderMapper.removeCartByUsername(order.getUsername());
     }
 
-    public void insertOrderStatus(Order order)
+    public void insertOrderStatus(Order order, int lineId)
     {
-        orderMapper.insertOrderStatus(order);
+        orderMapper.insertOrderStatus(order, lineId);//, lineId);
     }
 
 
