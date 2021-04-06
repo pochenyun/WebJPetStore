@@ -22,6 +22,6 @@ public class OrderManagerController
     @GetMapping("/view")
     public String viewOrders()
     {
-        return "/manager/orderManager";
+        return "/manager/manager";
     }
 }
