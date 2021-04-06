@@ -38,16 +38,16 @@
 
     <select id="getOrder" parameterType="int" resultType="order" >
         select
-            billaddr1 as billaddress1,
-            billaddr2 as billaddress2,
+            billaddr1 as billAddress1,
+            billaddr2 as billAddress2,
             billcity,
             billcountry,
             billstate,
             billtofirstname,
             billtolastname,
             billzip,
-            shipaddr1 as shipaddress1,
-            shipaddr2 as shipaddress2,
+            shipaddr1 as shipAddress1,
+            shipaddr2 as shipAddress2,
             shipcity,
             shipcountry,
 
@@ -57,7 +57,7 @@
             cardtype,
             courier,
             creditcard,
-            exprdate as expirydate,
+            exprdate as expiryDate,
             locale,
             orderdate,
             orders.orderid,
@@ -81,12 +81,12 @@
                 #{expiryDate}, #{cardType}, #{locale})
     </insert>
 
-    <insert id="insertOrderStatus">
+    <insert id="insertOrderStatus" parameterType="order">
         insert into orderstatus (orderid, linenum, timestamp, status)
-        values (#{order.orderId,jdbcType=NUMERIC},
-                #{lineId,jdbcType=NUMERIC},
-                #{order.orderDate,jdbcType=TIMESTAMP},
-                #{order.status,jdbcType=VARCHAR})
+        values (#{orderId,jdbcType=NUMERIC},
+                #{orderId,jdbcType=NUMERIC},
+                #{orderDate,jdbcType=TIMESTAMP},
+                #{status,jdbcType=VARCHAR})
     </insert>
 
     <select id="getOrderNum" resultType="int">

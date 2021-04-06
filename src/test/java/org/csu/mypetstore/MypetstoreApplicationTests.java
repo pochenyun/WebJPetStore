@@ -31,8 +31,10 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-        Order order = orderMapper.getOrder(1008);
+        Order order = orderManagerService.getOrder(1008);
         System.out.println(order.getStatus());
+        order.setStatus("R");
+        orderManagerService.updateOrderLineStatue(order);
 //        orderManagerService.updateOrder(order);
 //        orderManagerMapper.changeOrderLineTo_P(1008, 1);
 //        orderManagerMapper.changeOrderLineTo_R(1008, 2);

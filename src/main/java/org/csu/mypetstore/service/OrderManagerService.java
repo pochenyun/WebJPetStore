@@ -59,23 +59,22 @@ public class OrderManagerService
         }
 
         orderManagerMapper.insertOrder(order);
-        //orderMapper.insertOrderStatus(order);
+        orderManagerMapper.insertOrderStatus(order);
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
             LineItem lineItem = (LineItem) order.getLineItems().get(i);
             lineItem.setOrderId(order.getOrderId());
             lineItemManagerMapper.insertLineItem(lineItem);
-
-            orderManagerMapper.insertOrderStatus(order, i + 1);
+            //orderManagerMapper.insertOrderStatus(order, i + 1);
         }
 
         orderManagerMapper.removeCartByUsername(order.getUsername());
     }
 
     //插入订单状态
-    public void insertOrderStatus(Order order, int lineId)
+    public void insertOrderStatus(Order order)//, int lineId)
     {
-        orderManagerMapper.insertOrderStatus(order, lineId);//, lineId);
+        orderManagerMapper.insertOrderStatus(order);//, lineId);//, lineId);
     }
 
     //得到订单
@@ -125,16 +124,25 @@ public class OrderManagerService
     public void updateOrder(Order order)
     {
         orderManagerMapper.updateOrderByOrderId(order);
+        updateOrderLineStatue(order);
     }
 
     // 通过订单id和lineID修改订单状态
     // P:未处理
     // R:已处理
-    void updateOrderLineStatue(Order order)
+    public void updateOrderLineStatue(Order order)
     {
         if (order.getStatus() == "R")
         {
-
+            orderManagerMapper.changeOrderLineTo_R(order.getOrderId());
+        }
+        else if (order.getStatus() == "P")
+        {
+            orderManagerMapper.changeOrderLineTo_P(order.getOrderId());
+        }
+        else
+        {
+            System.out.println("Error!!!!!!!!!!!!");
         }
     }
 }

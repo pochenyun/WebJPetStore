@@ -20,7 +20,7 @@ public interface OrderManagerMapper
     void insertOrder(Order order);
 
     // 插入新订单状态
-    void insertOrderStatus(@Param("order") Order order, @Param("lineId") int lineId);
+    void insertOrderStatus(Order order);
 
     // 得到Order数目
     int getOrderNum();
@@ -35,8 +35,8 @@ public interface OrderManagerMapper
     void updateOrderByOrderId(Order order);
 
     // 通过订单id和lineID修改订单状态为R
-    void changeOrderLineTo_R(@Param("orderId") int orderId, @Param("lineId") int lineId);
+    void changeOrderLineTo_R(@Param("orderId") int orderId);
 
     // 通过订单id和lineID修改订单状态为P
-    void changeOrderLineTo_P(@Param("orderId") int orderId, @Param("lineId") int lineId);
+    void changeOrderLineTo_P(@Param("orderId") int orderId);
 }

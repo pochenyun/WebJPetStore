@@ -20,7 +20,7 @@ public interface OrderMapper
     void insertOrder(Order order);
 
     // 插入新订单状态
-    void insertOrderStatus(@Param("order") Order order, @Param("lineId") int lineId);
+    void insertOrderStatus(Order order);//, @Param("lineId") int lineId);
 
     // 得到Order数目
     int getOrderNum();
