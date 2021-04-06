@@ -71,26 +71,21 @@
 
     <insert id="insertOrder" parameterType="order">
         insert into orders
-        (orderid, userid, orderdate,
-         shipaddr1, shipaddr2, shipcity, shipzip, shipcountry,
-         billaddr1, billaddr2, billcity, billzip, billcountry, billstate,
-         courier, totalprice,
-         billtofirstname, billtolastname,
-         shiptofirstname, shiptolastname,
+        (orderid, userid, orderdate, shipaddr1, shipaddr2, shipcity, shipzip, shipcountry, billaddr1, billaddr2, billcity,
+         billzip, billcountry, courier, totalprice, billtofirstname, billtolastname, shiptofirstname, shiptolastname,
          creditcard, exprdate, cardtype, locale)
-        values (#{orderId} , #{username}, #{orderDate},
-                #{shipAddress1}, #{shipAddress2}, #{shipCity}, #{shipZip}, #{shipCountry},
-                #{billAddress1}, #{billAddress2}, #{billCity}, #{billZip}, #{billCountry}, #{billState},
-                "UPS", #{totalPrice},
-                #{billToFirstName}, #{billToLastName},
-                #{shipToFirstName}, #{shipToLastName},
-                #{creditCard}, #{expiryDate}, #{cardType}, #{locale})
-
+        values (#{orderId} , #{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2}, #{shipCity}, #{shipZip}, #{shipCountry},
+                #{billAddress1}, #{billAddress2}, #{billCity}, #{billZip}, #{billCountry}, "UPS", #{totalPrice},
+                #{billToFirstName}, #{billToLastName}, #{shipToFirstName}, #{shipToLastName}, #{creditCard},
+                #{expiryDate}, #{cardType}, #{locale})
     </insert>
 
-    <insert id="insertOrderStatus" parameterType="order">
+    <insert id="insertOrderStatus">
         insert into orderstatus (orderid, linenum, timestamp, status)
-        values (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+        values (#{order.orderId,jdbcType=NUMERIC},
+                #{lineId,jdbcType=NUMERIC},
+                #{order.orderDate,jdbcType=TIMESTAMP},
+                #{order.status,jdbcType=VARCHAR})
     </insert>
 
     <select id="getOrderNum" resultType="int">
@@ -136,5 +131,17 @@
             cardtype        = #{cardType},
             locale          = #{locale}
          where orderid = #{orderId}
+    </update>
+
+    <update id="changeOrderLineTo_R">
+        update orderstatus
+        set status = 'R'
+        where orderid = #{orderId} and linenum = #{lineId}
+    </update>
+
+    <update id="changeOrderLineTo_P">
+        update orderstatus
+        set status = 'P'
+        where orderid = #{orderId} and linenum = #{lineId}
     </update>
 </mapper>

@@ -6,11 +6,13 @@ import org.csu.mypetstore.domain.Order;
 import org.csu.mypetstore.domain.Sequence;
 import org.csu.mypetstore.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class OrderManagerService
 {
     @Autowired
@@ -28,6 +30,16 @@ public class OrderManagerService
     //插入订单
     public void insertOrder(Order order)
     {
+//        orderMapper.insertOrder(order);
+//        order.setOrderId(orderMapper.getOrderNum());
+//
+//        for (int i = 0; i < order.getLineItems().size(); i++)
+//        {
+//            order.getLineItems().get(i).setOrderId(order.getOrderId());
+//            orderMapper.insertLineItem(order.getLineItems().get(i));
+//        }
+//        orderMapper.removeCartByUsername(order.getUsername());
+
         order.setOrderId(this.getNextId("ordernum"));
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
@@ -47,24 +59,26 @@ public class OrderManagerService
         }
 
         orderManagerMapper.insertOrder(order);
-        orderManagerMapper.insertOrderStatus(order);
+        //orderMapper.insertOrderStatus(order);
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
             LineItem lineItem = (LineItem) order.getLineItems().get(i);
             lineItem.setOrderId(order.getOrderId());
             lineItemManagerMapper.insertLineItem(lineItem);
+
+            orderManagerMapper.insertOrderStatus(order, i + 1);
         }
 
         orderManagerMapper.removeCartByUsername(order.getUsername());
     }
 
-    //插入
-    public void insertOrderStatus(Order order)
+    //插入订单状态
+    public void insertOrderStatus(Order order, int lineId)
     {
-        orderManagerMapper.insertOrderStatus(order);
+        orderManagerMapper.insertOrderStatus(order, lineId);//, lineId);
     }
 
-
+    //得到订单
     public Order getOrder(int orderId)
     {
         Order order = orderManagerMapper.getOrder(orderId);
@@ -81,6 +95,7 @@ public class OrderManagerService
         return order;
     }
 
+    //通过名字得到订单
     public List<Order> getOrdersByUsername(String username)
     {
         return orderManagerMapper.getOrdersByUsername(username);
@@ -103,6 +118,23 @@ public class OrderManagerService
         else
         {
             throw new RuntimeException("Can't updateSequence!");
+        }
+    }
+
+    //更改订单
+    public void updateOrder(Order order)
+    {
+        orderManagerMapper.updateOrderByOrderId(order);
+    }
+
+    // 通过订单id和lineID修改订单状态
+    // P:未处理
+    // R:已处理
+    void updateOrderLineStatue(Order order)
+    {
+        if (order.getStatus() == "R")
+        {
+
         }
     }
 }

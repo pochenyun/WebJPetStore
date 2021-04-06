@@ -1,5 +1,6 @@
 package org.csu.mypetstore.persistence;
 
+import org.apache.ibatis.annotations.Param;
 import org.csu.mypetstore.domain.LineItem;
 import org.csu.mypetstore.domain.Order;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ public interface OrderManagerMapper
     void insertOrder(Order order);
 
     // 插入新订单状态
-    void insertOrderStatus(Order order);
+    void insertOrderStatus(@Param("order") Order order, @Param("lineId") int lineId);
 
     // 得到Order数目
     int getOrderNum();
@@ -30,6 +31,12 @@ public interface OrderManagerMapper
     // 通过名字删除cart
     void removeCartByUsername(String username);
 
-    // 通过用户名或者订单id更改订单
+    // 通过订单id更改订单
     void updateOrderByOrderId(Order order);
+
+    // 通过订单id和lineID修改订单状态为R
+    void changeOrderLineTo_R(@Param("orderId") int orderId, @Param("lineId") int lineId);
+
+    // 通过订单id和lineID修改订单状态为P
+    void changeOrderLineTo_P(@Param("orderId") int orderId, @Param("lineId") int lineId);
 }
