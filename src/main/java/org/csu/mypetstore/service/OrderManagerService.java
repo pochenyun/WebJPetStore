@@ -125,6 +125,12 @@ public class OrderManagerService
     {
         orderManagerMapper.updateOrderByOrderId(order);
         updateOrderLineStatue(order);
+
+        List<LineItem> lineItemList = order.getLineItems();
+        for (int i = 0; i < lineItemList.size(); i++)
+        {
+            orderManagerMapper.updateLineItem(lineItemList.get(i));
+        }
     }
 
     // 通过订单id和lineID修改订单状态
@@ -144,5 +150,24 @@ public class OrderManagerService
         {
             System.out.println("Error!!!!!!!!!!!!");
         }
+    }
+
+    // 删除一次订单
+    public void removeAOrder(Order order)
+    {
+        List<LineItem> lineItemList = order.getLineItems();
+        for (int i = 0; i < lineItemList.size(); i++)
+        {
+            orderManagerMapper.removeLineItemByOrderIdAndLineId(order.getOrderId(), lineItemList.get(i).getLineNumber());
+        }
+
+        orderManagerMapper.removeOrderStatusByOrderId(order.getOrderId());
+
+        orderManagerMapper.removeOrderByOrderId(order.getOrderId());
+    }
+
+    public void removeOrderLineItem(int orderId, int lineId)
+    {
+        orderManagerMapper.removeLineItemByOrderIdAndLineId(orderId, lineId);
     }
 }

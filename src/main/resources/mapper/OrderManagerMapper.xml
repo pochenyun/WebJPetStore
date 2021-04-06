@@ -141,7 +141,30 @@
 
     <update id="changeOrderLineTo_P">
         update orderstatus
-        set status = 'P'
+        set
+            status = 'P'
         where orderid = #{orderId}
     </update>
+
+<!--    lineItem-->
+    <update id="updateLineItem">
+        update lineitem
+        set
+            itemid      = #{lineItem.itemId},
+            quantity    = #{lineItem.quantity},
+            unitprice   = #{lineItem.unitPrice}
+        where orderid = #{lineItem.orderId} and linenum = #{lineItem.lineNumber}
+    </update>
+
+    <delete id="removeOrderByOrderId">
+        delete from orders where orderid = #{orderId}
+    </delete>
+
+    <delete id="removeOrderStatusByOrderId">
+        delete from orderstatus where orderid = #{orderId}
+    </delete>
+
+    <delete id="removeLineItemByOrderIdAndLineId">
+        delete from lineitem where orderid = #{orderId} and linenum = #{lineId}
+    </delete>
 </mapper>

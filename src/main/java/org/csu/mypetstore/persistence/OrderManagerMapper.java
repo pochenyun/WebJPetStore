@@ -28,9 +28,6 @@ public interface OrderManagerMapper
     // 插入订单项
     void insertLineItem(LineItem lineItem);
 
-    // 通过名字删除cart
-    void removeCartByUsername(String username);
-
     // 通过订单id更改订单
     void updateOrderByOrderId(Order order);
 
@@ -39,4 +36,19 @@ public interface OrderManagerMapper
 
     // 通过订单id和lineID修改订单状态为P
     void changeOrderLineTo_P(@Param("orderId") int orderId);
+
+    // 通过订单id和lineID修改详细订单
+    void updateLineItem(@Param("lineItem") LineItem lineItem);
+
+    // 通过名字删除cart
+    void removeCartByUsername(String username);
+
+    // 通过orderId删除order
+    void removeOrderByOrderId(@Param("orderId") int orderId);
+
+    // 通过orderId删除orderstatus
+    void removeOrderStatusByOrderId(@Param("orderId") int orderId);
+
+    // 通过orderId和lineId删除lineitem
+    void removeLineItemByOrderIdAndLineId(@Param("orderId") int orderId, @Param("lineId") int lineId);
 }
