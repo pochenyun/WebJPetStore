@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0091)http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/OrderManagement.html -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,8 +9,8 @@
     <link href="/css/manager/reset.css" rel="stylesheet">
     <link href="/css/manager/iconfont.css" rel="stylesheet">
     <link href="/css/manager/index.css" rel="stylesheet">
-    <script src="/css/manager/jquery-1.9.1.min.js"></script>
-    <script src="/css/manager/f.js"></script>
+    <script src="/js/manager/jquery-1.9.1.min.js"></script>
+    <script src="/js/manager/f.js"></script>
     <title>订单管理</title>
 </head>
 <body class="vsc-initialized">
@@ -22,7 +22,7 @@
         <!--<i class="iconfont icon-caidan"></i>-->
 
         <div class="companyText">
-            上海央谷管理系统
+            JPetStore
         </div>
     </div>
     <div class="RightBox clearfix">
@@ -109,15 +109,15 @@
                                 <label for="inputcheck"></label>
                                 <span>全选</span>
                             </td>
-                            <td>ID</td>
-                            <td>姓名</td>
-                            <td>手机号</td>
-                            <td>地址</td>
-                            <td>应付金额</td>
-                            <td>订单编号</td>
-                            <td>支付方式</td>
-                            <td>交易支付单号</td>
-                            <td>下单时间</td>
+                            <td>订单号</td>
+                            <td>用户名</td>
+                            <td>购买日期</td>
+                            <td>送货地址</td>
+                            <td>送货邮编</td>
+                            <td>付款地址</td>
+                            <td>付款邮编</td>
+                            <td>快递公司</td>
+                            <td>总金额</td>
                             <td>操作</td>
                         </tr>
 
@@ -128,16 +128,23 @@
                                 <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
                                 <label for="aa"></label>
                             </td>
-                            <td>1</td>
-                            <td>尚能大大</td>
-                            <td>17612164871</td>
-                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
-                            <td>1200.00元</td>
-                            <td>201711024866544846</td>
-                            <td>支付宝</td>
-                            <td>201711024866544846</td>
-                            <td>2017-11-01 21:15:23</td>
-
+                            <td>1008</td>
+                            <td>j2ee</td>
+                            <td>2021-04-04</td>
+                            <td>
+                                901 San Antonio Road<br>
+                                MS UCUP02-206<br>
+                                Palo Alto<br>
+                            </td>
+                            <td>94303</td>
+                            <td>
+                                901 San Antonio Road<br>
+                                MS UCUP02-206<br>
+                                Palo Alto<br>
+                            </td>
+                            <td>94303</td>
+                            <td>UPS</td>
+                            <td>200.50</td>
                             <td>
 
                                 <div class="PublicTableBtnIcon Color3Btn Js_edit">
@@ -151,124 +158,6 @@
                                 </div>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>
-                                <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
-                                <label for="aa"></label>
-                            </td>
-                            <td>1</td>
-                            <td>尚能大大</td>
-                            <td>17612164871</td>
-                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
-                            <td>1200.00元</td>
-                            <td>201711024866544846</td>
-                            <td>支付宝</td>
-                            <td>201711024866544846</td>
-                            <td>2017-11-01 21:15:23</td>
-
-                            <td>
-
-                                <div class="PublicTableBtnIcon Color3Btn Js_edit">
-                                    <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
-                                    <span>编辑</span>
-                                </div>
-
-                                <div class="PublicTableBtnIcon Color4Btn Js_delete">
-                                    <i class="iconfont icon-shanchu"></i>
-                                    <span>删除</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
-                                <label for="aa"></label>
-                            </td>
-                            <td>1</td>
-                            <td>尚能大大</td>
-                            <td>17612164871</td>
-                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
-                            <td>1200.00元</td>
-                            <td>201711024866544846</td>
-                            <td>支付宝</td>
-                            <td>201711024866544846</td>
-                            <td>2017-11-01 21:15:23</td>
-
-                            <td>
-
-                                <div class="PublicTableBtnIcon Color3Btn Js_edit">
-                                    <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
-                                    <span>编辑</span>
-                                </div>
-
-                                <div class="PublicTableBtnIcon Color4Btn Js_delete">
-                                    <i class="iconfont icon-shanchu"></i>
-                                    <span>删除</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
-                                <label for="aa"></label>
-                            </td>
-                            <td>1</td>
-                            <td>尚能大大</td>
-                            <td>17612164871</td>
-                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
-                            <td>1200.00元</td>
-                            <td>201711024866544846</td>
-                            <td>支付宝</td>
-                            <td>201711024866544846</td>
-                            <td>2017-11-01 21:15:23</td>
-
-                            <td>
-
-                                <div class="PublicTableBtnIcon Color3Btn Js_edit">
-                                    <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
-                                    <span>编辑</span>
-                                </div>
-
-                                <div class="PublicTableBtnIcon Color4Btn Js_delete">
-                                    <i class="iconfont icon-shanchu"></i>
-                                    <span>删除</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
-                                <label for="aa"></label>
-                            </td>
-                            <td>1</td>
-                            <td>尚能大大</td>
-                            <td>17612164871</td>
-                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
-                            <td>1200.00元</td>
-                            <td>201711024866544846</td>
-                            <td>支付宝</td>
-                            <td>201711024866544846</td>
-                            <td>2017-11-01 21:15:23</td>
-
-                            <td>
-
-                                <div class="PublicTableBtnIcon Color3Btn Js_edit">
-                                    <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
-                                    <span>编辑</span>
-                                </div>
-
-                                <div class="PublicTableBtnIcon Color4Btn Js_delete">
-                                    <i class="iconfont icon-shanchu"></i>
-                                    <span>删除</span>
-                                </div>
-                            </td>
-                        </tr>
-
-
                         </tbody>
                     </table>
 
@@ -291,11 +180,8 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
     </div>
 </div>
 

@@ -100,6 +100,12 @@ public class OrderManagerService
         return orderManagerMapper.getOrdersByUsername(username);
     }
 
+    //得到所有订单
+    public List<Order> getAllOrders(String username)
+    {
+        return null;
+    }
+
     public int getNextId(String name)
     {
         Sequence sequence = new Sequence(name, -1);

@@ -13,6 +13,9 @@ public interface OrderManagerMapper
     // 根据用户名得到订单
     List<Order> getOrdersByUsername(String username);
 
+    // 得到所有订单
+    List<Order> getAllOrders();
+
     // 根据订单ID得到订单
     Order getOrder(int orderId);
 

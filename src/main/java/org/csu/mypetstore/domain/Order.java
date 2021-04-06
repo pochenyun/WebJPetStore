@@ -15,6 +15,7 @@ public class Order implements Serializable
     private int orderId;
     private String username;
     private Date orderDate;
+
     private String shipToFirstName;
     private String shipToLastName;
     private String shipAddress1;
@@ -23,6 +24,7 @@ public class Order implements Serializable
     private String shipState;
     private String shipZip;
     private String shipCountry;
+
     private String billToFirstName;
     private String billToLastName;
     private String billAddress1;
@@ -31,6 +33,7 @@ public class Order implements Serializable
     private String billState;
     private String billZip;
     private String billCountry;
+
     private String creditCard;
     private String expiryDate;
     private String cardType;
@@ -400,5 +403,34 @@ public class Order implements Serializable
         billState = order.getBillState();
         billZip = order.getBillZip();
         billCountry = order.getBillCountry();
+    }
+
+    @Override
+    public String toString()
+    {
+        return  " 1: " + this.getOrderId() + "/n" +
+                " 2: " + this.getUsername() + "/n" +
+                " 3: " + this.getOrderDate() + "/n" +
+                " 4: " + this.getShipToFirstName() + "/n" +
+                " 5: " + this.getShipToLastName() + "/n" +
+                " 6: " + this.getOrderId() + "/n" +
+                " 7: " + this.getOrderId() + "/n" +
+                " 8: " + this.getOrderId() + "/n" +
+                " 9: " + this.getOrderId() + "/n" +
+                "10: " + this.getOrderId() + "/n" +
+                "11: " + this.getOrderId() + "/n" +
+                "12: " + this.getOrderId() + "/n" +
+                "13: " + this.getOrderId() + "/n" +
+                "14: " + this.getOrderId() + "/n" +
+                "15: " + this.getOrderId() + "/n" +
+                "16: " + this.getOrderId() + "/n" +
+                "17: " + this.getOrderId() + "/n" +
+                "18: " + this.getOrderId() + "/n" +
+                "19: " + this.getOrderId() + "/n" +
+                "20: " + this.getOrderId() + "/n" +
+                "21: " + this.getOrderId() + "/n" +
+                "22: " + this.getOrderId() + "/n" +
+                "23: " + this.getOrderId() + "/n" +
+                "24: " + this.getOrderId() + "/n";
     }
 }

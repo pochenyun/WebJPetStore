@@ -3,78 +3,115 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.mypetstore.persistence.OrderManagerMapper">
     <select id="getOrdersByUsername" parameterType="string" resultType="order">
-        select
-            billaddr1 as billaddress1,
-            billaddr2 as billaddress2,
-            billcity,
-            billcountry,
-            billstate,
-            billtofirstname,
-            billtolastname,
-            billzip,
-            shipaddr1 as shipaddress1,
-            shipaddr2 as shipaddress2,
-            shipcity,
-            shipcountry,
+        select billaddr1 as billAddress1,
+               billaddr2 as billAddress2,
+               billcity,
+               billcountry,
+               billstate,
+               billtofirstname,
+               billtolastname,
+               billzip,
+               shipaddr1 as shipAddress1,
+               shipaddr2 as shipAddress2,
+               shipcity,
+               shipcountry,
 
-            shiptofirstname,
-            shiptolastname,
-            shipzip,
-            cardtype,
-            courier,
-            creditcard,
-            exprdate as expirydate,
-            locale,
-            orderdate,
-            orders.orderid,
-            totalprice,
-            userid as username,
-            status
-        from orders, orderstatus
+               shiptofirstname,
+               shiptolastname,
+               shipzip,
+               cardtype,
+               courier,
+               creditcard,
+               exprdate  as expiryDate,
+               locale,
+               orderdate,
+               orders.orderid,
+               totalprice,
+               userid    as username,
+               status
+        from orders,
+             orderstatus
         where orders.userid = #{value}
           and orders.orderid = orderstatus.orderid
         order by orderdate
     </select>
 
-    <select id="getOrder" parameterType="int" resultType="order" >
+    <select id="getAllOrders" resultType="Order">
         select
-            billaddr1 as billAddress1,
-            billaddr2 as billAddress2,
-            billcity,
-            billcountry,
-            billstate,
-            billtofirstname,
-            billtolastname,
-            billzip,
-            shipaddr1 as shipAddress1,
-            shipaddr2 as shipAddress2,
-            shipcity,
-            shipcountry,
+               orders.orderid,
+               userid    as username,
+               orderdate,
 
-            shiptofirstname,
-            shiptolastname,
-            shipzip,
-            cardtype,
-            courier,
-            creditcard,
-            exprdate as expiryDate,
-            locale,
-            orderdate,
-            orders.orderid,
-            totalprice,
-            userid as username,
-            status
+               shiptofirstname,
+               shiptolastname,
+               shipaddr1 as shipAddress1,
+               shipaddr2 as shipAddress2,
+               shipcity,
+               shipzip,
+               shipcountry,
+
+               billtofirstname,
+               billtolastname,
+               billaddr1 as billAddress1,
+               billaddr2 as billAddress2,
+               billcity,
+               billstate,
+               billzip,
+               billcountry,
+
+               creditcard,
+               exprdate  as expiryDate,
+               cardtype,
+               totalprice,
+               courier,
+               locale,
+               status
         from orders, orderstatus
+        where orders.orderid = orderstatus.orderid
+        order by orderdate
+    </select>
+
+    <select id="getOrder" parameterType="int" resultType="order">
+        select billaddr1 as billAddress1,
+               billaddr2 as billAddress2,
+               billcity,
+               billcountry,
+               billstate,
+               billtofirstname,
+               billtolastname,
+               billzip,
+               shipaddr1 as shipAddress1,
+               shipaddr2 as shipAddress2,
+               shipcity,
+               shipcountry,
+
+               shiptofirstname,
+               shiptolastname,
+               shipzip,
+               cardtype,
+               courier,
+               creditcard,
+               exprdate  as expiryDate,
+               locale,
+               orderdate,
+               orders.orderid,
+               totalprice,
+               userid    as username,
+               status
+        from orders,
+             orderstatus
         where orders.orderid = #{value}
           and orders.orderid = orderstatus.orderid
     </select>
 
     <insert id="insertOrder" parameterType="order">
         insert into orders
-        (orderid, userid, orderdate, shipaddr1, shipaddr2, shipcity, shipzip, shipcountry, billaddr1, billaddr2, billcity,
+        (orderid, userid, orderdate, shipaddr1, shipaddr2, shipcity, shipzip, shipcountry, billaddr1, billaddr2,
+         billcity,
          billzip, billcountry, courier, totalprice, billtofirstname, billtolastname, shiptofirstname, shiptolastname,
          creditcard, exprdate, cardtype, locale)
-        values (#{orderId} , #{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2}, #{shipCity}, #{shipZip}, #{shipCountry},
+        values (#{orderId}, #{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2}, #{shipCity}, #{shipZip},
+                #{shipCountry},
                 #{billAddress1}, #{billAddress2}, #{billCity}, #{billZip}, #{billCountry}, "UPS", #{totalPrice},
                 #{billToFirstName}, #{billToLastName}, #{shipToFirstName}, #{shipToLastName}, #{creditCard},
                 #{expiryDate}, #{cardType}, #{locale})
@@ -96,19 +133,19 @@
     <insert id="insertLineItem" parameterType="LineItem">
         insert into lineitem
             (orderid, linenum, itemid, quantity, unitprice)
-        values
-            (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
+        values (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
     </insert>
 
     <delete id="removeCartByUsername" parameterType="String">
-        delete from cart where username = #{username}
+        delete
+        from cart
+        where username = #{username}
     </delete>
 
     <!-- 什么原理？一个个弄就对了 -->
     <update id="updateOrderByOrderId" parameterType="Order">
         update orders
-        set
-            orderdate       = #{orderDate},
+        set orderdate       = #{orderDate},
             shipaddr1       = #{shipAddress1},
             shipaddr2       = #{shipAddress2},
             shipcity        = #{shipCity},
@@ -130,7 +167,7 @@
             exprdate        = #{expiryDate},
             cardtype        = #{cardType},
             locale          = #{locale}
-         where orderid = #{orderId}
+        where orderid = #{orderId}
     </update>
 
     <update id="changeOrderLineTo_R">
@@ -141,30 +178,36 @@
 
     <update id="changeOrderLineTo_P">
         update orderstatus
-        set
-            status = 'P'
+        set status = 'P'
         where orderid = #{orderId}
     </update>
 
-<!--    lineItem-->
+    <!--    lineItem-->
     <update id="updateLineItem">
         update lineitem
-        set
-            itemid      = #{lineItem.itemId},
-            quantity    = #{lineItem.quantity},
-            unitprice   = #{lineItem.unitPrice}
-        where orderid = #{lineItem.orderId} and linenum = #{lineItem.lineNumber}
+        set itemid    = #{lineItem.itemId},
+            quantity  = #{lineItem.quantity},
+            unitprice = #{lineItem.unitPrice}
+        where orderid = #{lineItem.orderId}
+          and linenum = #{lineItem.lineNumber}
     </update>
 
     <delete id="removeOrderByOrderId">
-        delete from orders where orderid = #{orderId}
+        delete
+        from orders
+        where orderid = #{orderId}
     </delete>
 
     <delete id="removeOrderStatusByOrderId">
-        delete from orderstatus where orderid = #{orderId}
+        delete
+        from orderstatus
+        where orderid = #{orderId}
     </delete>
 
     <delete id="removeLineItemByOrderIdAndLineId">
-        delete from lineitem where orderid = #{orderId} and linenum = #{lineId}
+        delete
+        from lineitem
+        where orderid = #{orderId}
+          and linenum = #{lineId}
     </delete>
 </mapper>
