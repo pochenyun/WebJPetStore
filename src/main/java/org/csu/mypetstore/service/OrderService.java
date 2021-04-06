@@ -42,7 +42,7 @@ public class OrderService
 //        }
 //        orderMapper.removeCartByUsername(order.getUsername());
 
-        order.setOrderId(getNextId("ordernum"));
+        order.setOrderId(this.getNextId("ordernum"));
         for (int i = 0; i < order.getLineItems().size(); i++)
         {
             LineItem lineItem = (LineItem) order.getLineItems().get(i);

@@ -29,8 +29,6 @@ public class OrderController {
         Order order = new Order();
         order.initOrder(account,cart);
 
-
-
         model.addAttribute("order",order);
 
         model.addAttribute("order",order);

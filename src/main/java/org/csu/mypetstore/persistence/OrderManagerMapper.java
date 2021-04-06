@@ -30,8 +30,6 @@ public interface OrderManagerMapper
     // 通过名字删除cart
     void removeCartByUsername(String username);
 
-    // 通过用户名更改订单
-    void updateOrderByUsername(Order order);
-
-
+    // 通过用户名或者订单id更改订单
+    void updateOrder(Order order);
 }

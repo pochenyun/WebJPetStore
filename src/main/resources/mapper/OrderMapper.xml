@@ -67,14 +67,15 @@
         from orders, orderstatus
         where orders.orderid = #{value}
           and orders.orderid = orderstatus.orderid
+        order by orderdate
     </select>
 
     <insert id="insertOrder" parameterType="order">
         insert into orders
-        (userid, orderdate, shipaddr1, shipaddr2, shipcity, shipzip, shipcountry, billaddr1, billaddr2, billcity,
+        (orderid, userid, orderdate, shipaddr1, shipaddr2, shipcity, shipzip, shipcountry, billaddr1, billaddr2, billcity,
          billzip, billcountry, courier, totalprice, billtofirstname, billtolastname, shiptofirstname, shiptolastname,
          creditcard, exprdate, cardtype, locale)
-        values (#{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2}, #{shipCity}, #{shipZip}, #{shipCountry},
+        values (#{orderId} , #{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2}, #{shipCity}, #{shipZip}, #{shipCountry},
                 #{billAddress1}, #{billAddress2}, #{billCity}, #{billZip}, #{billCountry}, "UPS", #{totalPrice},
                 #{billToFirstName}, #{billToLastName}, #{shipToFirstName}, #{shipToLastName}, #{creditCard},
                 #{expiryDate}, #{cardType}, #{locale})
