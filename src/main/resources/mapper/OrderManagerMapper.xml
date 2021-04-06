@@ -110,7 +110,7 @@
     </delete>
 
     <!-- 什么原理？一个个弄就对了 -->
-    <update id="updateOrder" parameterType="Order">
+    <update id="updateOrderByOrderId" parameterType="Order">
         update orders
         set
             orderdate       = #{orderDate},

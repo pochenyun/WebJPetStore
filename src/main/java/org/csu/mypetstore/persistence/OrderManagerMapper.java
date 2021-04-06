@@ -31,5 +31,5 @@ public interface OrderManagerMapper
     void removeCartByUsername(String username);
 
     // 通过用户名或者订单id更改订单
-    void updateOrder(Order order);
+    void updateOrderByOrderId(Order order);
 }

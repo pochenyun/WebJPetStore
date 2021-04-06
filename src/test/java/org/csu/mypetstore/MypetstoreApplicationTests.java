@@ -41,18 +41,17 @@ class MypetstoreApplicationTests
     @Autowired
     private OrderManagerMapper orderManagerMapper;
 
+    @Autowired
+    private LineItemManagerMapper lineItemManagerMapper;
+
     @Test
     void contextLoads()
     {
-        //System.out.println(orderService.getNextId("ordernum"));
-        Order order = orderManagerMapper.getOrder(1008);
-        System.out.println(order.getBillState());
-
-        order.setOrderDate(new Date(0, 0, 0));
-        order.setShipAddress1("wrf");
-
-        order.setOrderId(1008);
-
-        orderManagerMapper.updateOrder(order);
+//        List<LineItem> lineItemList = lineItemManagerMapper.getLineItemsByOrderId(1008);
+//        LineItem lineItem = lineItemList.get(0);
+//        System.out.println(lineItem.getLineNumber());
+//        lineItem.setItemId("NTZ-48");
+//        lineItemManagerMapper.deleteLineItemByOrderId(1009);
+        lineItemManagerMapper.deleteLineItemByOrderIdAndLineId(1009, 2);
     }
 }
