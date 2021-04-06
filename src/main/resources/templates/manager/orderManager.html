@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0090)http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/UserManagement.html -->
+<!-- saved from url=(0091)http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/OrderManagement.html -->
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,9 +9,9 @@
     <link href="/css/manager/reset.css" rel="stylesheet">
     <link href="/css/manager/iconfont.css" rel="stylesheet">
     <link href="/css/manager/index.css" rel="stylesheet">
-    <script src="/js/manager/jquery-1.9.1.min.js"></script>
-    <script src="/js/manager/f.js"></script>
-    <title>用户管理</title>
+    <script src="/css/manager/jquery-1.9.1.min.js"></script>
+    <script src="/css/manager/f.js"></script>
+    <title>订单管理</title>
 </head>
 <body class="vsc-initialized">
 <div class="PublicHead clearfix">
@@ -19,10 +19,10 @@
         <div class="companyLogo">
             <img src="/images/manager/logo.jpg">
         </div>
-        <!--<i class="iconfont icon-caidan Js_MenuList"></i>-->
+        <!--<i class="iconfont icon-caidan"></i>-->
 
         <div class="companyText">
-            JPetStore
+            上海央谷管理系统
         </div>
     </div>
     <div class="RightBox clearfix">
@@ -34,7 +34,7 @@
                 管理员
             </div>
         </div>
-        <a href="http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/index.html">
+        <a href="/account/signOnForm">
             <div class="dropOutBox">
                 <i class="iconfont icon-app_icons--">
                 </i>
@@ -46,34 +46,34 @@
 
 <div class="PublicDownWhole clearfix">
     <!--左侧-->
-    <div class="leftBox Js_leftBox">
+    <div class="leftBox">
         <ul>
-            <a href="http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/UserManagement.html">
-                <li class="Select"><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
+            <a href="">
+                <li class=""><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
             </a>
-            <a href="http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/OrderManagement.html">
-                <li><i class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
+            <a href="/orderManager/view">
+                <li class="Select"><i class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
             </a>
-            <a href="http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/ClassificationManagement.html">
+            <a href="">
                 <li><i class="iconfont icon-fenlei"></i><span>分类管理</span></li>
             </a>
-            <a href="http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/ProductManagement.html">
+            <a href="">
                 <li><i class="iconfont icon-weibiaoti1"></i><span>产品管理</span></li>
             </a>
         </ul>
     </div>
     <!--右侧-->
-    <div class="RightBox Js_RightBox">
+    <div class="RightBox">
         <div class="PublicContentBox">
             <!--公用指向页面名字-->
             <div class="PublicPointToAgeText">
-                <span class="span1">用户管理</span> <span class="span2">后台用户管理列表</span>
+                <span class="span1">订单管理 </span> <span class="span2">后台订单管理列表</span>
             </div>
             <!--查询-->
             <div class="InquireBox clearfix">
                 <div class="InquireleftBox">
-                    <div class="Text">手机号：</div>
-                    <div class="InputDiv"><input class="phoneInput" placeholder="请输入你需要查询的手机号"></div>
+                    <div class="Text">订单号：</div>
+                    <div class="InputDiv"><input class="phoneInput" placeholder="请输入你需要查询的订单号"></div>
                 </div>
                 <div class="PublicBtnIcon Color1Btn fr">
                     <i class="iconfont icon-icon-chaxun"></i>
@@ -84,7 +84,7 @@
             <div class="InquireTableBox">
                 <div class="headbox">
                     <div class="headboxtext">
-                        <span class="span1">后台用户管理列表</span>
+                        <span class="span1">后台订单管理列表</span>
                     </div>
                     <!--批量删除-->
                     <div class="PublicBtnIcon Color5Btn">
@@ -92,10 +92,10 @@
                         <span>批量删除</span>
                     </div>
 
-                    <div class="PublicBtnIcon Color2Btn fr Js_edit">
+                    <!--<div class="PublicBtnIcon Color2Btn fr Js_edit">
                         <i class="iconfont icon-changyongtubiao-mianxing-"></i>
                         <span>添加</span>
-                    </div>
+                    </div>-->
                 </div>
 
                 <!--查询到的表格-->
@@ -110,7 +110,14 @@
                                 <span>全选</span>
                             </td>
                             <td>ID</td>
+                            <td>姓名</td>
                             <td>手机号</td>
+                            <td>地址</td>
+                            <td>应付金额</td>
+                            <td>订单编号</td>
+                            <td>支付方式</td>
+                            <td>交易支付单号</td>
+                            <td>下单时间</td>
                             <td>操作</td>
                         </tr>
 
@@ -122,7 +129,15 @@
                                 <label for="aa"></label>
                             </td>
                             <td>1</td>
+                            <td>尚能大大</td>
                             <td>17612164871</td>
+                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
+                            <td>1200.00元</td>
+                            <td>201711024866544846</td>
+                            <td>支付宝</td>
+                            <td>201711024866544846</td>
+                            <td>2017-11-01 21:15:23</td>
+
                             <td>
 
                                 <div class="PublicTableBtnIcon Color3Btn Js_edit">
@@ -136,13 +151,22 @@
                                 </div>
                             </td>
                         </tr>
+
                         <tr>
                             <td>
                                 <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
                                 <label for="aa"></label>
                             </td>
                             <td>1</td>
+                            <td>尚能大大</td>
                             <td>17612164871</td>
+                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
+                            <td>1200.00元</td>
+                            <td>201711024866544846</td>
+                            <td>支付宝</td>
+                            <td>201711024866544846</td>
+                            <td>2017-11-01 21:15:23</td>
+
                             <td>
 
                                 <div class="PublicTableBtnIcon Color3Btn Js_edit">
@@ -156,13 +180,22 @@
                                 </div>
                             </td>
                         </tr>
+
                         <tr>
                             <td>
                                 <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
                                 <label for="aa"></label>
                             </td>
                             <td>1</td>
+                            <td>尚能大大</td>
                             <td>17612164871</td>
+                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
+                            <td>1200.00元</td>
+                            <td>201711024866544846</td>
+                            <td>支付宝</td>
+                            <td>201711024866544846</td>
+                            <td>2017-11-01 21:15:23</td>
+
                             <td>
 
                                 <div class="PublicTableBtnIcon Color3Btn Js_edit">
@@ -176,13 +209,22 @@
                                 </div>
                             </td>
                         </tr>
+
                         <tr>
                             <td>
                                 <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
                                 <label for="aa"></label>
                             </td>
                             <td>1</td>
+                            <td>尚能大大</td>
                             <td>17612164871</td>
+                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
+                            <td>1200.00元</td>
+                            <td>201711024866544846</td>
+                            <td>支付宝</td>
+                            <td>201711024866544846</td>
+                            <td>2017-11-01 21:15:23</td>
+
                             <td>
 
                                 <div class="PublicTableBtnIcon Color3Btn Js_edit">
@@ -196,33 +238,22 @@
                                 </div>
                             </td>
                         </tr>
+
                         <tr>
                             <td>
                                 <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
                                 <label for="aa"></label>
                             </td>
                             <td>1</td>
+                            <td>尚能大大</td>
                             <td>17612164871</td>
-                            <td>
+                            <td>上海市杨浦区宁国路503号3栋C08-C09</td>
+                            <td>1200.00元</td>
+                            <td>201711024866544846</td>
+                            <td>支付宝</td>
+                            <td>201711024866544846</td>
+                            <td>2017-11-01 21:15:23</td>
 
-                                <div class="PublicTableBtnIcon Color3Btn Js_edit">
-                                    <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
-                                    <span>编辑</span>
-                                </div>
-
-                                <div class="PublicTableBtnIcon Color4Btn Js_delete">
-                                    <i class="iconfont icon-shanchu"></i>
-                                    <span>删除</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
-                                <label for="aa"></label>
-                            </td>
-                            <td>1</td>
-                            <td>17612164871</td>
                             <td>
 
                                 <div class="PublicTableBtnIcon Color3Btn Js_edit">
@@ -345,9 +376,6 @@
         </div>
     </div>
 </div>
-
-<!--返回顶部-->
-<a href="javaScript:void();" class="back-to-top"><i class="iconfont icon-fanhuidingbu"></i> </a>
 
 </body>
 </html>
