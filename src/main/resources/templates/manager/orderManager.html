@@ -71,17 +71,17 @@
             <div class="PublicPointToAgeText">
                 <span class="span1">订单管理 </span> <span class="span2">后台订单管理列表</span>
             </div>
-<!--            &lt;!&ndash;查询&ndash;&gt;-->
-<!--            <div class="InquireBox clearfix">-->
-<!--                <div class="InquireleftBox">-->
-<!--                    <div class="Text">订单号：</div>-->
-<!--                    <div class="InputDiv"><input class="phoneInput" placeholder="请输入你需要查询的订单号"></div>-->
-<!--                </div>-->
-<!--                <div class="PublicBtnIcon Color1Btn fr">-->
-<!--                    <i class="iconfont icon-icon-chaxun"></i>-->
-<!--                    <span>查询</span>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--            &lt;!&ndash;查询&ndash;&gt;-->
+            <!--            <div class="InquireBox clearfix">-->
+            <!--                <div class="InquireleftBox">-->
+            <!--                    <div class="Text">订单号：</div>-->
+            <!--                    <div class="InputDiv"><input class="phoneInput" placeholder="请输入你需要查询的订单号"></div>-->
+            <!--                </div>-->
+            <!--                <div class="PublicBtnIcon Color1Btn fr">-->
+            <!--                    <i class="iconfont icon-icon-chaxun"></i>-->
+            <!--                    <span>查询</span>-->
+            <!--                </div>-->
+            <!--            </div>-->
             <!--表修改-->
             <div class="InquireTableBox">
                 <div class="headbox">
@@ -127,55 +127,60 @@
                         </thead>
                         <tbody>
 
-                        <tr th:each="order:${orderList}">
-                            <td>
-                                <input th:id="${order.orderId}" class="inputcheck aa" type="checkbox" name="inputcheck">
-                                <label th:for="${order.orderId}"></label>
-                            </td>
-                            <td th:text="${order.orderId}">1000</td>
-                            <td th:text="${order.username}">j2ee</td>
-                            <td th:text="${order.orderDate}">2021-04-04</td>
-                            <td>
-                                <div th:text="${order.shipAddress1}">
-                                    901 San Antonio Road<br>
-                                </div>
-                                <div th:text="${order.shipAddress2}">
-                                    9MS UCUP02-206<br>
-                                </div>
-                                <div th:text="${order.shipCity}">
-                                    Palo Alto<br>
-                                </div>
-                            </td>
-                            <td th:text="${order.shipZip}">94303</td>
-                            <td>
-                                <div th:text="${order.billAddress1}">
-                                    901 San Antonio Road<br>
-                                </div>
-                                <div th:text="${order.billAddress2}">
-                                    9MS UCUP02-206<br>
-                                </div>
-                                <div th:text="${order.billCity}">
-                                    Palo Alto<br>
-                                </div>
-                            </td>
-                            <td th:text="${order.billZip}">94303</td>
-                            <td th:text="${order.courier}">UPS</td>
-                            <td th:text="${order.totalPrice}">200.50</td>
-                            <td th:text="${order.creditCard}">00000</td>
-                            <td>
+                        <div th:each="order:${orderList}">
+                            <tr>
+                                <td>
+                                    <input th:id="${order.orderId}" class="inputcheck aa" type="checkbox"
+                                           name="inputcheck">
+                                    <label th:for="${order.orderId}"></label>
+                                </td>
+                                <td th:text="${order.orderId}">1000</td>
+                                <td th:text="${order.username}">j2ee</td>
+                                <td th:text="${order.orderDate}">2021-04-04</td>
+                                <td>
+                                    <div th:text="${order.shipAddress1}">
+                                        901 San Antonio Road<br>
+                                    </div>
+                                    <div th:text="${order.shipAddress2}">
+                                        9MS UCUP02-206<br>
+                                    </div>
+                                    <div th:text="${order.shipCity}">
+                                        Palo Alto<br>
+                                    </div>
+                                </td>
+                                <td th:text="${order.shipZip}">94303</td>
+                                <td>
+                                    <div th:text="${order.billAddress1}">
+                                        901 San Antonio Road<br>
+                                    </div>
+                                    <div th:text="${order.billAddress2}">
+                                        9MS UCUP02-206<br>
+                                    </div>
+                                    <div th:text="${order.billCity}">
+                                        Palo Alto<br>
+                                    </div>
+                                </td>
+                                <td th:text="${order.billZip}">94303</td>
+                                <td th:text="${order.courier}">UPS</td>
+                                <td th:text="${order.totalPrice}">200.50</td>
+                                <td th:text="${order.creditCard}">00000</td>
+                                <td>
 
-                                <div class="PublicTableBtnIcon Color3Btn Js_edit">
-                                    <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
-                                    <span>编辑</span>
-                                </div>
+                                    <div class="PublicTableBtnIcon Color3Btn Js_edit">
+                                        <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
+                                        <span>编辑</span>
+                                    </div>
 
-                                <div class="PublicTableBtnIcon Color4Btn Js_delete">
-                                    <i class="iconfont icon-shanchu"></i>
-                                    <span>删除</span>
-                                </div>
-                            </td>
-                        </tr>
-
+                                    <div class="PublicTableBtnIcon Color4Btn Js_delete">
+                                        <i class="iconfont icon-shanchu"></i>
+                                        <span>删除</span>
+                                    </div>
+                                </td>
+                            </tr>
+<!--                            <tr th:each="lineItem:${order.lineItems}">-->
+<!--                                <td>1744</td>-->
+<!--                            </tr>-->
+                        </div>
                         </tbody>
                     </table>
 
@@ -233,7 +238,7 @@
 <div class="PublicFloatBox adduser">
     <div class="f_MiddleBox wid400">
         <div class="f_Head">
-            <span>添加用户</span>
+            <span>修改订单</span>
             <i class="Js_closeBtn iconfont icon-buoumaotubiao20 fr"></i>
         </div>
         <div class="f_content">
@@ -244,10 +249,6 @@
                 <div class="f_alone_input">
                     <input class="f_p_input">
                 </div>
-                <!--提示消息-->
-                <div class="f_pormat">
-                    请输入正确的ID
-                </div>
             </div>
             <div class="f_alonediv">
                 <div class="f_alone_name">
@@ -255,10 +256,6 @@
                 </div>
                 <div class="f_alone_input">
                     <input class="f_p_input">
-                </div>
-                <!--提示消息-->
-                <div class="f_pormat">
-                    请输入正确的手机号
                 </div>
             </div>
             <div class="f_alonediv1">
