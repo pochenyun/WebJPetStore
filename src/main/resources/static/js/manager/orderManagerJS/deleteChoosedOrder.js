@@ -1,19 +1,38 @@
 //删除选中的Order
 $(function ()
 {
-    console.log("11111");
     $('span#deleteSome').click(function ()
     {
         var arrays = new Array();
-        var items = document.getElementsByClassName('inputcheck');
-        console.log(items.length);
+        var items = document.getElementsByClassName('aa');
         for (var i = 0; i < items.length; i++)
         {
             if (items[i].checked)
             {
-                arrays.push(items[i].value);
+                arrays.push(items[i].id);
             }
         }
-        alert(arrays.length);
+
+        for (var i = 0; i < arrays.length; i++)
+        {
+            console.log(arrays[i]);
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/orderManager/changed",
+            data:
+            {
+                "arrays":arrays
+            },
+            dataType: "json",//数据类型
+            traditional:true,//防止深度序列化
+            cache:false,
+            async:false,
+            success: function ()
+            {
+                alert("ajax success");
+            }
+        });
     });
 });

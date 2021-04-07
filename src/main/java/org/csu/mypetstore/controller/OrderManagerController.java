@@ -6,10 +6,9 @@ import org.csu.mypetstore.service.OrderManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -27,6 +26,19 @@ public class OrderManagerController
     {
         List<Order> orderList = orderManagerService.getAllOrders();
         model.addAttribute("orderList", orderList);
+
+        return "/manager/orderManager";
+    }
+
+    @PostMapping("/changed")
+    public String changedOrders(@RequestParam(value="arrays") String[] arrays, Model model)
+    {
+//        List<Order> orderList = orderManagerService.getAllOrders();
+//        //
+//        model.addAttribute("orderList", orderList);
+
+        for (int i = 0; i < arrays.length; i++)
+            System.out.println("-------------------"+ arrays[i] + "------------------");
 
         return "/manager/orderManager";
     }
