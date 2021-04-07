@@ -413,24 +413,24 @@ public class Order implements Serializable
                 " 3: " + this.getOrderDate() + "/n" +
                 " 4: " + this.getShipToFirstName() + "/n" +
                 " 5: " + this.getShipToLastName() + "/n" +
-                " 6: " + this.getOrderId() + "/n" +
-                " 7: " + this.getOrderId() + "/n" +
-                " 8: " + this.getOrderId() + "/n" +
-                " 9: " + this.getOrderId() + "/n" +
-                "10: " + this.getOrderId() + "/n" +
-                "11: " + this.getOrderId() + "/n" +
-                "12: " + this.getOrderId() + "/n" +
-                "13: " + this.getOrderId() + "/n" +
-                "14: " + this.getOrderId() + "/n" +
-                "15: " + this.getOrderId() + "/n" +
-                "16: " + this.getOrderId() + "/n" +
-                "17: " + this.getOrderId() + "/n" +
-                "18: " + this.getOrderId() + "/n" +
-                "19: " + this.getOrderId() + "/n" +
-                "20: " + this.getOrderId() + "/n" +
-                "21: " + this.getOrderId() + "/n" +
-                "22: " + this.getOrderId() + "/n" +
-                "23: " + this.getOrderId() + "/n" +
-                "24: " + this.getOrderId() + "/n";
+                " 6: " + this.getShipAddress1() + "/n" +
+                " 7: " + this.getShipAddress2() + "/n" +
+                " 8: " + this.getShipCity() + "/n" +
+                " 9: " + this.getShipZip() + "/n" +
+                "10: " + this.getShipCountry() + "/n" +
+                "11: " + this.getBillAddress1() + "/n" +
+                "12: " + this.getBillAddress1()  + "/n" +
+                "13: " + this.getBillCity()  + "/n" +
+                "14: " + this.getBillState() + "/n" +
+                "15: " + this.getBillZip() + "/n" +
+                "16: " + this.getBillCountry() + "/n" +
+                "17: " + this.getCreditCard() + "/n" +
+                "18: " + this.getExpiryDate() + "/n" +
+                "19: " + this.getCardType() + "/n" +
+                "20: " + this.getTotalPrice() + "/n" +
+                "21: " + this.getCourier() + "/n" +
+                "22: " + this.getLocale() + "/n" +
+                "23: " + this.getStatus()+ "/n" +
+                "END";
     }
 }
