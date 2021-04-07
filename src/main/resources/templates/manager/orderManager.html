@@ -3,7 +3,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/css/manager/reset.css" rel="stylesheet">
@@ -11,6 +10,9 @@
     <link href="/css/manager/index.css" rel="stylesheet">
     <script src="/js/manager/jquery-1.9.1.min.js"></script>
     <script src="/js/manager/f.js"></script>
+    <!-- 下面的js自己加的 -->
+    <script src="/js/manager/orderManagerJS/chooseAll.js"></script>
+    <script src="/js/manager/orderManagerJS/deleteChoosedOrder.js"></script>
     <title>订单管理</title>
 </head>
 <body class="vsc-initialized">
@@ -89,7 +91,7 @@
                     <!--批量删除-->
                     <div class="PublicBtnIcon Color5Btn">
                         <i class="iconfont  icon-shanchu"></i>
-                        <span>批量删除</span>
+                        <span id="deleteSome">批量删除</span>
                     </div>
 
                     <!--<div class="PublicBtnIcon Color2Btn fr Js_edit">
@@ -105,7 +107,7 @@
                         <thead>
                         <tr>
                             <td>
-                                <input id="inputcheck" class="inputcheck" type="checkbox" name="inputcheck">
+                                <input id="inputcheck" class="inputcheck a" type="checkbox" name="inputcheck">
                                 <label for="inputcheck"></label>
                                 <span>全选</span>
                             </td>
@@ -118,33 +120,48 @@
                             <td>付款邮编</td>
                             <td>快递公司</td>
                             <td>总金额</td>
+                            <td>信用卡号</td>
                             <td>操作</td>
                         </tr>
 
                         </thead>
                         <tbody>
-                        <tr>
+
+                        <tr th:each="order:${orderList}">
                             <td>
-                                <input id="aa" class="inputcheck" type="checkbox" name="inputcheck">
-                                <label for="aa"></label>
+                                <input th:id="${order.orderId}" class="inputcheck aa" type="checkbox" name="inputcheck">
+                                <label th:for="${order.orderId}"></label>
                             </td>
-                            <td>1008</td>
-                            <td>j2ee</td>
-                            <td>2021-04-04</td>
+                            <td th:text="${order.orderId}">1000</td>
+                            <td th:text="${order.username}">j2ee</td>
+                            <td th:text="${order.orderDate}">2021-04-04</td>
                             <td>
-                                901 San Antonio Road<br>
-                                MS UCUP02-206<br>
-                                Palo Alto<br>
+                                <div th:text="${order.shipAddress1}">
+                                    901 San Antonio Road<br>
+                                </div>
+                                <div th:text="${order.shipAddress2}">
+                                    9MS UCUP02-206<br>
+                                </div>
+                                <div th:text="${order.shipCity}">
+                                    Palo Alto<br>
+                                </div>
                             </td>
-                            <td>94303</td>
+                            <td th:text="${order.shipZip}">94303</td>
                             <td>
-                                901 San Antonio Road<br>
-                                MS UCUP02-206<br>
-                                Palo Alto<br>
+                                <div th:text="${order.billAddress1}">
+                                    901 San Antonio Road<br>
+                                </div>
+                                <div th:text="${order.billAddress2}">
+                                    9MS UCUP02-206<br>
+                                </div>
+                                <div th:text="${order.billCity}">
+                                    Palo Alto<br>
+                                </div>
                             </td>
-                            <td>94303</td>
-                            <td>UPS</td>
-                            <td>200.50</td>
+                            <td th:text="${order.billZip}">94303</td>
+                            <td th:text="${order.courier}">UPS</td>
+                            <td th:text="${order.totalPrice}">200.50</td>
+                            <td th:text="${order.creditCard}">00000</td>
                             <td>
 
                                 <div class="PublicTableBtnIcon Color3Btn Js_edit">
@@ -158,6 +175,7 @@
                                 </div>
                             </td>
                         </tr>
+
                         </tbody>
                     </table>
 

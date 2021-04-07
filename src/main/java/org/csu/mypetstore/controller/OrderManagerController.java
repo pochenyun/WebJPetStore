@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/orderManager")
-@SessionAttributes(value = {"account","cart"})
 public class OrderManagerController
 {
     @Autowired
@@ -24,7 +25,9 @@ public class OrderManagerController
     @GetMapping("/view")
     public String viewOrders(Model model)
     {
-        //Order order = orderManagerService.
+        List<Order> orderList = orderManagerService.getAllOrders();
+        model.addAttribute("orderList", orderList);
+
         return "/manager/orderManager";
     }
 }

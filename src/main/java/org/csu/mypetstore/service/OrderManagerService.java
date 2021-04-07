@@ -101,9 +101,9 @@ public class OrderManagerService
     }
 
     //得到所有订单
-    public List<Order> getAllOrders(String username)
+    public List<Order> getAllOrders()
     {
-        return null;
+        return orderManagerMapper.getAllOrders();
     }
 
     public int getNextId(String name)

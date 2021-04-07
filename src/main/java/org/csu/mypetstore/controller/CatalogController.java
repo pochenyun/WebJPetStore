@@ -96,7 +96,6 @@ public class CatalogController {
     @ResponseBody
     public List<Product> autoComplete(String keyword,Model model)
     {
-
         List<Product>productList = catalogService.searchProductList(keyword);//获取产品列表
         return  productList;
     }

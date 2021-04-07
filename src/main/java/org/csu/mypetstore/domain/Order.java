@@ -408,29 +408,29 @@ public class Order implements Serializable
     @Override
     public String toString()
     {
-        return  " 1: " + this.getOrderId() + "/n" +
-                " 2: " + this.getUsername() + "/n" +
-                " 3: " + this.getOrderDate() + "/n" +
-                " 4: " + this.getShipToFirstName() + "/n" +
-                " 5: " + this.getShipToLastName() + "/n" +
-                " 6: " + this.getShipAddress1() + "/n" +
-                " 7: " + this.getShipAddress2() + "/n" +
-                " 8: " + this.getShipCity() + "/n" +
-                " 9: " + this.getShipZip() + "/n" +
-                "10: " + this.getShipCountry() + "/n" +
-                "11: " + this.getBillAddress1() + "/n" +
-                "12: " + this.getBillAddress1()  + "/n" +
-                "13: " + this.getBillCity()  + "/n" +
-                "14: " + this.getBillState() + "/n" +
-                "15: " + this.getBillZip() + "/n" +
-                "16: " + this.getBillCountry() + "/n" +
-                "17: " + this.getCreditCard() + "/n" +
-                "18: " + this.getExpiryDate() + "/n" +
-                "19: " + this.getCardType() + "/n" +
-                "20: " + this.getTotalPrice() + "/n" +
-                "21: " + this.getCourier() + "/n" +
-                "22: " + this.getLocale() + "/n" +
-                "23: " + this.getStatus()+ "/n" +
-                "END";
+        return  " 1: " + this.getOrderId() + "\n" +
+                " 2: " + this.getUsername() + "\n" +
+                " 3: " + this.getOrderDate() + "\n" +
+                " 4: " + this.getShipToFirstName() + "\n" +
+                " 5: " + this.getShipToLastName() + "\n" +
+                " 6: " + this.getShipAddress1() + "\n" +
+                " 7: " + this.getShipAddress2() + "\n" +
+                " 8: " + this.getShipCity() + "\n" +
+                " 9: " + this.getShipZip() + "\n" +
+                "10: " + this.getShipCountry() + "\n" +
+                "11: " + this.getBillAddress1() + "\n" +
+                "12: " + this.getBillAddress1()  + "\n" +
+                "13: " + this.getBillCity()  + "\n" +
+                "14: " + this.getBillState() + "\n" +
+                "15: " + this.getBillZip() + "\n" +
+                "16: " + this.getBillCountry() + "\n" +
+                "17: " + this.getCreditCard() + "\n" +
+                "18: " + this.getExpiryDate() + "\n" +
+                "19: " + this.getCardType() + "\n" +
+                "20: " + this.getTotalPrice() + "\n" +
+                "21: " + this.getCourier() + "\n" +
+                "22: " + this.getLocale() + "\n" +
+                "23: " + this.getStatus()+ "\n" +
+                "END" + "\n";
     }
 }

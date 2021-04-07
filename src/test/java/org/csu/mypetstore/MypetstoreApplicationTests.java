@@ -31,6 +31,10 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-
+        List<Order> orderList = orderManagerService.getAllOrders();
+        for (int i = 0; i < orderList.size(); ++i)
+        {
+            System.out.println(orderList.get(i).toString());
+        }
     }
 }
