@@ -31,14 +31,15 @@ public class OrderManagerController
     }
 
     @PostMapping("/changed")
-    public String changedOrders(@RequestParam(value="arrays") String[] arrays, Model model)
+    public String changedOrders(@RequestParam(value="arrays") int[] arrays)
     {
-//        List<Order> orderList = orderManagerService.getAllOrders();
-//        //
-//        model.addAttribute("orderList", orderList);
-
+//        for (int i = 0; i < arrays.length; i++)
+//            System.out.println("-------------------"+ arrays[i] + "------------------");
         for (int i = 0; i < arrays.length; i++)
-            System.out.println("-------------------"+ arrays[i] + "------------------");
+        {
+            Order order = orderManagerService.getOrder(arrays[i]);
+            orderManagerService.removeAOrder(order);
+        }
 
         return "/manager/orderManager";
     }

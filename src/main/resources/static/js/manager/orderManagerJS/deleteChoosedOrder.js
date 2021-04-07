@@ -31,8 +31,13 @@ $(function ()
             async:false,
             success: function ()
             {
-                alert("ajax success");
+                console.log("success");
             }
         });
+
+        for (var i = 0; i < arrays.length; i++)
+        {
+            $('input#' + arrays[i]).parent().parent().remove();
+        }
     });
 });
