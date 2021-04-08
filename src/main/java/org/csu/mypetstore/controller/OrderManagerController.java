@@ -44,9 +44,14 @@ public class OrderManagerController
         return "/manager/orderManager";
     }
 
-    @PostMapping("/edit")
-    public String editOrders()
+    @GetMapping("/edit")
+    public String editOrders(Model model, String orderId)
     {
+        System.out.println(orderId);
+
+        List<Order> orderList = orderManagerService.getAllOrders();
+        model.addAttribute("orderList", orderList);
+
         return "/manager/orderManager";
     }
 }

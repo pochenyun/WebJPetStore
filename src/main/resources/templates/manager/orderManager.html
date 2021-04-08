@@ -248,7 +248,7 @@
 <!--添加用户浮层-->
 <div class="PublicFloatBox adduser">
     <div class="f_MiddleBox wid400">
-        <form action="/orderManager/edit" method="post">
+        <form action="/orderManager/edit" method="get">
             <div class="f_Head">
                 <span>修改订单</span>
                 <input id="editOrderId" name="orderId">
@@ -293,8 +293,7 @@
                         <div class="publicf_btn">
                             <div class="publicf_btn1">
                             <span>
-                                确定
-                                <input>
+                                <input type="submit" name="editOrder" value="确定"/>
                             </span>
                             </div>
                             <div class="publicf_btn2 fr Js_closeBtn">
