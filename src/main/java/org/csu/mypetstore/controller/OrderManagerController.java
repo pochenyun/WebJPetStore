@@ -69,4 +69,13 @@ public class OrderManagerController
 
         return "/manager/orderManager";
     }
+
+    @PostMapping("/changeStatus")
+    public String changeStatus(@RequestParam(value="changedOrderId") int changedOrderId)
+    {
+        System.out.println("changeStatus" + changedOrderId);
+        Order order = orderManagerService.getOrder(changedOrderId);
+        orderManagerService.updateOrderLineStatue_ToR(order);
+        return "/manager/orderManager";
+    }
 }
