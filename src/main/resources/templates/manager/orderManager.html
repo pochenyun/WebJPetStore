@@ -138,18 +138,24 @@
                                 <td th:text="${order.orderId}">1000</td>
                                 <td th:text="${order.username}">j2ee</td>
                                 <td th:text="${order.orderDate}">2021-04-04</td>
-                                <td>
-                                    <div th:text="${order.shipAddress1}">
+                                <td id="address">
+                                    <div id="shipAddress1"
+                                         th:text="${order.shipAddress1}">
                                         901 San Antonio Road<br>
                                     </div>
-                                    <div th:text="${order.shipAddress2}">
+                                    <div id="shipAddress2"
+                                         th:text="${order.shipAddress2}">
                                         9MS UCUP02-206<br>
                                     </div>
-                                    <div th:text="${order.shipCity}">
+                                    <div id="shipCity"
+                                         th:text="${order.shipCity}">
                                         Palo Alto<br>
                                     </div>
                                 </td>
-                                <td th:text="${order.shipZip}">94303</td>
+                                <td id="shipZip"
+                                    th:text="${order.shipZip}">
+                                    94303
+                                </td>
                                 <td>
                                     <div th:text="${order.billAddress1}">
                                         901 San Antonio Road<br>
@@ -162,7 +168,10 @@
                                     </div>
                                 </td>
                                 <td th:text="${order.billZip}">94303</td>
-                                <td th:text="${order.courier}">UPS</td>
+                                <td id="courier"
+                                    th:text="${order.courier}">
+                                    UPS
+                                </td>
                                 <td th:text="${order.totalPrice}">200.50</td>
                                 <td th:text="${order.creditCard}">00000</td>
                                 <td>
@@ -242,38 +251,38 @@
         <form action="/orderManager/edit" method="post">
             <div class="f_Head">
                 <span>修改订单</span>
-                <input id="editId">
+                <input id="editOrderId" name="orderId">
                 <i class="Js_closeBtn iconfont icon-buoumaotubiao20 fr"></i>
             </div>
             <div class="f_content">
                 <div class="f_alonediv">
                     <div class="f_alone_name">送货地址:</div>
                     <div class="f_alone_input">
-                        <input type="text" name="shipAddress1" class="f_p_input">
+                        <input id="editShipAddress1" type="text" name="shipAddress1" class="f_p_input">
                     </div>
                 </div>
                 <div class="f_alonediv">
                     <div class="f_alone_name"></div>
                     <div class="f_alone_input">
-                        <input type="text" name="shipAddress2" class="f_p_input">
+                        <input id="editShipAddress2" type="text" name="shipAddress2" class="f_p_input">
                     </div>
                 </div>
                 <div class="f_alonediv">
                     <div class="f_alone_name"></div>
                     <div class="f_alone_input">
-                        <input type="text" name="shipCity" class="f_p_input">
+                        <input id="editShipCity" type="text" name="shipCity" class="f_p_input">
                     </div>
                 </div>
                 <div class="f_alonediv">
                     <div class="f_alone_name">送货邮编:</div>
                     <div class="f_alone_input">
-                        <input class="f_p_input">
+                        <input id="editShipZip" type="text" name="shipZip" class="f_p_input">
                     </div>
                 </div>
                 <div class="f_alonediv">
                     <div class="f_alone_name">快递公司:</div>
                     <div class="f_alone_input">
-                        <input class="f_p_input">
+                        <input id="editCourier" type="text" name="courier" class="f_p_input">
                     </div>
                 </div>
                 <div class="f_alonediv1">
