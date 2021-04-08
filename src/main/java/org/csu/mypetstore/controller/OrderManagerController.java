@@ -43,4 +43,10 @@ public class OrderManagerController
 
         return "/manager/orderManager";
     }
+
+    @PostMapping("/edit")
+    public String editOrders()
+    {
+        return "/manager/orderManager";
+    }
 }

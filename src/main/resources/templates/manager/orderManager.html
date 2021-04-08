@@ -13,6 +13,7 @@
     <!-- 下面的js自己加的 -->
     <script src="/js/manager/orderManagerJS/chooseAll.js"></script>
     <script src="/js/manager/orderManagerJS/deleteChoosedOrder.js"></script>
+    <script src="/js/manager/orderManagerJS/change.js"></script>
     <title>订单管理</title>
 </head>
 <body class="vsc-initialized">
@@ -169,6 +170,7 @@
                                     <div class="PublicTableBtnIcon Color3Btn Js_edit">
                                         <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
                                         <span>编辑</span>
+                                        <span id="value" th:text="${order.orderId}" style="display: none"></span>
                                     </div>
 
                                     <div class="PublicTableBtnIcon Color4Btn Js_delete">
@@ -177,9 +179,9 @@
                                     </div>
                                 </td>
                             </tr>
-<!--                            <tr th:each="lineItem:${order.lineItems}">-->
-<!--                                <td>1744</td>-->
-<!--                            </tr>-->
+                            <!--                            <tr th:each="lineItem:${order.lineItems}">-->
+                            <!--                                <td>1744</td>-->
+                            <!--                            </tr>-->
                         </div>
                         </tbody>
                     </table>
@@ -237,44 +239,63 @@
 <!--添加用户浮层-->
 <div class="PublicFloatBox adduser">
     <div class="f_MiddleBox wid400">
-        <div class="f_Head">
-            <span>修改订单</span>
-            <i class="Js_closeBtn iconfont icon-buoumaotubiao20 fr"></i>
-        </div>
-        <div class="f_content">
-            <div class="f_alonediv">
-                <div class="f_alone_name">
-                    ID:
-                </div>
-                <div class="f_alone_input">
-                    <input class="f_p_input">
-                </div>
+        <form action="/orderManager/edit" method="post">
+            <div class="f_Head">
+                <span>修改订单</span>
+                <input id="editId">
+                <i class="Js_closeBtn iconfont icon-buoumaotubiao20 fr"></i>
             </div>
-            <div class="f_alonediv">
-                <div class="f_alone_name">
-                    手机号:
+            <div class="f_content">
+                <div class="f_alonediv">
+                    <div class="f_alone_name">送货地址:</div>
+                    <div class="f_alone_input">
+                        <input type="text" name="shipAddress1" class="f_p_input">
+                    </div>
                 </div>
-                <div class="f_alone_input">
-                    <input class="f_p_input">
+                <div class="f_alonediv">
+                    <div class="f_alone_name"></div>
+                    <div class="f_alone_input">
+                        <input type="text" name="shipAddress2" class="f_p_input">
+                    </div>
                 </div>
-            </div>
-            <div class="f_alonediv1">
-                <div class="f_alone_name">
+                <div class="f_alonediv">
+                    <div class="f_alone_name"></div>
+                    <div class="f_alone_input">
+                        <input type="text" name="shipCity" class="f_p_input">
+                    </div>
                 </div>
-                <div class="f_alone_input1">
-                    <!--publicbtn-->
-                    <div class="publicf_btn">
-                        <div class="publicf_btn1">
-                            确定
-                        </div>
-                        <div class="publicf_btn2 fr Js_closeBtn">
-                            取消
+                <div class="f_alonediv">
+                    <div class="f_alone_name">送货邮编:</div>
+                    <div class="f_alone_input">
+                        <input class="f_p_input">
+                    </div>
+                </div>
+                <div class="f_alonediv">
+                    <div class="f_alone_name">快递公司:</div>
+                    <div class="f_alone_input">
+                        <input class="f_p_input">
+                    </div>
+                </div>
+                <div class="f_alonediv1">
+                    <div class="f_alone_name">
+                    </div>
+                    <div class="f_alone_input1">
+                        <!--publicbtn-->
+                        <div class="publicf_btn">
+                            <div class="publicf_btn1">
+                            <span>
+                                确定
+                                <input>
+                            </span>
+                            </div>
+                            <div class="publicf_btn2 fr Js_closeBtn">
+                                取消
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+        </form>
     </div>
 </div>
 
