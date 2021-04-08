@@ -112,6 +112,7 @@
                                 <label for="inputcheck"></label>
                                 <span>全选</span>
                             </td>
+                            <td>是否发货</td>
                             <td>订单号</td>
                             <td>用户名</td>
                             <td>购买日期</td>
@@ -134,6 +135,14 @@
                                     <input th:id="${order.orderId}" class="inputcheck aa" type="checkbox"
                                            name="inputcheck">
                                     <label th:for="${order.orderId}"></label>
+                                </td>
+                                <td>
+                                    <span th:if="${order.status == 'P'}">
+                                        未发货
+                                    </span>
+                                    <span th:if="${order.status == 'R'}">
+                                        已发货
+                                    </span>
                                 </td>
                                 <td th:text="${order.orderId}">1000</td>
                                 <td th:text="${order.username}">j2ee</td>
@@ -184,7 +193,7 @@
 
                                     <div class="PublicTableBtnIcon Color4Btn Js_delete">
                                         <i class="iconfont icon-shanchu"></i>
-                                        <span>删除</span>
+                                        <span>发货</span>
                                     </div>
                                 </td>
                             </tr>
