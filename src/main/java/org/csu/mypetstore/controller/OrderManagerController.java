@@ -44,10 +44,25 @@ public class OrderManagerController
         return "/manager/orderManager";
     }
 
-    @GetMapping("/edit")
-    public String editOrders(Model model, String orderId)
+    @PostMapping("/edit")
+    public String editOrders(Model model,
+                             int orderId,
+                             String shipAddress1,
+                             String shipAddress2,
+                             String shipCity,
+                             String shipZip,
+                             String courier)
     {
-        System.out.println(orderId);
+//        System.out.println(orderId);
+        //改order
+        Order order = orderManagerService.getOrder(orderId);
+        order.setShipAddress1(shipAddress1);
+        order.setShipAddress2(shipAddress2);
+        order.setShipCity(shipCity);
+        order.setShipZip(shipZip);
+        order.setCourier(courier);
+
+        orderManagerService.updateOrder(order);
 
         List<Order> orderList = orderManagerService.getAllOrders();
         model.addAttribute("orderList", orderList);

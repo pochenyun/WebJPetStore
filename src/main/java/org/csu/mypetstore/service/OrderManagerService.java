@@ -129,33 +129,26 @@ public class OrderManagerService
     //更改订单
     public void updateOrder(Order order)
     {
-        orderManagerMapper.updateOrderByOrderId(order);
-        updateOrderLineStatue(order);
-
         List<LineItem> lineItemList = order.getLineItems();
         for (int i = 0; i < lineItemList.size(); i++)
         {
             orderManagerMapper.updateLineItem(lineItemList.get(i));
         }
+
+        orderManagerMapper.updateOrderByOrderId(order);
     }
 
     // 通过订单id和lineID修改订单状态
     // P:未处理
     // R:已处理
-    public void updateOrderLineStatue(Order order)
+    public void updateOrderLineStatue_ToR(Order order)
     {
-        if (order.getStatus() == "R")
-        {
-            orderManagerMapper.changeOrderLineTo_R(order.getOrderId());
-        }
-        else if (order.getStatus() == "P")
-        {
-            orderManagerMapper.changeOrderLineTo_P(order.getOrderId());
-        }
-        else
-        {
-            System.out.println("Error!!!!!!!!!!!!");
-        }
+        orderManagerMapper.changeOrderLineTo_R(order.getOrderId());
+    }
+
+    public void updateOrderLineStatue_ToP(Order order)
+    {
+        orderManagerMapper.changeOrderLineTo_P(order.getOrderId());
     }
 
     // 删除一次订单

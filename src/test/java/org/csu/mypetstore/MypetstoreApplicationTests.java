@@ -31,10 +31,14 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-        List<Order> orderList = orderManagerService.getAllOrders();
-        for (int i = 0; i < orderList.size(); ++i)
-        {
-            System.out.println(orderList.get(i).toString());
-        }
+        Order order = orderManagerService.getOrder(1019);
+        System.out.println(order.getStatus());
+
+        order.setCourier("74848484");
+        orderManagerService.updateOrder(order);
+
+        Order newOrder = orderManagerService.getOrder(1019);
+        System.out.println(newOrder.getStatus());
+//        orderManagerService.updateOrder(order);
     }
 }
