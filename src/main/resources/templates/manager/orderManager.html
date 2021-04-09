@@ -130,17 +130,17 @@
                         <tbody>
 
                         <div th:each="order:${orderList}">
-                            <tr>
+                            <tr th:class="${order.orderId}">
                                 <td>
                                     <input th:id="${order.orderId}" class="inputcheck aa" type="checkbox"
                                            name="inputcheck">
                                     <label th:for="${order.orderId}"></label>
                                 </td>
                                 <td class="isShipped">
-                                    <span th:if="${order.status == 'P'}">
+                                    <span id="P" th:if="${order.status == 'P'}">
                                         未发货
                                     </span>
-                                    <span th:if="${order.status == 'R'}">
+                                    <span id="R" th:if="${order.status == 'R'}">
                                         已发货
                                     </span>
                                 </td>
@@ -183,7 +183,7 @@
                                 </td>
                                 <td th:text="${order.totalPrice}">200.50</td>
                                 <td th:text="${order.creditCard}">00000</td>
-                                <td>
+                                <td class="actions">
 
                                     <div class="PublicTableBtnIcon Color3Btn Js_edit">
                                         <i class="iconfont icon-tubiaozhizuomobanyihuifu-"></i>
@@ -193,7 +193,7 @@
 
                                     <div class="PublicTableBtnIcon Color4Btn Js_delete">
                                         <i class="iconfont icon-shanchu"></i>
-                                        <span>发货</span>
+                                        <span class="text">发货</span>
                                         <span class="value" th:text="${order.orderId}" style="display: none"></span>
                                     </div>
                                 </td>
