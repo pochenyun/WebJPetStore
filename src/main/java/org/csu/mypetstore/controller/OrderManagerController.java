@@ -75,7 +75,17 @@ public class OrderManagerController
     {
         System.out.println("changeStatus" + changedOrderId);
         Order order = orderManagerService.getOrder(changedOrderId);
-        orderManagerService.updateOrderLineStatue_ToR(order);
+        if (order.getStatus().equals("P"))
+        {
+            orderManagerService.updateOrderLineStatue_ToR(order);
+            System.out.println("!!!!!!!!!!!!!!");
+        }
+        else if ((order.getStatus().equals("R")))
+        {
+            orderManagerService.updateOrderLineStatue_ToP(order);
+            orderManagerService.removeAOrder(order);
+            System.out.println("_______________");
+        }
         return "/manager/orderManager";
     }
 }

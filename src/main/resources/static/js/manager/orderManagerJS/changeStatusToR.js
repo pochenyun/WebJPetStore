@@ -1,33 +1,19 @@
 //改变选中的Order状态
 $(function ()
 {
-    // var items = document.getElementsByClassName('isShipped');
-    // console.log(items.length)
-    // for (var i = 0; i < items.length; i++)
-    // {
-    //     if (items[i].textContent.trim() == "未发货")
-    //     {
-    //         console.log('11');
-    //         $(button).css("color", "#FFF")//白色
-    //     }
-    //     else if (items[i].textContent.trim() == "已发货")
-    //     {
-    //         console.log('22');
-    //         $(button).css("color", "#A9A9A9")//灰色
-    //     }
-    // }
-
     $('.isShipped').each(function ()
     {
         var statusText = $(this).children('span').text().trim();
         if (statusText == "未发货")
         {
             console.log('11');
-            $(this).parent().children('.actions').children('.Js_delete').children('span.text').css("color", "#FFF")//白色
+            $(this).parent().children('.actions').children('.Js_delete').css("color", "#FFF")//白色
+            $(this).parent().children('.actions').children('.Js_delete').children('.text').text('发货');
         } else if (statusText == "已发货")
         {
             console.log('22');
-            $(this).parent().children('.actions').children('.Js_delete').children('span.text').css("color", "#A9A9A9")//灰色
+            $(this).parent().children('.actions').children('.Js_delete').css("color", "#A9A9A9")//灰色
+            $(this).parent().children('.actions').children('.Js_delete').children('.text').text('退货');
         }
     })
 
@@ -80,6 +66,7 @@ $(function ()
 
                 isShippedLabel.text("已发货");
                 $(button).children('.text').text('退货');
+                $('span.bbb').text("确定退货吗？");
                 $(button).css("color", "#A9A9A9")//灰色
                 status = true;
             });
@@ -88,10 +75,31 @@ $(function ()
         {;
             $('.f_pormatBtn1').click(function ()
             {
+                $.ajax({
+                    type: "post",
+                    url: "/orderManager/changeStatus",
+                    data:
+                        {
+                            "changedOrderId": changedOrderId
+                        },
+                    dataType: "json",//数据类型
+                    traditional: true,//防止深度序列化
+                    cache: false,
+                    async: false,
+                    success: function ()
+                    {
+                        console.log("success");
+                    }
+                });
+
                 console.log("退货!")
+                isShippedLabel.text("已退货");
                 $(button).children('.text').text('发货');
+                $('span.bbb').text("确定退货吗？");
                 $(button).css("color", "#FFF")//白色
                 status = false;
+
+                $('.'+changedOrderId).fadeOut(500);
             });
         }
         else
