@@ -22,8 +22,8 @@ class MypetstoreApplicationTests
     @Autowired
     private ItemManageService itemManageService;
 
-//    @Autowired
-//    private AccountManagerService accountManagerService;
+    @Autowired
+    private AccountManagerService accountManagerService;
 
     @Autowired
     private AccountManagerMapper accountManagerMapper;
@@ -31,7 +31,7 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-        List<String> accountList =  accountManagerMapper.getAccountList();
+        List<String> accountList =  accountManagerService.getAccountList();
         for (int i = 0; i < accountList.size(); i++)
         {
             System.out.println(accountList.get(i));

@@ -4,7 +4,7 @@
     $(function () {
         $('#username').on('blur',function () {
             $.ajax({
-                type      :"GET",
+                type      :"get",
                 url       :"usernameExist?username="+this.value,
                 success   :function (data) {
 
