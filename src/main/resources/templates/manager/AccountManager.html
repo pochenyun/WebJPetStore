@@ -3,43 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen"/>
+<!--    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen"/>-->
+    <link href="/css/manager/reset.css" rel="stylesheet">
+    <link href="/css/manager/iconfont.css" rel="stylesheet">
+    <link href="/css/manager/index.css" rel="stylesheet">
+    <script src="/js/manager/jquery-1.9.1.min.js"></script>
+    <script src="/js/manager/f.js"></script>
 </head>
 <body>
 
 <div th:replace="common/top::header"></div>
 
-<table>
-    <tr>
-        <th><b>Account ID</b></th>
-        <th><b>Cart</b></th>
-        <th><b>Orders</b></th>
-        <th><b>Remove</b></th>
-    </tr>
-
-    <div th:if="${accountList.size() == 0}">
-        <tr>
-            <td colspan="8"><b>There is no account.</b></td>
-        </tr>
+<div class="PublicDownWhole clearfix">
+    <div class="leftBox">
+        <ul>
+            <a href="/AccountManager/viewAccountManager">
+                <li class=""><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
+            </a>
+            <a href="/orderManager/view">
+                <li class="Select"><i class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
+            </a>
+            <a href="/ProductManage/viewProduct">
+                <li><i class="iconfont icon-fenlei"></i><span>分类管理</span></li>
+            </a>
+            <a href="/ItemManage/viewItem">
+                <li><i class="iconfont icon-weibiaoti1"></i><span>产品管理</span></li>
+            </a>
+        </ul>
     </div>
+    <div align="center">
+        <table>
+            <thead>
+            <tr>
+                <th><b>Account ID</b></th>
+                <th><b>Cart</b></th>
+                <th><b>Orders</b></th>
+                <th><b>Remove</b></th>
+            </tr>
+            <div th:if="${accountList.size() == 0}">
+                <tr>
+                    <td colspan="8"><b>There is no account.</b></td>
+                </tr>
+            </div>
 
-    <tr class="bg" th:each="account:${accountList}">
-        <td>
-            <a th:href="${'/AccountManager/viewAccountInfo?username='}+${account}" th:text="${account}">username</a>
-        </td>
-        <td>
-            <a class="Button" th:href="${'/AccountManager/viewAccountCart?username='}+${account}">View Cart</a>
-        </td>
-        <td>
-            <a class="Button" th:href="${'/AccountManager/viewAccountOrders?username='}+${account}">View Orders</a>
-        </td>
-        <td>
-            <a class="Button" th:href="${'/AccountManager/removeAccount?username='}+${account}">Remove</a>
-        </td>
-    </tr>
+            <tr class="bg" th:each="account:${accountList}">
+                <td>
+                    <a th:href="${'/AccountManager/viewAccountInfo?username='}+${account}" th:text="${account}">username</a>
+                </td>
+                <td>
+                    <a class="Button" th:href="${'/AccountManager/viewAccountCart?username='}+${account}">View Cart</a>
+                </td>
+                <td>
+                    <a class="Button" th:href="${'/AccountManager/viewAccountOrders?username='}+${account}">View Orders</a>
+                </td>
+                <td>
+                    <a class="Button" th:href="${'/AccountManager/removeAccount?username='}+${account}">Remove</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 
-</table>
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th><b>Account ID</b></th>-->
+<!--        <th><b>Cart</b></th>-->
+<!--        <th><b>Orders</b></th>-->
+<!--        <th><b>Remove</b></th>-->
+<!--    </tr>-->
 
+<!--    <div th:if="${accountList.size() == 0}">-->
+<!--        <tr>-->
+<!--            <td colspan="8"><b>There is no account.</b></td>-->
+<!--        </tr>-->
+<!--    </div>-->
+
+<!--    <tr class="bg" th:each="account:${accountList}">-->
+<!--        <td>-->
+<!--            <a th:href="${'/AccountManager/viewAccountInfo?username='}+${account}" th:text="${account}">username</a>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <a class="Button" th:href="${'/AccountManager/viewAccountCart?username='}+${account}">View Cart</a>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <a class="Button" th:href="${'/AccountManager/viewAccountOrders?username='}+${account}">View Orders</a>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <a class="Button" th:href="${'/AccountManager/removeAccount?username='}+${account}">Remove</a>-->
+<!--        </td>-->
+<!--    </tr>-->
+
+<!--</table>-->
 
 
 <div th:replace="common/bottom::footer"></div>

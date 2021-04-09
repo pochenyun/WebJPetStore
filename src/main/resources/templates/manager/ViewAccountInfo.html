@@ -3,64 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen"/>
+    <!--    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen"/>-->
+    <link href="/css/manager/reset.css" rel="stylesheet">
+    <link href="/css/manager/iconfont.css" rel="stylesheet">
+    <link href="/css/manager/index.css" rel="stylesheet">
+    <script src="/js/manager/jquery-1.9.1.min.js"></script>
+    <script src="/js/manager/f.js"></script>
 </head>
 <body>
 
 <div th:replace="common/top::header"></div>
 
-<form method="post" th:action="${'/AccountManager/changeAccountInfo?username='}+${account.getUsername()}" th:object="${tempAccount}">
-    <h3><span type="text" name="username" th:value="${account.getUsername()}" th:text="${account.getUsername()}"></span> Account Information</h3>
-<table>
-    <tr>
-        <td>Password:</td>
-        <td><input type="text" name="password"/>*若需要更改密码请填入新密码</td>
-    </tr>
+<div class="PublicDownWhole clearfix">
+    <div class="leftBox">
+        <ul>
+            <a href="/AccountManager/viewAccountManager">
+                <li class=""><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
+            </a>
+            <a href="/orderManager/view">
+                <li class="Select"><i class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
+            </a>
+            <a href="/ProductManage/viewProduct">
+                <li><i class="iconfont icon-fenlei"></i><span>分类管理</span></li>
+            </a>
+            <a href="/ItemManage/viewItem">
+                <li><i class="iconfont icon-weibiaoti1"></i><span>产品管理</span></li>
+            </a>
+        </ul>
+    </div>
+    <div align="center">
+        <form method="post" th:action="${'/AccountManager/changeAccountInfo?username='}+${account.getUsername()}"
+              th:object="${tempAccount}">
+            <h3><span type="text" name="username" th:value="${account.getUsername()}"
+                      th:text="${account.getUsername()}"></span>
+                Account Information</h3>
+            <table>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="text" name="password"/>*若需要更改密码请填入新密码</td>
+                </tr>
 
-    <tr>
-        <td>First name:</td>
-        <td><input type="text" name="firstName" th:value="${account.getFirstName()}"/></td>
-    </tr>
-    <tr>
-        <td>Last name:</td>
-        <td><input type="text" name="lastName" th:value="${account.getLastName()}"/></td>
-    </tr>
-    <tr>
-        <td>Email:</td>
-        <td><input type="text" size="40" name="email" th:value="${account.getEmail()}" /></td>
-    </tr>
-    <tr>
-        <td>Phone:</td>
-        <td><input type="text" name="phone" th:value="${account.getPhone()}" /></td>
-    </tr>
-    <tr>
-        <td>Address 1:</td>
-        <td><input type="text" size="40" name="address1" th:value="${account.getAddress1()}" /></td>
-    </tr>
-    <tr>
-        <td>Address 2:</td>
-        <td><input type="text" size="40" name="address2" th:value="${account.getAddress2()}" /></td>
-    </tr>
-    <tr>
-        <td>City:</td>
-        <td><input type="text" name="city" th:value="${account.getCity()}" /></td>
-    </tr>
-    <tr>
-        <td>State:</td>
-        <td><input type="text" size="4" name="state" th:value="${account.getState()}" /></td>
-    </tr>
-    <tr>
-        <td>Zip:</td>
-        <td><input type="text" size="10" name="zip" th:value="${account.getZip()}" /></td>
-    </tr>
-    <tr>
-        <td>Country:</td>
-        <td><input type="text" size="15" name="country" th:value="${account.getCountry()}" /></td>
-    </tr>
-</table>
+                <tr>
+                    <td>First name:</td>
+                    <td><input type="text" name="firstName" th:value="${account.getFirstName()}"/></td>
+                </tr>
+                <tr>
+                    <td>Last name:</td>
+                    <td><input type="text" name="lastName" th:value="${account.getLastName()}"/></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" size="40" name="email" th:value="${account.getEmail()}"/></td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td><input type="text" name="phone" th:value="${account.getPhone()}"/></td>
+                </tr>
+                <tr>
+                    <td>Address 1:</td>
+                    <td><input type="text" size="40" name="address1" th:value="${account.getAddress1()}"/></td>
+                </tr>
+                <tr>
+                    <td>Address 2:</td>
+                    <td><input type="text" size="40" name="address2" th:value="${account.getAddress2()}"/></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><input type="text" name="city" th:value="${account.getCity()}"/></td>
+                </tr>
+                <tr>
+                    <td>State:</td>
+                    <td><input type="text" size="4" name="state" th:value="${account.getState()}"/></td>
+                </tr>
+                <tr>
+                    <td>Zip:</td>
+                    <td><input type="text" size="10" name="zip" th:value="${account.getZip()}"/></td>
+                </tr>
+                <tr>
+                    <td>Country:</td>
+                    <td><input type="text" size="15" name="country" th:value="${account.getCountry()}"/></td>
+                </tr>
+            </table>
 
-    <input type="submit" name="editAccount" value="Save Account Information" />
-</form>
+            <input type="submit" name="editAccount" value="Save Account Information"/>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
 
 <div th:replace="common/bottom::footer"></div>
 

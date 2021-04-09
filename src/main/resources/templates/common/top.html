@@ -21,7 +21,7 @@
                     // console.log("搜索框为空")
                 } else {//如果不为空则从数据库中寻找结果
                     $.ajax({
-                        type: "GET",
+                        type: "get",
                         url: "autoComplete",
                         data: {"keyword": $keyword.val()},
                         dataType: "json",
