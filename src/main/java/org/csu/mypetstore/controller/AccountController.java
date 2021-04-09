@@ -1,6 +1,7 @@
 package org.csu.mypetstore.controller;
 
 import org.csu.mypetstore.domain.Account;
+import org.csu.mypetstore.domain.MD5;
 import org.csu.mypetstore.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,10 @@ public class AccountController
     @PostMapping("/signOn")
     public String signOn(String username, String password, String vCode, Model model)
     {
+        MD5 md5 = new MD5();
+        md5.start(password);
+        password = md5.getResultMessage().toUpperCase();
+
         Account account = accountService.getAccount(username, password);
         String checkcode = (String) model.getAttribute("checkcode");
         //获得输入的验证码值
@@ -108,6 +113,10 @@ public class AccountController
         }
 
         System.out.println("验证码为：" + checkcode);
+
+        MD5 md5 = new MD5();
+        md5.start(account.getPassword());
+        account.setPassword(md5.getResultMessage().toUpperCase());
 
         Account account1 = new Account();
         account1.setUsername(account.getUsername());
@@ -185,11 +194,14 @@ public class AccountController
     @GetMapping("signOff")
     public String signOff(Model model, HttpSession session, SessionStatus sessionStatus)
     {
-        //BUG已改
-        Account account = (Account)session.getAttribute("account");
-        account = null;
-        session.setAttribute("account",account);
-        model.addAttribute("account",account);
+//        //BUG已改
+//        Account account = (Account)session.getAttribute("account");
+//        account = null;
+//        session.setAttribute("account",account);
+//        model.addAttribute("account",account);
+
+        session.invalidate();
+        sessionStatus.setComplete();
 
         return "catalog/Main";
 
