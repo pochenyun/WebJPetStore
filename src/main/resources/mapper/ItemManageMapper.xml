@@ -5,7 +5,7 @@
 <mapper namespace="org.csu.mypetstore.persistence.ItemManageMapper">
     <insert id="insertItem" parameterType="Item">
         insert into item
-        (ITEMID, PRODUCTID, LISTPRICE, UNITCOST, SUPPLIER, STATUS, ATTR1, ATTR2, ATTR3, ATTR4, ATTR5)
+        (itemid, productid, listprice, unitcost, supplier, status, attr1, attr2, attr3, attr4, attr5)
         values
         (#{itemId}, #{productId}, #{listPrice}, #{unitCost},
          #{supplierId}, #{status}, #{attribute1},#{attribute2},
@@ -36,7 +36,7 @@
                listprice,
                unitcost,
                supplier      as supplierId,
-               i.productid   as productId,
+               i.productid   as "product.productId",
                name          as "product.name",
                descn         as "product.description",
                category      as "product.categoryId",
@@ -59,7 +59,7 @@
                listprice,
                unitcost,
                supplier    as supplierId,
-               i.productid as productId,
+               i.productid as "productId",
                name        as "product.name",
                descn       as "product.description",
                category    as "product.categoryId",
@@ -95,7 +95,7 @@
                listprice,
                unitcost,
                supplier    as supplierId,
-               i.productid as productId,
+               i.productid as "product.productId",
                name        as "product.name",
                descn       as "product.description",
                category    as "product.categoryId",

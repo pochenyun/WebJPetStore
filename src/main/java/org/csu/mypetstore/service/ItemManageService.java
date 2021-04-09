@@ -14,6 +14,7 @@ public class ItemManageService {
     ItemManageMapper itemManageMapper;
 
     public void insertItem(Item item){
+        itemManageMapper.insertQuantity(item);
         itemManageMapper.insertItem(item);
     }
 

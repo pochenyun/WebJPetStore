@@ -31,10 +31,7 @@ class MypetstoreApplicationTests
     @Test
     void contextLoads()
     {
-        List<String> accountList =  accountManagerService.getAccountList();
-        for (int i = 0; i < accountList.size(); i++)
-        {
-            System.out.println(accountList.get(i));
-        }
+        List<Item> itemList = itemManageService.getItemList();
+        System.out.println(itemList.size());
     }
 }

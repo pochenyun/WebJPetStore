@@ -21,7 +21,7 @@ public class AccountManagerService {
     @Autowired
     OrderMapper orderMapper;
 
-    public List<String> getAccountList(){
+    public List<Account> getAccountList(){
         return accountManagerMapper.getAccountList();
     }
 

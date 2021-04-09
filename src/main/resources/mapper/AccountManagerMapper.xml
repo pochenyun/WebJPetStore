@@ -3,8 +3,8 @@
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.mypetstore.persistence.AccountManagerMapper">
 
-<select id="getAccountList" resultType="String">
-        select userid
+<select id="getAccountList" resultType="Account">
+        select *, userid as username, addr1 as address1, addr2 as address2
         from account
 </select>
 

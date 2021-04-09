@@ -34,7 +34,7 @@ public class AccountManagerController {
 
     @GetMapping("/viewAccountManager")
     public String viewAccountManager(Model model){
-        List<String> accountList = accountManagerService.getAccountList();
+        List<Account> accountList = accountManagerService.getAccountList();
         model.addAttribute("accountList", accountList);
         return "/manager/AccountManager";
     }
@@ -55,7 +55,7 @@ public class AccountManagerController {
     @PostMapping("/changeAccountInfo")
     public String changeAccountInfo(@ModelAttribute(value = "tempAccount") Account tempAccount,String username, Model model){
         accountManagerService.updateAccountInfo(tempAccount);
-        return viewAccountInfo(username,model);
+        return viewAccountManager(model);
     }
 
     @GetMapping("/viewAccountCart")

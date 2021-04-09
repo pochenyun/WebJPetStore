@@ -1,103 +1,166 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- saved from url=(0090)http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/UserManagement.html -->
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-<!--    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen"/>-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/css/manager/reset.css" rel="stylesheet">
     <link href="/css/manager/iconfont.css" rel="stylesheet">
     <link href="/css/manager/index.css" rel="stylesheet">
-    <script src="/js/manager/jquery-1.9.1.min.js"></script>
+    <script src="/js/jquery-3.5.1.min.js"></script>
     <script src="/js/manager/f.js"></script>
+    <script type="text/javascript" src="/js/manager/itemManage.js"></script>
+    <title>商品管理</title>
 </head>
-<body>
 
-<div th:replace="common/top::header"></div>
+<body class="vsc-initialized">
+<div class="PublicHead clearfix">
+    <div class="leftBox clearfix">
+        <div class="companyLogo">
+            <img src="/images/manager/logo.jpg">
+        </div>
+        <!--<i class="iconfont icon-caidan Js_MenuList"></i>-->
 
-<div class="PublicDownWhole clearfix">
-    <div class="leftBox">
-        <ul>
-            <a href="/AccountManager/viewAccountManager">
-                <li class=""><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
-            </a>
-            <a href="/orderManager/view">
-                <li class="Select"><i class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
-            </a>
-            <a href="/ProductManage/viewProduct">
-                <li><i class="iconfont icon-fenlei"></i><span>分类管理</span></li>
-            </a>
-            <a href="/ItemManage/viewItem">
-                <li><i class="iconfont icon-weibiaoti1"></i><span>产品管理</span></li>
-            </a>
-        </ul>
+        <div class="companyText">
+            JPetStore
+        </div>
     </div>
-    <div align="center">
-        <table>
-            <thead>
-            <tr>
-                <th><b>Account ID</b></th>
-                <th><b>Cart</b></th>
-                <th><b>Orders</b></th>
-                <th><b>Remove</b></th>
-            </tr>
-            <div th:if="${accountList.size() == 0}">
-                <tr>
-                    <td colspan="8"><b>There is no account.</b></td>
-                </tr>
+    <div class="RightBox clearfix">
+        <div class="UserPhotoBox">
+            <div class="UserPic">
+                <img src="/images/manager/user.png">
             </div>
-
-            <tr class="bg" th:each="account:${accountList}">
-                <td>
-                    <a th:href="${'/AccountManager/viewAccountInfo?username='}+${account}" th:text="${account}">username</a>
-                </td>
-                <td>
-                    <a class="Button" th:href="${'/AccountManager/viewAccountCart?username='}+${account}">View Cart</a>
-                </td>
-                <td>
-                    <a class="Button" th:href="${'/AccountManager/viewAccountOrders?username='}+${account}">View Orders</a>
-                </td>
-                <td>
-                    <a class="Button" th:href="${'/AccountManager/removeAccount?username='}+${account}">Remove</a>
-                </td>
-            </tr>
-            </thead>
-        </table>
+            <div class="UserName">
+                管理员
+            </div>
+        </div>
+        <a href="/account/signOnForm">
+            <div class="dropOutBox">
+                <i class="iconfont icon-app_icons--">
+                </i>
+                <span>退出</span>
+            </div>
+        </a>
     </div>
 </div>
 
-<!--<table>-->
-<!--    <tr>-->
-<!--        <th><b>Account ID</b></th>-->
-<!--        <th><b>Cart</b></th>-->
-<!--        <th><b>Orders</b></th>-->
-<!--        <th><b>Remove</b></th>-->
-<!--    </tr>-->
 
-<!--    <div th:if="${accountList.size() == 0}">-->
-<!--        <tr>-->
-<!--            <td colspan="8"><b>There is no account.</b></td>-->
-<!--        </tr>-->
-<!--    </div>-->
+<div class="PublicDownWhole clearfix">
+    <!--左侧-->
+    <div class="leftBox Js_leftBox">
+        <ul>
+            <a href="/AccountManager/viewAccountManager">
+                <li class="Select"><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
+            </a>
+            <a href="/orderManager/view">
+                <li><i  class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
+            </a>
+            <a href="/ProductManage/viewProduct">
+                <li><i class="iconfont icon-fenlei"></i><span>产品管理</span></li>
+            </a>
+            <a href="/ItemManage/viewItem">
+                <li><i class="iconfont icon-weibiaoti1"></i><span>商品管理</span></li>
+            </a>
+        </ul>
+    </div>
+    <!--右侧-->
+    <div class="RightBox Js_RightBox">
+        <div class="PublicContentBox">
+            <!--公用指向页面名字-->
+            <div class="PublicPointToAgeText">
+                <span class="span1">用户管理</span> <span class="span2">后台用户管理列表</span>
 
-<!--    <tr class="bg" th:each="account:${accountList}">-->
-<!--        <td>-->
-<!--            <a th:href="${'/AccountManager/viewAccountInfo?username='}+${account}" th:text="${account}">username</a>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--            <a class="Button" th:href="${'/AccountManager/viewAccountCart?username='}+${account}">View Cart</a>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--            <a class="Button" th:href="${'/AccountManager/viewAccountOrders?username='}+${account}">View Orders</a>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--            <a class="Button" th:href="${'/AccountManager/removeAccount?username='}+${account}">Remove</a>-->
-<!--        </td>-->
-<!--    </tr>-->
+                <!--表修改-->
+                <!--            <div class="InquireTableBox">-->
+                <!--                <div class="headbox">-->
+                <!--                    <div class="headboxtext">-->
+                <!--                        <span class="span1">后台用户管理列表</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
 
-<!--</table>-->
+                <!--查询到的表格-->
 
 
-<div th:replace="common/bottom::footer"></div>
+                <div class="InquireSelectTable">
+                    <table class="PublicTableCss">
+                        <thead>
+                        <tr>
+                            <td>UserName</td>
+                            <td>Password:</td>
+                            <td>First name:</td>
+                            <td>Last name:</td>
+                            <td>Email:</td>
+                            <td>Phone:</td>
+                            <td>Address 1:</td>
+                            <td>Address 2:</td>
+                            <td>City:</td>
+                            <td>State:</td>
+                            <td>Zip:</td>
+                            <td>Country:</td>
+                            <td><b>Cart</b></td>
+                            <td><b>Orders</b></td>
+                            <td><b>Remove</b></td>
+                        </tr>
 
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="account:${accountList}">
+                            <form method="post"
+                                  th:action="${'/AccountManager/changeAccountInfo?username='}+${account.getUsername()}">
+                                <td th:text="${account.getUsername()}"></td>
+                                <td><input type="text" name="password" th:value="${'*若需要更改密码请填入新密码'}"/></td>
+                                <td><input type="text" name="firstName" th:value="${account.getFirstName()}"/></td>
+                                <td><input type="text" name="lastName" th:value="${account.getLastName()}"/></td>
+                                <td><input type="text" size="40" name="email" th:value="${account.getEmail()}"/></td>
+                                <td><input type="text" name="phone" th:value="${account.getPhone()}"/></td>
+                                <td><input type="text" size="40" name="address1" th:value="${account.getAddress1()}"/>
+                                </td>
+                                <td><input type="text" size="40" name="address2" th:value="${account.getAddress2()}"/>
+                                </td>
+                                <td><input type="text" name="city" th:value="${account.getCity()}"/></td>
+                                <td><input type="text" size="4" name="state" th:value="${account.getState()}"/></td>
+                                <td><input type="text" size="10" name="zip" th:value="${account.getZip()}"/></td>
+                                <td><input type="text" size="15" name="country" th:value="${account.getCountry()}"/>
+                                </td>
+                                <td><i class="iconfont tubiaozhizuomobanyihuifu"></i><input type="submit"
+                                                                                            name="editAccount"
+                                                                                            value="Save Account Information"/>
+                                </td>
+                            </form>
+
+                            <td>
+                                <a class="Button"
+                                   th:href="${'/AccountManager/viewAccountCart?username='}+${account.getUsername()}">View
+                                    Cart</a>
+                            </td>
+                            <td>
+                                <a class="Button"
+                                   th:href="${'/AccountManager/viewAccountOrders?username='}+${account.getUsername()}">View
+                                    Orders</a>
+                            </td>
+                            <td>
+                                <i class="iconfont icon-shanchu"></i>
+                                <a class="Button"
+                                   th:href="${'/AccountManager/removeAccount?username='}+${account.getUsername()}">Remove</a>
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <!--返回顶部-->
+                <a href="javaScript:void();" class="back-to-top"><i class="iconfont icon-fanhuidingbu"></i> </a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

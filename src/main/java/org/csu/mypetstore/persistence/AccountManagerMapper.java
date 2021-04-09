@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface AccountManagerMapper {
-    List<String> getAccountList();
+    List<Account> getAccountList();
 
     void removeAccountByUsername(String username);
 
