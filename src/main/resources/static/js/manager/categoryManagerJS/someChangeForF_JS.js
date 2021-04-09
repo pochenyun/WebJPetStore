@@ -16,7 +16,7 @@ function deleteProduct(e){
 
 function  deleteItem(e) {
     var url = e.name
-    alert(url)
+    console.log(url)
     window.location.href = url
 }
 // $("document").ready(function()
@@ -24,7 +24,7 @@ function  deleteItem(e) {
 //     //点击弹出浮层
 //     $("#show").click(function()
 //     {
-//         alert(123)
+//         console.log(123)
 //         $("#show").fadeIn();
 //     });
 //     $("body").click(function () {

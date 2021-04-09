@@ -17,28 +17,50 @@ import java.util.Map;
 class MypetstoreApplicationTests
 {
     @Autowired
-    private OrderManagerService orderManagerService;
-
-    @Autowired
-    private OrderService orderService;
-
-    @Autowired
-    private OrderManagerMapper orderManagerMapper;
-
-    @Autowired
-    private OrderMapper orderMapper;
+    ProductManageService productManageService;
 
     @Test
     void contextLoads()
     {
-        Order order = orderManagerService.getOrder(1019);
-        System.out.println(order.getStatus());
+//        Product product = new Product();
+//        product.setProductId("TEST-000");
+//        product.setCategoryId("FISH");
+//        product.setDescription("It is only for test");
+//        product.setName("test000");
+//
+//        //productManageService.insertProduct();
+//        product.setName("text001");
+//        product.setDescription("It is only for test update");
+//        productManageService.updateProduct(product);
+//
+//        productManageService.removeProductById(product.getProductId());
+//        List<Product> productList = productManageService.getProductList();
+//
+//        for (Product product: productList)
+//        {
+//            System.out.println(product.getProductId() + "\n");
+//            System.out.println(product.getCategoryId() + "\n");
+//            System.out.println(product.getDescription() + "\n");
+//            System.out.println(product.getName() + "\n");
+//            System.out.println(product.getClass()+ "\n");
+//        }
 
-        order.setCourier("74848484");
-        orderManagerService.updateOrder(order);
+//        Product product = productManageService.getProduct("K9-BD-01");
+//        System.out.println(product.getProductId() + "\n");
+//        System.out.println(product.getCategoryId() + "\n");
+//        System.out.println(product.getDescription() + "\n");
+//        System.out.println(product.getName() + "\n");
 
-        Order newOrder = orderManagerService.getOrder(1019);
-        System.out.println(newOrder.getStatus());
-//        orderManagerService.updateOrder(order);
+        List<Product> productList = productManageService.searchProductList("b");
+
+        for (Product product: productList)
+        {
+            System.out.println(product.getProductId() + "\n");
+            System.out.println(product.getCategoryId() + "\n");
+            System.out.println(product.getDescription() + "\n");
+            System.out.println(product.getName() + "\n");
+            System.out.println(product.getClass()+ "\n");
+        }
+
     }
 }

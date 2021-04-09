@@ -16,12 +16,12 @@ function updateProduct(e){
             "quantity":quantity
         },//传输的数据
         success:function(ret){
-            alert(ret);
+            console.log(ret);
         },
         error:function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(XMLHttpRequest.status);
-            alert(XMLHttpRequest.readyState);
-            alert(textStatus);
+            console.log(XMLHttpRequest.status);
+            console.log(XMLHttpRequest.readyState);
+            console.log(textStatus);
 
         }
     })

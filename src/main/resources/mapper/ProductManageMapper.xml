@@ -5,7 +5,7 @@
 <mapper namespace="org.csu.mypetstore.persistence.ProductManageMapper">
     <insert id="insertProduct" parameterType="Product">
         insert into product
-            (productid, categotr, name, descn)
+            (productid, category, name, descn)
         values (#{productId}, #{categoryId}, #{name}, #{description})
     </insert>
 
@@ -45,7 +45,7 @@
                descn    as description,
                category as categoryId
         from product
-        WHERE lower(name) like #{keyValue}
+        where lower(name) like #{keyValue}
     </select>
 
 </mapper>
