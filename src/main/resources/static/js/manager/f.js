@@ -7,12 +7,11 @@ $(function ()
     });
     $(".Js_edit").click(function ()
     {
-
-        $(".adduser").fadeIn(200);
+        $(".adduser").fadeIn(300);
     });
     $(".Js_delete").click(function ()
     {
-        $(".f_delete").fadeIn(200);
+        $(".f_delete").fadeIn(300);
     });
 
     //左侧菜单

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- saved from url=(0090)http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/UserManagement.html -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/css/manager/reset.css" rel="stylesheet">
+    <link href="/css/manager/iconfont.css" rel="stylesheet">
+    <link href="/css/manager/index.css" rel="stylesheet">
+    <script src="/js/manager/jquery-3.5.1.min.js"></script>
+    <script src="/js/manager/f.js"></script>
+    <script src="/js/manager/categoryManagerJS/someChangeForF_JS"></script>
+
+    <script type="text/javascript" src="/js/manager/categoryManagerJS/jquery-ui.min.js"></script>
+    <link rel="StyleSheet" href="/css/manager/jquery-ui.min.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="/js/manager/categoryManagerJS/productManage.js"></script>
+    <script>
+        $().ready(function ()
+        {
+            var $keyword = $("#keyword");
+            $keyword.on("keyup", function ()
+            {
+                var text = $keyword.val();
+                console.log("输入框为" + $keyword.val());
+                if (text == '')
+                {//如果输入框为空不输出
+                    // console.log("搜索框为空")
+                } else
+                {//如果不为空则从数据库中寻找结果
+                    $.ajax({
+                        type: "GET",
+                        url: "/catalog/autoComplete",
+                        data: {"keyword": $keyword.val()},
+                        dataType: "json",
+                        success: function (data)
+                        {
+                            var searchResult = new Array();
+                            for (var i = 0; i < data.length; i++)
+                            {
+                                searchResult[i] = data[i].name;
+                            }
+                            $keyword.autocomplete({
+                                source: searchResult
+                            });
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+    <title>用户管理</title>
+</head>
+
+<body class="vsc-initialized">
+<div class="PublicHead clearfix">
+    <div class="leftBox clearfix">
+        <div class="companyLogo">
+            <img src="/images/manager/logo.jpg">
+        </div>
+        <!--<i class="iconfont icon-caidan Js_MenuList"></i>-->
+
+        <div class="companyText">
+            JPetStore
+        </div>
+    </div>
+    <div class="RightBox clearfix">
+        <div class="UserPhotoBox">
+            <div class="UserPic">
+                <img src="/images/manager/user.png">
+            </div>
+            <div class="UserName">
+                管理员
+            </div>
+        </div>
+        <a href="/account/signOnForm">
+            <div class="dropOutBox">
+                <i class="iconfont icon-app_icons--">
+                </i>
+                <span>退出</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="PublicDownWhole clearfix">
+    <!--左侧-->
+    <div class="leftBox Js_leftBox">
+        <ul>
+            <a href="/">
+                <li><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
+            </a>
+            <a href="/">
+                <li><i class="/orderManager/view"></i><span>订单管理</span></li>
+            </a>
+            <a href="/ProductManage/viewProduct">
+                <li class="Select"><i class="iconfont icon-fenlei"></i><span>产品管理</span></li>
+            </a>
+            <a href="/ItemManage/viewItem">
+                <li><i class="iconfont icon-weibiaoti1"></i><span>商品管理</span></li>
+            </a>
+        </ul>
+    </div>
+    <!--右侧-->
+    <div class="RightBox Js_RightBox">
+        <div class="PublicContentBox">
+            <!--公用指向页面名字-->
+            <div class="PublicPointToAgeText">
+                <span class="span1">产品管理</span> <span class="span2">后台产品管理列表</span>
+            </div>
+            <!--查询-->
+            <div class="InquireBox clearfix">
+                <div class="InquireleftBox">
+
+                    <form action="/ProductManage/searchProduct" method="post">
+                        <div id="Search">
+                            产品查询：
+                            <div class="InputDiv">
+                                <input type="text" name="keyValue" size="14" id="keyword"/>
+                            </div>
+                            <div class="PublicBtnIcon Color1Btn fr">
+                                <i class="iconfont icon-icon-chaxun"></i>
+                                <input type="submit" name="searchProducts" value="查询" id="searchProducts"/>
+                            </div>
+
+
+                        </div>
+                    </form>
+                    <!--                  <div class="InputDiv"><input class="phoneInput" placeholder="请输入你需要查询的手机号"></div>-->
+                </div>
+                <!--                <div class="PublicBtnIcon Color1Btn fr">-->
+                <!--                    <i class="iconfont icon-icon-chaxun"></i>-->
+                <!--                    <span>查询</span>-->
+                <!--                </div>-->
+            </div>
+            <!--表修改-->
+            <div class="InquireTableBox">
+                <div class="headbox">
+                    <div class="headboxtext">
+                        <span class="span1">后台用户管理列表</span>
+                    </div>
+
+                    <div class="PublicBtnIcon Color2Btn fr Js_edit">
+                        <i class="iconfont icon-changyongtubiao-mianxing-"></i>
+                        <span id="show">添加</span>
+                    </div>
+                </div>
+
+                <!--查询到的表格-->
+
+
+                <div class="InquireSelectTable">
+                    <table class="PublicTableCss">
+                        <thead>
+                        <tr>
+                            <td>prodcctId</td>
+                            <td>category</td>
+                            <td>name</td>
+                            <td>descn</td>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="product:${productList}">
+                            <td th:text="${product.productId}" th:value="${product.productId}"
+                                th:id="${'productId'}+${product.productId}"> id
+                            </td>
+                            <td th:text="${product.categoryId}" th:value="${product.categoryId}"
+                                th:id="${'category'}+${product.productId}"> category
+                            </td>
+                            <td><input type="text" th:name="${product.productId}" th:id="${'name'}+${product.productId}"
+                                       onblur="updateProduct(this)" th:value="${product.name}"></td>
+                            <td><input type="text" th:name="${product.productId}"
+                                       th:id="${'description'}+${product.productId}" onblur="updateProduct(this)"
+                                       th:value="${product.description}"></td>
+                            <td>
+                                <div class="PublicTableBtnIcon Color4Btn Js_delete"
+                                     th:name="${'/ProductManage/removeProductById?productId='}+${product.productId}">
+                                    <i class="iconfont icon-shanchu"></i>
+                                    <span>删除</span>>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <!-- alert通用 提示是否删除-->
+                <div class="PublicFloatBox f_delete">
+                    <div class="f_MiddleBox wid260">
+                        <div class="f_Head">
+                            <span>提示消息</span>
+                            <i class="Js_closeBtn iconfont icon-buoumaotubiao20 fr"></i>
+                        </div>
+                        <div class="f_content clearfix">
+                            <!--提示消息内容-->
+                            <div class="f_someText">
+                                <i class="iconfont icon-tishi"></i>
+                                <span>确定删除此信息？</span>
+                            </div>
+                            <!--按钮-->
+                            <div class="f_pormatBtn  clearfix">
+                                <div class="f_pormatBtn1" id="queding" name="" onclick="deleteProduct(this)">
+                                    确定
+                                </div>
+                                <div class="publicf_btn2 fr Js_closeBtn">
+                                    取消
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--添加用户浮层-->
+                <div class="PublicFloatBox adduser">
+                    <div class="f_MiddleBox wid400">
+                        <div class="f_Head">
+                            <span>添加商品</span>
+                            <i class="Js_closeBtn iconfont icon-buoumaotubiao20 fr"></i>
+                        </div>
+                        <form class="f_content" action="/ProductManage/insertProduct" method="post">
+                            <div class="f_alonediv">
+                                <div class="f_alone_name">
+                                    产品ID:
+                                </div>
+                                <div class="f_alone_input">
+                                    <input class="f_p_input" type="text" th:name="${'productId'}"
+                                           th:value="${'请输入产品id'}" onfocus="if (value =='请输入产品id'){value =''}"
+                                           onblur="if (value ==''){value='请输入产品id'}"/>
+                                </div>
+                                <!--提示消息-->
+                            </div>
+
+                            <div class="f_alonediv">
+                                <div class="f_alone_name">
+                                    产品种类
+                                </div>
+                                <div class="f_alone_input">
+                                    <input class="f_p_input" type="text" th:name="${'categoryId'}"
+                                           th:value="${'请输入产品种类'}" onfocus="if (value =='请输入产品种类'){value =''}"
+                                           onblur="if (value ==''){value='请输入产品种类'}"/>
+                                </div>
+                            </div>
+
+                            <div class="f_alonediv">
+                                <div class="f_alone_name">
+                                    产品名字
+                                </div>
+                                <div class="f_alone_input">
+                                    <input class="f_p_input" type="text" th:name="${'name'}" th:value="${'请输入产品名字'}"
+                                           onfocus="if (value =='请输入产品名字'){value =''}"
+                                           onblur="if (value ==''){value='请输入产品名字'}"/>
+                                </div>
+                            </div>
+
+                            <div class="f_alonediv">
+                                <div class="f_alone_name">
+                                    产品形容
+                                </div>
+                                <div class="f_alone_input">
+                                    <input class="f_p_input" type="text" th:name="${'description'}"
+                                           th:value="${'请输入产品形容'}" onfocus="if (value =='请输入产品形容'){value =''}"
+                                           onblur="if (value ==''){value='请输入产品形容'}"/>
+                                </div>
+                            </div>
+
+
+                            <div class="f_alonediv1">
+                                <div class="f_alone_name">
+                                </div>
+                                <div class="f_alone_input1">
+                                    <!--publicbtn-->
+                                    <div class="publicf_btn">
+                                        <div class="publicf_btn1">
+                                            <input type="submit" name="addProduct" value="新增产品"/>
+                                        </div>
+                                        <div class="publicf_btn2 fr Js_closeBtn">
+                                            取消
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+
+                <!--返回顶部-->
+                <a href="javaScript:void();" class="back-to-top">
+                    <i class="iconfont icon-fanhuidingbu"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
