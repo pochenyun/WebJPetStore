@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+
+<div th:replace="common/top::header"></div>
+
+<table>
+    <tr>
+        <th><b>Account ID</b></th>
+        <th><b>Cart</b></th>
+        <th><b>Orders</b></th>
+        <th><b>Remove</b></th>
+    </tr>
+
+    <div th:if="${accountList.size() == 0}">
+        <tr>
+            <td colspan="8"><b>There is no account.</b></td>
+        </tr>
+    </div>
+
+    <tr class="bg" th:each="account:${accountList}">
+        <td>
+            <a th:href="${'/AccountManager/viewAccountInfo?username='}+${account}" th:text="${account}">username</a>
+        </td>
+        <td>
+            <a class="Button" th:href="${'/AccountManager/viewAccountCart?username='}+${account}">View Cart</a>
+        </td>
+        <td>
+            <a class="Button" th:href="${'/AccountManager/viewAccountOrders?username='}+${account}">View Orders</a>
+        </td>
+        <td>
+            <a class="Button" th:href="${'/AccountManager/removeAccount?username='}+${account}">Remove</a>
+        </td>
+    </tr>
+
+</table>
+
+
+
+<div th:replace="common/bottom::footer"></div>
+
+</body>
+</html>

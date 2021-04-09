@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.mypetstore.persistence.AccountManagerMapper">
+
+<select id="getAccountList" resultType="String">
+        select userid
+        from account
+</select>
+
+        <delete id="removeAccountByUsername" parameterType="String">
+                delete from account where userid = #{username};
+                delete from signon where username = #{username};
+        </delete>
+
+<select id="getOrderIdByUsername" parameterType="String" resultType="int">
+        select orderid
+        from orders
+        where userid = #{username}
+</select>
+
+        <delete id="removeOrdersByOrderId" parameterType="int">
+                delete from orders where orderid = #{orderId};
+                delete from orderstatus where orderid = #{orderId};
+                delete from lineitem where orderid = #{orderId};
+        </delete>
+
+        <update id="updateAccountInfo" parameterType="account">
+                update account set
+                email=#{email},firstname=#{firstName},lastname=#{lastName},addr1=#{address1},addr2=#{address2},city=#{city},state=#{state},zip=#{zip},country=#{country},phone=#{phone}
+                where userid = #{username}
+        </update>
+
+        <update id="updatePassword" parameterType="account">
+                update signon set
+                password = #{password}
+                where username=#{username}
+        </update>
+</mapper>

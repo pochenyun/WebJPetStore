@@ -25,6 +25,7 @@ public class ItemManageController
     public String viewItem(Model model)
     {
         List<Item> itemList = itemManageService.getItemList();
+        System.out.println(itemList.size());
         model.addAttribute("itemList", itemList);
 
         //跳转页面
@@ -32,16 +33,16 @@ public class ItemManageController
     }
 
     @PostMapping("/insertItem")
-    public String insertItem(String itemId, String productId, String listPrice, String unitCost, String quantity, String attribute1, Model model)
+    public String insertItem(String itemId, String productId, double listPrice, double unitCost, int quantity, String attribute1, Model model)
     {
-        System.out.println(itemId);
+        //System.out.println(itemId);
         Item item = new Item();
         item.setItemId(itemId);
         item.setProductId(productId);
-        BigDecimal price = new BigDecimal(Integer.parseInt(listPrice));
+        BigDecimal price = new BigDecimal(listPrice);
         item.setListPrice(price);
         item.setAttribute1(attribute1);
-        BigDecimal cost = new BigDecimal(Integer.parseInt(unitCost));
+        BigDecimal cost = new BigDecimal(unitCost);
         item.setUnitCost(cost);
         item.setSupplierId(1);
         item.setStatus("P");
@@ -49,7 +50,7 @@ public class ItemManageController
         item.setAttribute3(null);
         item.setAttribute4(null);
         item.setAttribute5(null);
-        int quantity1 = Integer.parseInt(quantity);
+        int quantity1 = quantity;
         item.setQuantity(quantity1);
         itemManageService.insertItem(item);
         List<Item> itemList = itemManageService.getItemList();

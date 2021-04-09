@@ -52,7 +52,7 @@
     <!--左侧-->
     <div class="leftBox Js_leftBox">
         <ul>
-            <a href="/">
+            <a href="/AccountManager/viewAccountManager">
                 <li><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
             </a>
             <a href="/orderManager/view">
@@ -134,7 +134,7 @@
                             <td th:text="${item.itemId}" th:value="${item.itemId}" th:id="${'itemId'}+${item.itemId}">
                                 id
                             </td>
-                            <td th:text="${item.product.productId}" th:value="${item.product.productId}"
+                            <td th:text="${item.productId}" th:value="${item.productId}"
                                 th:id="${'productId'}+${item.itemId}"> category
                             </td>
                             <td><input type="text" th:name="${item.itemId}" th:id="${'listPrice'}+${item.itemId}"
@@ -151,7 +151,7 @@
                                 <div class="PublicTableBtnIcon Color4Btn Js_delete"
                                      th:name="${'/ItemManage/removeItemById?ItemId='}+${item.itemId}">
                                     <i class="iconfont icon-shanchu"></i>
-                                    <span>删除</span>>
+                                    <span>删除</span>
                                 </div>
                             </td>
                         </tr>
