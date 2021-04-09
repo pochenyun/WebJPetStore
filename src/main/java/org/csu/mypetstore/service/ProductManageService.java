@@ -28,13 +28,18 @@ public class ProductManageService
         productManageMapper.removeProductById(productId);
     }
 
-    public List<Product> getProductListByCategory(String categoryId)
+    public List<Product> getProductList()
     {
-        return productManageMapper.getProductListByCategory(categoryId);
+        return productManageMapper.getProductList();
     }
 
     public Product getProduct(String productId)
     {
         return productManageMapper.getProduct(productId);
+    }
+
+    public List<Product> searchProductList(String keyValue)
+    {
+        return productManageMapper.searchProductList("%" + keyValue.toLowerCase() + "%");
     }
 }

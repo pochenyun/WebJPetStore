@@ -11,6 +11,12 @@
                 #{attribute3}, #{attribute4}, #{attribute5})
     </insert>
 
+    <insert id="insertQuantity" parameterType="Item">
+        insert into inventory
+            (itemid, qty)
+        values (#{itemId}, #{quantity})
+    </insert>
+
     <update id="updateItem" parameterType="Item">
         update item
         set listprice = #{listPrice},
@@ -24,7 +30,7 @@
         where itemid = #{itemId}
     </update>
 
-    <select resultType="item" parameterType="string" id="getItemListByProduct">
+    <select resultType="item" parameterType="string" id="getItemList">
         select i.itemid,
                listprice,
                unitcost,
@@ -39,10 +45,12 @@
                attr3       as attribute3,
                attr4       as attribute4,
                attr5       as attribute5
+               inventory.qty as quantity
         from item i,
              product p
+             inventory
         where p.productid = i.productid
-          and i.productid = #{value}
+          and i.productid = inventory.itemid
     </select>
 
     <select resultType="item" parameterType="string" id="getItem">
@@ -74,4 +82,34 @@
         from item
         where itemid = #{itemId}
     </delete>
+
+    <delete id="removeInventoryById" parameterType="string">
+        delete
+        from inventory
+        where itemid = #{itemId}
+    </delete>
+
+    <select id="searchItemList" parameterType="string" resultType="Item">
+        select i.itemid,
+               listprice,
+               unitcost,
+               supplier    as supplierId,
+               i.productid as "product.productId",
+               name        as "product.name",
+               descn       as "product.description",
+               category    as "product.categoryId",
+               status,
+               attr1       as attribute1,
+               attr2       as attribute2,
+               attr3       as attribute3,
+               attr4       as attribute4,
+               attr5       as attribute5,
+               qty         as quantity
+        from item i,
+             inventory v,
+             product p
+        where p.productid = i.productid
+          and i.itemid = v.itemid
+          and lower(i.itemid) like #{keyValue}
+    </select>
 </mapper>

@@ -22,8 +22,8 @@ public class ItemManageService {
         itemManageMapper.updateInventoryQuantity(item);
     }
 
-    public List<Item> getItemListByProduct(String productId){
-        return itemManageMapper.getItemListByProduct(productId);
+    public List<Item> getItemList(){
+        return itemManageMapper.getItemList();
     }
 
     public Item getItem(String itemId){
@@ -32,5 +32,10 @@ public class ItemManageService {
 
     public void removeItemById(String itemId){
         itemManageMapper.removeItemById(itemId);
+        itemManageMapper.removeInventoryById(itemId);
+    }
+
+    public List<Item> searchItemList(String keyValue){
+        return itemManageMapper.searchItemList("%" + keyValue.toLowerCase() + "%");
     }
 }

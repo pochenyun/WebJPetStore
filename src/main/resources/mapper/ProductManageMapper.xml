@@ -4,40 +4,48 @@
 
 <mapper namespace="org.csu.mypetstore.persistence.ProductManageMapper">
     <insert id="insertProduct" parameterType="Product">
-    insert into product
-      (productid, categotr, name, descn)
-    values
-      (#{productId}, #{categoryId}, #{name}, #{description})
-  </insert>
+        insert into product
+            (productid, categotr, name, descn)
+        values (#{productId}, #{categoryId}, #{name}, #{description})
+    </insert>
 
     <update id="updateProduct" parameterType="Product">
-    update product set
-      name = #{name},
-      descn = #{description}
-    where productid = #{productId}
-  </update>
+        update product
+        set name  = #{name},
+            descn = #{description}
+        where productid = #{productId}
+    </update>
 
-    <select id="getProductListByCategory" parameterType="string" resultType="Product">
-        select
-        productid,
-        name,
-        descn as description,
-        category as categoryid
+    <select id="getProductList" resultType="Product">
+        select productid,
+               name,
+               descn    as description,
+               category as categoryid
         from product
-        where category = #{categoryId}
     </select>
 
     <select id="getProduct" parameterType="string" resultType="Product">
-        select
-        productid,
-        name,
-        descn as description,
-        category as categoryId
+        select productid,
+               name,
+               descn    as description,
+               category as categoryId
         from product
         where productid = #{productId}
     </select>
 
     <delete id="removeProductById">
-    delete from product where productid = #{productId}
+        delete
+        from product
+        where productid = #{productId}
     </delete>
+
+    <select id="searchProductList" parameterType="string" resultType="Product">
+        select productid,
+               name,
+               descn    as description,
+               category as categoryId
+        from product
+        WHERE lower(name) like #{keyValue}
+    </select>
+
 </mapper>
