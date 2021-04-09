@@ -7,7 +7,7 @@ function updateProduct(e){
 
     $.ajax({
         url:"/ItemManage/updateItem",//请求的地址
-        type:"GET",//请求方式
+        type:"get",//请求方式
         dateType:"text",
         data:{"itemId":itemId,
             "listPrice":listPrice,

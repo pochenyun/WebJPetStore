@@ -34,23 +34,23 @@
         select i.itemid,
                listprice,
                unitcost,
-               supplier    as supplierId,
-               i.productid as "product.productId",
-               name        as "product.name",
-               descn       as "product.description",
-               category    as "product.categoryId",
+               supplier      as supplierId,
+               i.productid   as "productId",
+               name          as "product.name",
+               descn         as "product.description",
+               category      as "product.categoryId",
                status,
-               attr1       as attribute1,
-               attr2       as attribute2,
-               attr3       as attribute3,
-               attr4       as attribute4,
-               attr5       as attribute5
+               attr1         as attribute1,
+               attr2         as attribute2,
+               attr3         as attribute3,
+               attr4         as attribute4,
+               attr5         as attribute5,
                inventory.qty as quantity
         from item i,
-             product p
+             product p,
              inventory
         where p.productid = i.productid
-          and i.productid = inventory.itemid
+          and i.itemid = inventory.itemid
     </select>
 
     <select resultType="item" parameterType="string" id="getItem">
@@ -94,7 +94,7 @@
                listprice,
                unitcost,
                supplier    as supplierId,
-               i.productid as "product.productId",
+               i.productid as "productId",
                name        as "product.name",
                descn       as "product.description",
                category    as "product.categoryId",
