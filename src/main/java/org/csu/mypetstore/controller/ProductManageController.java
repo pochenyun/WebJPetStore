@@ -38,7 +38,7 @@ public class ProductManageController
         }
         String fileName = file.getOriginalFilename();  // 文件名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
-        String filePath = "/home/pochenyun/IdeaProjects/WebJPetStore/src/main/resources/static/images/"; // 上传后的路径
+        String filePath = "/home/pochenyun/IdeaProjects/WebJPetStore/target/classes/static/images/"; // 上传后的路径
         fileName = UUID.randomUUID() + suffixName; // 新文件名
         File dest = new File(filePath + fileName);
         if (!dest.getParentFile().exists()) {
