@@ -247,7 +247,7 @@
                             <span>添加商品</span>
                             <i class="Js_closeBtn iconfont icon-buoumaotubiao20 fr"></i>
                         </div>
-                        <form class="f_content" action="/ProductManage/insertProduct" method="post">
+                        <form class="f_content" action="/ProductManage/insertProduct" method="post"  enctype="multipart/form-data">
                             <div class="f_alonediv">
                                 <div class="f_alone_name">
                                     产品ID:
@@ -291,6 +291,7 @@
                                            th:value="${'请输入产品形容'}" onfocus="if (value =='请输入产品形容'){value =''}"
                                            onblur="if (value ==''){value='请输入产品形容'}"/>
                                 </div>
+                                <div><input type="file" name="file"/></div>
                             </div>
 
 

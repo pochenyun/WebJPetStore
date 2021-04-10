@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/ProductManage")
@@ -21,13 +25,32 @@ public class ProductManageController
     ProductManageService productManageService;
 
     @PostMapping("/insertProduct")
-    public String insertProduct(String productId, String categoryId, String name, String description, Model model)
+    public String insertProduct(String productId, String categoryId, String name, String description, MultipartFile file, Model model)
     {
         Product product = new Product();
         product.setProductId(productId);
         product.setCategoryId(categoryId);
         product.setName(name);
-        product.setDescription("<image src=\"../images/bird2.gif\">" + description);
+
+
+        if (file.isEmpty()) {
+            System.out.println("文件为空空");
+        }
+        String fileName = file.getOriginalFilename();  // 文件名
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
+        String filePath = "/home/pochenyun/IdeaProjects/WebJPetStore/src/main/resources/static/images/"; // 上传后的路径
+        fileName = UUID.randomUUID() + suffixName; // 新文件名
+        File dest = new File(filePath + fileName);
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
+        try {
+            file.transferTo(dest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        product.setDescription("<image src=\"../images/" +fileName + "\">" + description);
         productManageService.insertProduct(product);
         List<Product> productList = productManageService.getProductList();
         model.addAttribute("productList", productList);
