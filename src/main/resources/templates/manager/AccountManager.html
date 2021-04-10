@@ -99,6 +99,7 @@
                             <td>State:</td>
                             <td>Zip:</td>
                             <td>Country:</td>
+                            <td>Sava</td>
                             <td><b>Cart</b></td>
                             <td><b>Orders</b></td>
                             <td><b>Remove</b></td>
@@ -112,7 +113,7 @@
                             <form method="post"
                                   th:action="${'/AccountManager/changeAccountInfo?username='}+${account.getUsername()}">
                                 <td th:text="${account.getUsername()}"></td>
-                                <td><input type="text" name="password" th:value="${'*若需要更改密码请填入新密码'}"/></td>
+                                <td><input type="text" name="password" th:placeholder="${'*若需要更改密码请填入新密码'}"/></td>
                                 <td><input type="text" name="firstName" th:value="${account.getFirstName()}"/></td>
                                 <td><input type="text" name="lastName" th:value="${account.getLastName()}"/></td>
                                 <td><input type="text" size="40" name="email" th:value="${account.getEmail()}"/></td>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/AccountManager")
@@ -54,6 +55,15 @@ public class AccountManagerController {
 
     @PostMapping("/changeAccountInfo")
     public String changeAccountInfo(@ModelAttribute(value = "tempAccount") Account tempAccount,String username, Model model){
+        Account beforeAccount = accountService.getAccount(username);
+        if (tempAccount.getPassword() == "" || tempAccount.getPassword() == null)
+        {
+            tempAccount.setPassword(beforeAccount.getPassword());
+        }
+        MD5 md5 = new MD5();
+        md5.start(tempAccount.getPassword());
+        tempAccount.setPassword(md5.getResultMessage().toUpperCase());
+
         accountManagerService.updateAccountInfo(tempAccount);
         return viewAccountManager(model);
     }
