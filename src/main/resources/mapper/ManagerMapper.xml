@@ -3,20 +3,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.mypetstore.persistence.ManagerMapper">
     <select id="getManagerById" parameterType="string" resultType="Manager">
-    SELECT
-          ID,
-          PASSWORD
-    FROM MANAGER
-    WHERE ID = #{id}
+    select
+          id,
+          password
+    from manager
+    where id = #{id}
   </select>
 
     <select id="getManagerByIdAndPassword" parameterType="Manager" resultType="Manager">
-    SELECT
-          ID,
-          PASSWORD
-    FROM MANAGER
-    WHERE ID = #{id}
-    AND PASSWORD = #{password}
+    select
+          id,
+          password
+    from manager
+    where id = #{id}
+    and password = #{password}
   </select>
 
 

@@ -1,6 +1,9 @@
 package org.csu.mypetstore.controller;
 
+import org.csu.mypetstore.domain.Account;
 import org.csu.mypetstore.domain.Manager;
+import org.csu.mypetstore.service.AccountManagerService;
+import org.csu.mypetstore.service.AccountService;
 import org.csu.mypetstore.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,12 +13,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
 
     @Autowired
     ManagerService managerService;
+
+    @Autowired
+    AccountService accountService;
+
+    @Autowired
+    AccountManagerService accountManagerService;
 
 
     @PostMapping("/signOn")
@@ -30,7 +41,9 @@ public class ManagerController {
             manager.setPassword(null);
             model.addAttribute("manager",manager);
             System.out.println("成功");
-            return  "/manager/AccountManager";
+                List<Account> accountList = accountManagerService.getAccountList();
+                model.addAttribute("accountList", accountList);
+                return "/manager/AccountManager";
         }
     }
 
