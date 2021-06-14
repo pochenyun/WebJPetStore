@@ -13,8 +13,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/Order")
-@SessionAttributes(value = {"account","cart"})
-public class OrderController {
+@SessionAttributes(value = {"account", "cart"})
+public class OrderController
+{
 
     @Autowired
     OrderService orderService;
@@ -22,54 +23,61 @@ public class OrderController {
     Order orderBridge;
 
     @GetMapping("/insertOrder")
-    public String insertOrder(Model model){
-        Cart cart = (Cart)model.getAttribute("cart");
-        Account account = (Account)model.getAttribute("account");
+    public String insertOrder(Model model)
+    {
+        Cart cart = (Cart) model.getAttribute("cart");
+        Account account = (Account) model.getAttribute("account");
 
         Order order = new Order();
-        order.initOrder(account,cart);
+        order.initOrder(account, cart);
 
-        model.addAttribute("order",order);
+        model.addAttribute("order", order);
 
-        model.addAttribute("order",order);
+        model.addAttribute("order", order);
         orderBridge = order;
 
-        model.addAttribute("tempOrder",new Order());
+        model.addAttribute("tempOrder", new Order());
         return "/order/NewOrderForm";
     }
 
     @GetMapping("/viewOrder")
-    public String viewOrder(Model model){
+    public String viewOrder(Model model)
+    {
         orderService.insertOrder(orderBridge);
 
-        Account account = (Account)model.getAttribute("account");
+        Account account = (Account) model.getAttribute("account");
 
-        model.addAttribute("order",orderBridge);
+        model.addAttribute("order", orderBridge);
         return "order/ViewOrder";
     }
 
     @PostMapping("/conFirmOrderForm")
-    public String conFirmOrderForm(@ModelAttribute(value = "tempOrder") Order tempOrder,Model model){
+    public String conFirmOrderForm(@ModelAttribute(value = "tempOrder") Order tempOrder, Model model)
+    {
         Order order = orderBridge;
         order.updateBill(tempOrder);
         order.copyBillToShip(order);
 
-        model.addAttribute("order",order);
+        model.addAttribute("order", order);
         orderBridge = order;
-        if(tempOrder.isShippingAddressRequired()){
-            model.addAttribute("tempChangeShipOrder",new Order());
+        if (tempOrder.isShippingAddressRequired())
+        {
+            model.addAttribute("tempChangeShipOrder", new Order());
             return "order/ShippingForm";
-        }else {
+        }
+        else
+        {
             return "order/ConfirmOrder";
         }
     }
 
     @PostMapping("/shippingAddress")
-    public String shippingAddress(@ModelAttribute(value = "tempChangeShipOrder") Order tempChangeShipOrder,Model model){
+    public String shippingAddress(@ModelAttribute(value = "tempChangeShipOrder") Order tempChangeShipOrder, Model model)
+    {
         Order order = orderBridge;
         order.updateShip(tempChangeShipOrder);
 
-        model.addAttribute("order",order);
+        model.addAttribute("order", order);
         orderBridge = order;
 
         return "order/ConfirmOrder";
