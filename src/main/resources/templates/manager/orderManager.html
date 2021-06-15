@@ -17,54 +17,12 @@
     <title>订单管理</title>
 </head>
 <body class="vsc-initialized">
-<div class="PublicHead clearfix">
-    <div class="leftBox clearfix">
-        <div class="companyLogo">
-            <img src="/images/manager/logo.jpg">
-        </div>
-        <!--<i class="iconfont icon-caidan"></i>-->
 
-        <div class="companyText">
-            JPetStore
-        </div>
-    </div>
-    <div class="RightBox clearfix">
-        <div class="UserPhotoBox">
-            <div class="UserPic">
-                <img src="/images/manager/user.png">
-            </div>
-            <div class="UserName">
-                管理员
-            </div>
-        </div>
-        <a href="/catalog/view">
-            <div class="dropOutBox">
-                <i class="iconfont icon-app_icons--">
-                </i>
-                <span>退出</span>
-            </div>
-        </a>
-    </div>
-</div>
+<div class="PublicHead clearfix" th:include="/common/managerTop::top"></div>
 
 <div class="PublicDownWhole clearfix">
     <!--左侧-->
-    <div class="leftBox">
-        <ul>
-            <a href="/AccountManager/viewAccountManager">
-                <li><i  class="iconfont icon-yonghuguanli"><span>用户管理</span></i></li>
-            </a>
-            <a href="/orderManager/view">
-                <li class="Select"><i class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
-            </a>
-            <a href="/ProductManage/viewProduct">
-                <li><i class="iconfont icon-fenlei"></i><span>产品管理</span></li>
-            </a>
-            <a href="/ItemManage/viewItem">
-                <li><i class="iconfont icon-weibiaoti1"></i><span>商品管理</span></li>
-            </a>
-        </ul>
-    </div>
+    <div class="leftBox Js_leftBox" th:include="/common/managerBeside::left"></div>
     <!--右侧-->
     <div class="RightBox">
         <div class="PublicContentBox">

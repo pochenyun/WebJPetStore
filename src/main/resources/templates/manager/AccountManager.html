@@ -3,7 +3,6 @@
 <!-- saved from url=(0090)http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/UserManagement.html -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/css/manager/reset.css" rel="stylesheet">
@@ -16,72 +15,18 @@
 </head>
 
 <body class="vsc-initialized">
-<div class="PublicHead clearfix">
-    <div class="leftBox clearfix">
-        <div class="companyLogo">
-            <img src="/images/manager/logo.jpg">
-        </div>
-        <!--<i class="iconfont icon-caidan Js_MenuList"></i>-->
 
-        <div class="companyText">
-            JPetStore
-        </div>
-    </div>
-    <div class="RightBox clearfix">
-        <div class="UserPhotoBox">
-            <div class="UserPic">
-                <img src="/images/manager/user.png">
-            </div>
-            <div class="UserName">
-                管理员
-            </div>
-        </div>
-        <a href="/catalog/view">
-            <div class="dropOutBox">
-                <i class="iconfont icon-app_icons--">
-                </i>
-                <span>退出</span>
-            </div>
-        </a>
-    </div>
-</div>
-
+<div class="PublicHead clearfix" th:include="/common/managerTop::top"></div>
 
 <div class="PublicDownWhole clearfix">
     <!--左侧-->
-    <div class="leftBox Js_leftBox">
-        <ul>
-            <a href="/AccountManager/viewAccountManager">
-                <li class="Select"><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
-            </a>
-            <a href="/orderManager/view">
-                <li><i  class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
-            </a>
-            <a href="/ProductManage/viewProduct">
-                <li><i class="iconfont icon-fenlei"></i><span>产品管理</span></li>
-            </a>
-            <a href="/ItemManage/viewItem">
-                <li><i class="iconfont icon-weibiaoti1"></i><span>商品管理</span></li>
-            </a>
-        </ul>
-    </div>
+    <div class="leftBox Js_leftBox" th:include="/common/managerBeside::left"></div>
     <!--右侧-->
     <div class="RightBox Js_RightBox">
         <div class="PublicContentBox">
             <!--公用指向页面名字-->
             <div class="PublicPointToAgeText">
                 <span class="span1">用户管理</span> <span class="span2">后台用户管理列表</span>
-
-                <!--表修改-->
-                <!--            <div class="InquireTableBox">-->
-                <!--                <div class="headbox">-->
-                <!--                    <div class="headboxtext">-->
-                <!--                        <span class="span1">后台用户管理列表</span>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-                <!--查询到的表格-->
-
 
                 <div class="InquireSelectTable">
                     <table class="PublicTableCss">
@@ -127,9 +72,9 @@
                                 <td><input type="text" size="10" name="zip" th:value="${account.getZip()}"/></td>
                                 <td><input type="text" size="15" name="country" th:value="${account.getCountry()}"/>
                                 </td>
-                                <td><i class="iconfont tubiaozhizuomobanyihuifu"></i><input type="submit"
-                                                                                            name="editAccount"
-                                                                                            value="Save Account Information"/>
+                                <td>
+                                    <i class="iconfont tubiaozhizuomobanyihuifu"></i>
+                                    <input type="submit" name="editAccount" value="Save Account Information"/>
                                 </td>
                             </form>
 
@@ -149,14 +94,9 @@
                                    th:href="${'/AccountManager/removeAccount?username='}+${account.getUsername()}">Remove</a>
                             </td>
                         </tr>
-
-
                         </tbody>
                     </table>
-
                 </div>
-
-
                 <!--返回顶部-->
                 <a href="javaScript:void();" class="back-to-top"><i class="iconfont icon-fanhuidingbu"></i> </a>
             </div>
