@@ -45,14 +45,4 @@ $(function ()
         $("html, body").animate({scrollTop: 0}, 600);
         return false;
     });
-
-    $('.Js_leftBox').children().children("a").on("click", function ()
-    {
-        console.log(this.id());
-        // //指定左侧栏哪个格子亮
-        // let titleId = $("title").id();
-        // alert(titleId);
-        // $("div#left").children("ul").children("a#"+titleId).children("li").addClass("Select");
-    })
-
 });

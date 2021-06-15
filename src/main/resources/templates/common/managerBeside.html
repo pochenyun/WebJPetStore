@@ -3,21 +3,25 @@
 <!-- saved from url=(0090)http://view.jqueryfuns.com/2019/10/24/42f3590f15b7a50329779cbc95d1872e/UserManagement.html -->
 <body>
 <!--左侧-->
-<div id="left" class="leftBox Js_leftBox" th:fragment="left">
+<div id="left" class="leftBox Js_leftBox" th:fragment="left(number)">
     <ul>
-        <a id="1" href="/AccountManager/viewAccountManager">
-            <li class="Select"><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
+        <a id="beside1" href="/AccountManager/viewAccountManager">
+            <li><i class="iconfont icon-yonghuguanli"></i><span>用户管理</span></li>
         </a>
-        <a id="2" href="/orderManager/view">
+        <a id="beside2" href="/orderManager/view">
             <li><i  class="iconfont icon-tubiao_dingdan"></i><span>订单管理</span></li>
         </a>
-        <a id="3" href="/ProductManage/viewProduct">
+        <a id="beside3" href="/ProductManage/viewProduct">
             <li><i class="iconfont icon-fenlei"></i><span>产品管理</span></li>
         </a>
-        <a id="4" href="/ItemManage/viewItem">
+        <a id="beside4" href="/ItemManage/viewItem">
             <li><i class="iconfont icon-weibiaoti1"></i><span>商品管理</span></li>
         </a>
     </ul>
+    <script th:inline="javascript">
+        let number = [[${number}]];
+        $("#"+number).children("li").addClass("Select");
+    </script>
 </div>
 </body>
 </html>
